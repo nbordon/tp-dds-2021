@@ -7,7 +7,7 @@
 **Integrantes**:
 - Larry Vargas
 - Cecilia Inés rocca
-- Matias Rizzato
+- Matias Rizzato Busta
 - Ignacio Hernan Sosa Celman
 - Pedro Nicolas Bordon
 - Gabriel Bori
