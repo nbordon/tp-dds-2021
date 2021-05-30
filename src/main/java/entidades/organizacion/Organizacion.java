@@ -42,8 +42,11 @@ public class Organizacion {
         this.caracteristicasDeMascotasRequeridas = caracteristicasDeMascotasRequeridas;
     }
 
-    public void addCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristicaDeMascota) {
-        this.caracteristicasDeMascotasRequeridas.add(caracteristicaDeMascota);
+    public void addCaracteristicasDeMascotasRequerida(CaracteristicaDeMascota ... caracteristicaDeMascotas){
+        for(CaracteristicaDeMascota c: caracteristicaDeMascotas){
+            this.caracteristicasDeMascotasRequeridas.add(c);
+        }
+
     }
 
     public void removeCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristicaDeMascota){
