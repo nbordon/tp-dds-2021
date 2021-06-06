@@ -2,6 +2,7 @@ package entidades.organizacion;
 
 import entidades.mascotas.CaracteristicaDeMascota;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Organizacion {
@@ -9,6 +10,10 @@ public class Organizacion {
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas;
+
+    public Organizacion(){
+        this.caracteristicasDeMascotasRequeridas = new ArrayList<>();
+    }
 
     public String getNombre() {
         return nombre;
