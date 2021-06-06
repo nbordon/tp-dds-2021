@@ -1,4 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.Or;
 import entidades.mascotas.CaracteristicaDeMascota;
 import entidades.organizacion.Organizacion;
 import org.junit.Assert;
