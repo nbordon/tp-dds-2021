@@ -1,4 +1,7 @@
-package entidades;
+package entidades.Organizacion;
+
+import entidades.Mascotas.CaracteristicaDeMascota;
+import entidades.UsuarioVoluntario;
 
 import java.util.List;
 

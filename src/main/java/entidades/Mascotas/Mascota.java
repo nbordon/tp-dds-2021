@@ -1,4 +1,6 @@
-package entidades;
+package entidades.Mascotas;
+
+import entidades.Persona;
 
 import java.util.List;
 
@@ -32,6 +34,43 @@ public class Mascota{
     }
     public EstadoMascota getEstado(){
         return estado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApodo() {
+        return apodo;
+    }
+
+    public int getEdadAproximada() {
+        return edadAproximada;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public List<String> getDescripcionFisica() {
+        return descripcionFisica;
+    }
+
+    public List<CaracteristicaDeMascota> getCaracteristicas() {
+        return caracteristicas;
+    }
+
+    public List<String> getFotosUrl() {
+        return fotosUrl;
+    }
+
+    public TipoMascota getTipoMascota() {
+
+        return tipoMascota;
+    }
+
+    public Persona getDuenio() {
+        return duenio;
     }
 
     public void setEstado(EstadoMascota estado) {

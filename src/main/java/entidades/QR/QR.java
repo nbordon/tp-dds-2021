@@ -1,4 +1,4 @@
-package entidades;
+package entidades.QR;
 
 
 import com.google.zxing.WriterException;
