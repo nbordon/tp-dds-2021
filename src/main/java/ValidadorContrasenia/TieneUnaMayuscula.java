@@ -3,7 +3,6 @@ package ValidadorContrasenia;
 import exception.VerificadorException;
 
 public class TieneUnaMayuscula implements ValidadorContraseniaInterface {
-
     @Override
     public void validar(String password) throws VerificadorException {
         for (char c : password.toCharArray()) {
