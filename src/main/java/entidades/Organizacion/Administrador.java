@@ -35,13 +35,12 @@ public class Administrador extends Usuario {
         this.organizacionPerteneciente = organizacionPerteneciente;
     }
 
-    public void aprobarVoluntario(UsuarioVoluntario voluntario) {
-        if (organizacionPerteneciente.getUsuariosAprobados().contains(voluntario))
-            voluntariosDadosDeAlta.add(voluntario)
-                    ;
-    }
-
-    public void quitarVoluntario(UsuarioVoluntario voluntario) {
-        voluntariosDadosDeAlta.remove(voluntario);
+    public void aprobarVoluntario(UsuarioVoluntario voluntario){
+if(organizacionPerteneciente.getUsuariosAprobados().contains(voluntario))
+    voluntariosDadosDeAlta.add(voluntario)
+    ;
+}
+    public void quitarVoluntario(UsuarioVoluntario voluntario){
+voluntariosDadosDeAlta.remove(voluntario);
     }
 }

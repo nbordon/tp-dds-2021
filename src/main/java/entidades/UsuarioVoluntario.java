@@ -1,8 +1,8 @@
 package entidades;
 
-public class UsuarioVoluntario extends Usuario {
+public class UsuarioVoluntario extends  Usuario {
 
-    private Persona personaVoluntaria;
+private Persona personaVoluntaria;
 
     public Persona getPersonaVoluntaria() {
         return personaVoluntaria;

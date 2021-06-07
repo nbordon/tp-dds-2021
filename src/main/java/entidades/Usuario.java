@@ -13,13 +13,11 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-    public String getNombreUsuario() {
+    public String getNombreUsuario(){
 
         return nombreUsuario;
     }
-
-    public String getContrasenia() {
+    public String getContrasenia(){
 
         return contrasenia;
-    }
-}
+    }  }
