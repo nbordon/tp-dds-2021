@@ -14,4 +14,5 @@ public class VerificadorException extends Exception {
     public static String TIENE_MAYUSCULA_EXCEPTION = "La contrasenia debe tener al menos una mayuscula";
     public static String TIENE_UN_NUMERO_EXCEPTION = "La contrasenia debe contener al menos un numero";
     public static String LARGO_DEL_STRING_EXCEPTION = "Largo de la contrasenia invalido, debe tener al menos " + LONGITUD_MINIMA + " caracteres de largo y como maximo "+LONGITUD_MAXIMA+"";
+
 }

@@ -8,8 +8,8 @@ public class Password {
 
     private final String password;
     private LocalDate fechaModificacion;
-    
-   public Password(String password) throws VerificadorException {
+
+    public Password(String password) throws VerificadorException {
        String passwordEncoded = encriptarPassword(password);
         this.password = passwordEncoded;
         this.fechaModificacion = LocalDate.now();
@@ -26,6 +26,7 @@ public class Password {
     public void setFechaModificacion(LocalDate fechaModificacionNueva){
        fechaModificacion = fechaModificacionNueva;
     }
+
     public String encriptarPassword(String passwordTextoPlano) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(passwordTextoPlano);
