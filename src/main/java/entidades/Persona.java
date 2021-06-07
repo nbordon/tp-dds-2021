@@ -2,6 +2,7 @@ package entidades;
 
 import entidades.Mascotas.EstadoMascota;
 import entidades.Mascotas.Mascota;
+import entidades.Organizacion.Organizacion;
 
 import java.util.List;
 
@@ -9,10 +10,7 @@ public class Persona extends  Usuario{
 
     private InformacionPersonal informacionPersonal;
     private List<Mascota> mascotas;
-
-    public List<Mascota> getMascotas() {
-        return mascotas;
-    }
+    private Organizacion organizacion;
 
     public void agregarMascota(Mascota mascota){
 
@@ -27,6 +25,26 @@ public class Persona extends  Usuario{
         this.agregarMascota(mascota);
 
         }
+
+    public void setInformacionPersonal(InformacionPersonal informacionPersonal) {
+        this.informacionPersonal = informacionPersonal;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
+    }
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
 
 
     public void actualizarEstadoMascota(Mascota mascota, EstadoMascota estado){

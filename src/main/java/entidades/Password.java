@@ -2,6 +2,7 @@ package entidades;
 
 import exception.VerificadorException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.time.LocalDate;
 
 public class Password {
@@ -10,7 +11,7 @@ public class Password {
     private LocalDate fechaModificacion;
 
     public Password(String password) throws VerificadorException {
-       String passwordEncoded = encriptarPassword(password);
+        String passwordEncoded = encriptarPassword(password);
         this.password = passwordEncoded;
         this.fechaModificacion = LocalDate.now();
     }
@@ -23,8 +24,8 @@ public class Password {
         return fechaModificacion;
     }
 
-    public void setFechaModificacion(LocalDate fechaModificacionNueva){
-       fechaModificacion = fechaModificacionNueva;
+    public void setFechaModificacion(LocalDate fechaModificacionNueva) {
+        fechaModificacion = fechaModificacionNueva;
     }
 
     public String encriptarPassword(String passwordTextoPlano) {
