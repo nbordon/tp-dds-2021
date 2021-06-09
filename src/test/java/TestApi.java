@@ -1,8 +1,8 @@
 import Api.services.ServiceRefugio;
 import Api.services.entities.Hogar;
 import Api.services.entities.ListadoHogares;
-import Api.services.entities.Usuario;
 import Api.services.entities.UsuarioResponse;
+import entidades.Usuario;
 import org.junit.Test;
 
 import java.io.IOException;

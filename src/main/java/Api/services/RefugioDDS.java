@@ -1,8 +1,8 @@
 package Api.services;
 
 import Api.services.entities.ListadoHogares;
-import Api.services.entities.Usuario;
 import Api.services.entities.UsuarioResponse;
+import entidades.Usuario;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -13,8 +13,8 @@ import retrofit2.http.Query;
 public interface RefugioDDS {
 
     @GET("hogares")
-    Call<ListadoHogares> hogares(@Header("Authorization") String token, @Query("offset") String offset);
+    Call<ListadoHogares> muestroHogares(@Header("Authorization") String token, @Query("offset") String offset);
 
     @POST("usuarios")
-    Call<UsuarioResponse> usuarios(@Body Usuario email);
+    Call<UsuarioResponse> envioUsuarios(@Body Usuario email);
 }

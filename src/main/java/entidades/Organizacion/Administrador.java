@@ -11,6 +11,10 @@ public class Administrador extends Usuario {
     private Organizacion organizacionPerteneciente;
     private List<UsuarioVoluntario> voluntariosDadosDeAlta;
 
+    public Administrador(String email) {
+        super(email);
+    }
+
     public String getNombre() {
         return nombre;
     }

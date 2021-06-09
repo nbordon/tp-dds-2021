@@ -1,8 +1,8 @@
 package Api.services;
 
 import Api.services.entities.ListadoHogares;
-import Api.services.entities.Usuario;
 import Api.services.entities.UsuarioResponse;
+import entidades.Usuario;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -33,7 +33,7 @@ public class ServiceRefugio {
 
     public ListadoHogares listadoHogares(String numOffset) throws IOException {
         RefugioDDS refugioDDS = this.retrofit.create(RefugioDDS.class);
-        Call<ListadoHogares> requestHogaresDisponibles = refugioDDS.hogares(token, numOffset);
+        Call<ListadoHogares> requestHogaresDisponibles = refugioDDS.muestroHogares(token, numOffset);
         ListadoHogares listadoHogares = null;
         try {
             Response<ListadoHogares> responseHogares = requestHogaresDisponibles.execute();
@@ -51,7 +51,7 @@ public class ServiceRefugio {
         Response<UsuarioResponse> responseToken = null;
         Usuario userResponse = new Usuario(emailUser);
         try {
-            Call<UsuarioResponse> crearUsuario = refugioDDS.usuarios(userResponse);
+            Call<UsuarioResponse> crearUsuario = refugioDDS.envioUsuarios(userResponse);
             responseToken = crearUsuario.execute();
             respuesta.setToken(responseToken.body().getToken());
         } catch (IOException | IllegalStateException exception) {

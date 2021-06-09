@@ -12,6 +12,10 @@ public class Persona extends Usuario {
     private InformacionPersonal informacionPersonal;
     private List<Mascota> mascotas;
 
+    public Persona(String email) {
+        super(email);
+    }
+
     public InformacionPersonal getInformacionPersonal() {
         return informacionPersonal;
     }
