@@ -1,4 +1,4 @@
-package entidades.mascotas;
+package entidades.Mascotas;
 
 public class CaracteristicaDeMascota {
     private String descripcion;

@@ -1,4 +1,4 @@
-import entidades.mascotas.CaracteristicaDeMascota;
+import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.organizacion.Organizacion;
 import org.junit.Assert;
 import org.junit.Before;
