@@ -1,3 +1,4 @@
 package Api.services.entities;
 
-public class Admisiones {}
+public class Admisiones {
+}

@@ -1,5 +1,3 @@
-
-
 import Api.services.ServiceRefugio;
 import Api.services.entities.Hogar;
 import Api.services.entities.ListadoHogares;
@@ -10,9 +8,11 @@ import org.junit.Test;
 import java.io.IOException;
 
 public class TestApi {
+
     public ServiceRefugio serviceRefugio = ServiceRefugio.getInstance();
+
     @Test
-    public  void getHogares() throws IOException {
+    public void getHogares() throws IOException {
         String numOffset = "1";
         System.out.println("Seleccione uno de los siguientes refugios:");
 
@@ -24,7 +24,7 @@ public class TestApi {
     }
 
     @Test
-    public void postUsuario() throws  IOException{
+    public void postUsuario() throws IOException {
         String emailPrueba = "pruebaTest4@frba.utn.edu.com.ar";
         Usuario usuarioPrueba = new Usuario(emailPrueba);
         UsuarioResponse usuarioRespuesta = serviceRefugio.postUsuarios(emailPrueba);

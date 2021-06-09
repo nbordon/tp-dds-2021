@@ -1,9 +1,9 @@
 package EstrategiasNotificacion.EstrategiaWhatsApp;
 
-import EstrategiasNotificacion.EstrategiaNotificacionInterface;
+import EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 
-public class EstrategiaWhatsApp implements EstrategiaNotificacionInterface {
+public class EstrategiaDeWhatsApp implements EstrategiaDeNotificacion {
 
     private static final WhatsAppAdapterInterface notificadorWhatsApp = new WhastAppTwilioAdapter();
 

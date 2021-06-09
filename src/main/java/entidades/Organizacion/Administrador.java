@@ -15,32 +15,32 @@ public class Administrador extends Usuario {
         return nombre;
     }
 
-    public Organizacion getOrganizacionPerteneciente() {
-        return organizacionPerteneciente;
-    }
-
-    public List<UsuarioVoluntario> getVoluntariosDadosDeAlta() {
-        return voluntariosDadosDeAlta;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setVoluntariosDadosDeAlta(List<UsuarioVoluntario> voluntariosDadosDeAlta) {
-        this.voluntariosDadosDeAlta = voluntariosDadosDeAlta;
+    public Organizacion getOrganizacionPerteneciente() {
+        return organizacionPerteneciente;
     }
 
     public void setOrganizacionPerteneciente(Organizacion organizacionPerteneciente) {
         this.organizacionPerteneciente = organizacionPerteneciente;
     }
 
-    public void aprobarVoluntario(UsuarioVoluntario voluntario){
-if(organizacionPerteneciente.getUsuariosAprobados().contains(voluntario))
-    voluntariosDadosDeAlta.add(voluntario)
-    ;
-}
-    public void quitarVoluntario(UsuarioVoluntario voluntario){
-voluntariosDadosDeAlta.remove(voluntario);
+    public List<UsuarioVoluntario> getVoluntariosDadosDeAlta() {
+        return voluntariosDadosDeAlta;
+    }
+
+    public void setVoluntariosDadosDeAlta(List<UsuarioVoluntario> voluntariosDadosDeAlta) {
+        this.voluntariosDadosDeAlta = voluntariosDadosDeAlta;
+    }
+
+    public void aprobarVoluntario(UsuarioVoluntario voluntario) {
+        if (organizacionPerteneciente.getUsuariosAprobados().contains(voluntario))
+            voluntariosDadosDeAlta.add(voluntario);
+    }
+
+    public void quitarVoluntario(UsuarioVoluntario voluntario) {
+        voluntariosDadosDeAlta.remove(voluntario);
     }
 }

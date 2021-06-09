@@ -1,2 +1,4 @@
-package EstrategiasNotificacion;public class NotificacionException {
+package EstrategiasNotificacion;
+
+public class NotificacionException {
 }

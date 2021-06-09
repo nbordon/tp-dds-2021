@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ValidadorDeContrasenias {
+
     private static final List<ValidadorContraseniaInterface> validadores = Arrays.asList(
             new CumpleLargoMinimoYMaximo(),
             new EsDeLas10kPeores(),

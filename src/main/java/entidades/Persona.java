@@ -2,36 +2,37 @@ package entidades;
 
 import entidades.Mascotas.EstadoMascota;
 import entidades.Mascotas.Mascota;
+import exception.MascotaNoPerteneceAlUsuarioException;
 
 import java.util.List;
+import java.util.Optional;
 
-public class Persona extends  Usuario{
+public class Persona extends Usuario {
 
     private InformacionPersonal informacionPersonal;
     private List<Mascota> mascotas;
+
+    public InformacionPersonal getInformacionPersonal() {
+        return informacionPersonal;
+    }
 
     public List<Mascota> getMascotas() {
         return mascotas;
     }
 
-    public void agregarMascota(Mascota mascota){
-
+    public void registrarMascota(Mascota mascota) {
         mascotas.add(mascota);
     }
-    public InformacionPersonal getInformacionPersonal(){
-        return informacionPersonal;
-    }
 
-    public void registrarMascota(Mascota mascota) {
+    public void actualizarEstadoMascota(Mascota mascota, EstadoMascota estado) throws Exception {
+        Optional<Mascota> mascotaParaActualizar = mascotas.stream()
+                .filter(mascotaEnLista -> mascotaEnLista.getNombre().equals(mascota.getNombre()))
+                .findFirst();
 
-        this.agregarMascota(mascota);
-
+        if (!mascotaParaActualizar.isPresent()) {
+            throw new MascotaNoPerteneceAlUsuarioException();
+        } else {
+            mascotaParaActualizar.get().setEstado(estado);
         }
-
-
-    public void actualizarEstadoMascota(Mascota mascota, EstadoMascota estado){
-        mascota.setEstado(estado);
     }
-
-
 }

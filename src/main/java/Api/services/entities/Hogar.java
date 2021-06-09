@@ -1,7 +1,9 @@
 package Api.services.entities;
+
 import java.util.List;
 
 public class Hogar {
+
     public String id;
     public String nombre;
     public Ubicacion ubicacion;
@@ -11,5 +13,4 @@ public class Hogar {
     public int lugares_disponibles;
     public Boolean patio;
     public List<String> caracteristicas;
-
 }

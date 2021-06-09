@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class EsDeLas10kPeores implements ValidadorContraseniaInterface {
+
     public static final String RUTA_10KPEORES = "src/main/java/resources/10k-most-common.txt";
 
     @Override

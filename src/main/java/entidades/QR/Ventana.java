@@ -1,11 +1,11 @@
 package entidades.QR;
 
-
 import com.google.zxing.WriterException;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import java.awt.image.BufferedImage;
-
 
 public class Ventana extends JFrame {
 
@@ -22,5 +22,6 @@ public class Ventana extends JFrame {
         this.setTitle("Chapita mascota");
         this.getContentPane().add(etiqueta);
         this.pack();
-    }    }
+    }
+}
 

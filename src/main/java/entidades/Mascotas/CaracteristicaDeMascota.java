@@ -4,6 +4,14 @@ public class CaracteristicaDeMascota {
     private String descripcion;
     private String valor;
 
+    public CaracteristicaDeMascota() {
+    }
+
+    public CaracteristicaDeMascota(String descripcion, String valor) {
+        this.descripcion = descripcion;
+        this.valor = valor;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

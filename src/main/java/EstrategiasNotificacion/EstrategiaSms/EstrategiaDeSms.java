@@ -1,13 +1,14 @@
 package EstrategiasNotificacion.EstrategiaSms;
 
-import EstrategiasNotificacion.EstrategiaNotificacionInterface;
+import EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 
-public class EstrategiaSms implements EstrategiaNotificacionInterface {
+public class EstrategiaDeSms implements EstrategiaDeNotificacion {
 
     private static final SmsAdapterInterface notificadorSms = new SmsTwilioAdapter();
+
     @Override
-    public void notificar(String mensaje , Contacto contacto) {
+    public void notificar(String mensaje, Contacto contacto) {
         notificadorSms.notificarViaSms(mensaje, contacto);
     }
 }
