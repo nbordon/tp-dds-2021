@@ -5,6 +5,8 @@ public class CaracteristicaDeMascota {
     private String valor;
 
     public CaracteristicaDeMascota() {
+        this.descripcion = new String();
+        this.valor = new String();
     }
 
     public CaracteristicaDeMascota(String descripcion, String valor) {

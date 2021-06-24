@@ -2,6 +2,7 @@ package entidades;
 
 import entidades.Mascotas.EstadoMascota;
 import entidades.Mascotas.Mascota;
+import entidades.Organizacion.Organizacion;
 import exception.MascotaNoPerteneceAlUsuarioException;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class Persona extends Usuario {
 
     private InformacionPersonal informacionPersonal;
     private List<Mascota> mascotas;
+    private Organizacion organizacion;
 
     public Persona(String email) {
         super(email);
@@ -22,6 +24,14 @@ public class Persona extends Usuario {
 
     public List<Mascota> getMascotas() {
         return mascotas;
+    }
+
+    public Organizacion getOrganizacion() {
+        return organizacion;
+    }
+
+    public void setOrganizacion(Organizacion organizacion) {
+        this.organizacion = organizacion;
     }
 
     public void registrarMascota(Mascota mascota) {
