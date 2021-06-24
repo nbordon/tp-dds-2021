@@ -3,7 +3,6 @@ package ValidadorContrasenia;
 import exception.VerificadorException;
 
 public class TieneCaracteresRepetidos implements ValidadorContraseniaInterface {
-
     @Override
     public void validar(String password) throws VerificadorException {
         //considero que hay caracteres repetidos si el mismo caracter se repite 3 veces

@@ -19,6 +19,5 @@ public class EstaCaduca {
         if (diasPasados > 365) {
             throw new VerificadorException(VerificadorException.ESTA_CADUCA_EXCEPTION);
         }
-
     }
 }

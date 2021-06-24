@@ -20,3 +20,11 @@
 - Ignacio Hernan Sosa Celman
 - Pedro Nicolas Bordon
 - Gabriel Bori
+
+
+Variables de entorno:
+
+- ACCOUNT_SID=XXX
+- AUTH_TOKEN=XXX
+- TWILIO_WHATSAPP_PHONE_NUMBER=+000000;
+- SERVICE_SID=XXX

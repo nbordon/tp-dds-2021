@@ -1,4 +1,10 @@
-import ValidadorContrasenia.*;
+import ValidadorContrasenia.CumpleLargoMinimoYMaximo;
+import ValidadorContrasenia.EsDeLas10kPeores;
+import ValidadorContrasenia.EstaCaduca;
+import ValidadorContrasenia.TieneCaracteresRepetidos;
+import ValidadorContrasenia.TieneUnNumero;
+import ValidadorContrasenia.TieneUnaMayuscula;
+import ValidadorContrasenia.ValidadorDeContrasenias;
 import entidades.Password;
 import exception.VerificadorException;
 import org.junit.Assert;
@@ -6,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.time.LocalDate;
 
 public class TestValidadorContrasenia {
@@ -32,7 +39,7 @@ public class TestValidadorContrasenia {
     }
 
     @Test
-    public void contraseniaEsDeLas10KPeores() throws VerificadorException{
+    public void contraseniaEsDeLas10KPeores() throws VerificadorException {
         String contrasenia = "123456";
 
         thrown.expect(VerificadorException.class);
@@ -80,7 +87,7 @@ public class TestValidadorContrasenia {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String passwordEncoded = encoder.encode(contrasenia);
         Password password = new Password("*-_Gabo!1?");
-        Assert.assertTrue(encoder.matches("*-_Gabo!1?",password.getPassword()));
+        Assert.assertTrue(encoder.matches("*-_Gabo!1?", password.getPassword()));
     }
 
     @Test
