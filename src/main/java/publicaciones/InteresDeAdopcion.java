@@ -6,14 +6,13 @@ import entidades.Persona;
 
 public class InteresDeAdopcion extends Publicacion {
     private Contacto personaNoRegistrada;
-    private Mascota mascotaEnAdopcion;
 
     @Override
     public void notificar(){
         Persona duenioMascotaEnAdopcion = mascotaEnAdopcion.getDuenio();
 
         duenioMascotaEnAdopcion.getInformacionPersonal().getFormaComunicacion().forEach(
-                forma->forma.notificar("Tu mascota quiere ser adoptada!",personaNoRegistrada));
+                forma->forma.notificar("Tu mascota quiere ser adoptada!",));
 
     }
 }
