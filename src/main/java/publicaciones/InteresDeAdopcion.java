@@ -1,13 +1,19 @@
 package publicaciones;
 
+import entidades.Contacto;
+import entidades.Mascotas.Mascota;
 import entidades.Persona;
 
 public class InteresDeAdopcion extends Publicacion {
-    private Persona personaNoRegistrada;
-    //mascota?
+    private Contacto personaNoRegistrada;
+    private Mascota mascotaEnAdopcion;
 
     @Override
-    public void notificar() {
-        //TODO.Notificar al duenio de la mascota que la quieren adoptar.De donde sale la mascota??
+    public void notificar(){
+        Persona duenioMascotaEnAdopcion = mascotaEnAdopcion.getDuenio();
+
+        duenioMascotaEnAdopcion.getInformacionPersonal().getFormaComunicacion().forEach(
+                forma->forma.notificar("Tu mascota quiere ser adoptada!",personaNoRegistrada));
+
     }
 }
