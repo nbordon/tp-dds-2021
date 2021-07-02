@@ -2,6 +2,7 @@ package entidades.Organizacion;
 
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.UsuarioVoluntario;
+import publicaciones.Publicacion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +15,7 @@ public class Organizacion {
     private Integer anchoFotoEstandar;
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
     private List<UsuarioVoluntario> voluntariosAprobados;
+    public List<Publicacion> publicacionesEnEsperaDeAprobacion;
 
     public List<UsuarioVoluntario> getUsuariosAprobados() {
         return voluntariosAprobados;
@@ -66,6 +68,14 @@ public class Organizacion {
 
     public void removeCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristicaDeMascota) {
         this.caracteristicasDeMascotasRequeridas.remove(caracteristicaDeMascota);
+    }
+
+    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
+        return publicacionesEnEsperaDeAprobacion;
+    }
+
+    public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacionNueva){
+        this.getPublicacionesEnEsperaDeAprobacion().add(publicacionNueva);
     }
 }
 
