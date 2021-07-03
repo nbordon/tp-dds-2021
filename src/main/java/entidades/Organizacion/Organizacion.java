@@ -3,6 +3,7 @@ package entidades.Organizacion;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.UsuarioVoluntario;
 import publicaciones.Publicacion;
+import publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +16,9 @@ public class Organizacion {
     private Integer anchoFotoEstandar;
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
     private List<UsuarioVoluntario> voluntariosAprobados;
-    public List<Publicacion> publicacionesEnEsperaDeAprobacion;
+    private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
+    private  List<Publicacion> publicacionesEnEsperaDeAprobacion;
+    //private List<Publicacion>publicacionesAprobadas;
 
     public List<UsuarioVoluntario> getUsuariosAprobados() {
         return voluntariosAprobados;
@@ -48,6 +51,9 @@ public class Organizacion {
     public List<CaracteristicaDeMascota> getCaracteristicasDeMascotasRequeridas() {
         return caracteristicasDeMascotasRequeridas;
     }
+    public List<PreguntasAdopcion> getPreguntasRequeridasAdopcion(){
+        return preguntasRequeridasAdopcion;
+    }
 
     public void setCaracteristicasDeMascotasRequeridas(List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas) {
         this.caracteristicasDeMascotasRequeridas = caracteristicasDeMascotasRequeridas;
@@ -70,12 +76,7 @@ public class Organizacion {
         this.caracteristicasDeMascotasRequeridas.remove(caracteristicaDeMascota);
     }
 
-    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
-        return publicacionesEnEsperaDeAprobacion;
-    }
-
-    public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacionNueva){
-        this.getPublicacionesEnEsperaDeAprobacion().add(publicacionNueva);
+    public void agregarPublicacionEnEsperaDeAprobacion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
+       publicacionesEnEsperaDeAprobacion.add(publicacionMascotaEnAdopcion);
     }
 }
-
