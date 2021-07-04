@@ -26,6 +26,10 @@ public class Persona extends Usuario {
         return mascotas;
     }
 
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
+    }
+
     public Organizacion getOrganizacion() {
         return organizacion;
     }
