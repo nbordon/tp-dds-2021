@@ -3,7 +3,9 @@ package entidades.Organizacion;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.UsuarioVoluntario;
 import publicaciones.Publicacion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
+import publicaciones.PublicacionMascotaEncontradaSinChapita;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,8 +19,20 @@ public class Organizacion {
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
     private List<UsuarioVoluntario> voluntariosAprobados;
     private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
-    private  List<Publicacion> publicacionesEnEsperaDeAprobacion;
-    //private List<Publicacion>publicacionesAprobadas;
+    private ContenedorPublicaciones contenedorPublicaciones;
+
+
+    public List<PublicacionMascotaEnAdopcion> getPublicacionesAprobadasMascotaEnAdopcion(){
+        return contenedorPublicaciones.publicacionesAprobadasMascotaEnAdopcion();
+    }
+
+    public List<PublicacionMascotaEncontradaSinChapita> getPublicacionesAprobadasMascotaEncontradaSinChapita(){
+        return contenedorPublicaciones.publicacionesAprobadasMascotaEncontradaSinChapita();
+    }
+
+    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
+        return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
+    }
 
     public List<UsuarioVoluntario> getUsuariosAprobados() {
         return voluntariosAprobados;
@@ -77,6 +91,6 @@ public class Organizacion {
     }
 
     public void agregarPublicacionEnEsperaDeAprobacion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
-       publicacionesEnEsperaDeAprobacion.add(publicacionMascotaEnAdopcion);
+       contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
     }
 }

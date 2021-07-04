@@ -4,12 +4,14 @@ import EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
+import entidades.Organizacion.Respuesta;
 import entidades.Persona;
 
 import java.util.List;
 
 public class PublicacionMascotaEnAdopcion extends Publicacion {
     private Mascota mascotaEnAdopcion;
+    private List<Respuesta> respuestasPreguntas;
 
     public void setMascota(Mascota mascota) {
         this.mascotaEnAdopcion = mascota;

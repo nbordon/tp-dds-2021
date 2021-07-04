@@ -49,4 +49,8 @@ public abstract class Publicacion {
     }
 
     public abstract void notificar();
+
+    public boolean esAprobada(){
+        return this.estado == EstadoPublicacion.APROBADA;
+    }
 }

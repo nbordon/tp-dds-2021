@@ -9,7 +9,7 @@ public class Pregunta {
 
 
     public Respuesta contestar(){
-        return new Respuesta(this,List<String>valor);
+        return new Respuesta(this,valor);
     }
 
 
