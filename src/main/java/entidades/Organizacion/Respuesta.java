@@ -20,5 +20,4 @@ public class Respuesta {
         this.preguntaALaQuePertenece = preguntaALaQuePertenece;
     }
 
-
 }

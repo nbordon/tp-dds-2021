@@ -7,7 +7,6 @@ public class Pregunta {
     private List<String> valor;
 
 
-
     public Respuesta contestar(){
         return new Respuesta(this,valor);
     }

@@ -1,11 +1,15 @@
 package publicaciones;
 
+import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
+import entidades.Persona;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Publicacion {
+    private Mascota mascota;
+
     private Organizacion organizacion;
     private EstadoPublicacion estado;
     private String titulo;
@@ -16,12 +20,25 @@ public abstract class Publicacion {
         this.titulo = new String();
     }
 
+    public Mascota getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(Mascota mascotaEnAdopcion){
+        mascota = mascotaEnAdopcion;
+    }
+
     public Organizacion getOrganizacion() {
-        return organizacion;
+        return mascota.getDuenio().getOrganizacion();
+    }
+
+    public Persona getDuenio() {
+        return this.getMascota().getDuenio();
     }
 
     public void setOrganizacion(Organizacion organizacion) {
         this.organizacion = organizacion;
+
     }
 
     public EstadoPublicacion getEstado() {
@@ -46,6 +63,13 @@ public abstract class Publicacion {
 
     public void setFotosURL(List<String> fotosURL) {
         this.fotosURL = fotosURL;
+    }
+
+    private  void agregarEnEsperaDeAprobacion(){
+        this.getOrganizacion().agregarPublicacionEnEsperaDeAprobacion((PublicacionMascotaEnAdopcion) this);
+    }
+    public void cambiarEstadoAPendiente(){
+        this.setEstado(EstadoPublicacion.PENDIENTE);
     }
 
     public abstract void notificar();

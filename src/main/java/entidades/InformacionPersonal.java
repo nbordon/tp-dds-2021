@@ -27,8 +27,8 @@ public class InformacionPersonal {
         this.contactos = contactos;
 
     }
-    //TODO pasar lo de agarrar al duenio de entre la lista de contactos
 
+    //TODO pasar lo de agarrar al duenio de entre la lista de contactos
 
     public String getNombre() {
         return nombre;
@@ -62,8 +62,7 @@ public class InformacionPersonal {
         return contactos;
     }
 
-    public Contacto getDuenio(){
+    public Contacto getContactoDuenio(){
         return (Contacto) this.getContactos().stream().filter(contacto -> contacto.getEsPrincipal());
     }
-
 }
