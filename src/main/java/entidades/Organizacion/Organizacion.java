@@ -2,6 +2,10 @@ package entidades.Organizacion;
 
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.UsuarioVoluntario;
+import publicaciones.Publicacion;
+import publicaciones.PublicacionIntencionDeAdopcion;
+import publicaciones.PublicacionMascotaEnAdopcion;
+import publicaciones.PublicacionMascotaEncontradaSinChapita;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +18,22 @@ public class Organizacion {
     private Integer anchoFotoEstandar;
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
     private List<UsuarioVoluntario> voluntariosAprobados;
+    private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
+    private ContenedorPublicaciones contenedorPublicaciones;
+
+
+    public List<PublicacionMascotaEnAdopcion> getPublicacionesAprobadasMascotaEnAdopcion(){
+        return contenedorPublicaciones.publicacionesAprobadasMascotaEnAdopcion();
+    }
+
+    public List<PublicacionMascotaEncontradaSinChapita> getPublicacionesAprobadasMascotaEncontradaSinChapita(){
+        return contenedorPublicaciones.publicacionesAprobadasMascotaEncontradaSinChapita();
+    }
+
+    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
+        return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
+    }
+
 
     public List<UsuarioVoluntario> getUsuariosAprobados() {
         return voluntariosAprobados;
@@ -47,6 +67,10 @@ public class Organizacion {
         return caracteristicasDeMascotasRequeridas;
     }
 
+    public List<PreguntasAdopcion> getPreguntasRequeridasAdopcion(){
+        return preguntasRequeridasAdopcion;
+    }
+
     public void setCaracteristicasDeMascotasRequeridas(List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas) {
         this.caracteristicasDeMascotasRequeridas = caracteristicasDeMascotasRequeridas;
     }
@@ -67,5 +91,8 @@ public class Organizacion {
     public void removeCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristicaDeMascota) {
         this.caracteristicasDeMascotasRequeridas.remove(caracteristicaDeMascota);
     }
-}
 
+    public void agregarPublicacionEnEsperaDeAprobacion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
+       contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
+    }
+}

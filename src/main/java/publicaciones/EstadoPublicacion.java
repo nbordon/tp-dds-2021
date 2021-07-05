@@ -1,7 +1,8 @@
 package publicaciones;
 
 public enum EstadoPublicacion {
-    PUBLICADA,
+    APROBADA,
     FINALIZADA,
     PENDIENTE
 }
+
