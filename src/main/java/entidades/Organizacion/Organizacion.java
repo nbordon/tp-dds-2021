@@ -34,6 +34,7 @@ public class Organizacion {
         return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
     }
 
+
     public List<UsuarioVoluntario> getUsuariosAprobados() {
         return voluntariosAprobados;
     }
@@ -65,6 +66,7 @@ public class Organizacion {
     public List<CaracteristicaDeMascota> getCaracteristicasDeMascotasRequeridas() {
         return caracteristicasDeMascotasRequeridas;
     }
+
     public List<PreguntasAdopcion> getPreguntasRequeridasAdopcion(){
         return preguntasRequeridasAdopcion;
     }
