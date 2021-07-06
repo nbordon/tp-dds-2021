@@ -1,5 +1,6 @@
 package entidades.Organizacion;
 
+import Api.services.entities.Ubicacion;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.UsuarioVoluntario;
 import publicaciones.IntencionDeAdopcion;
@@ -19,6 +20,7 @@ public class Organizacion {
     private Integer anchoFotoEstandar;
     private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
     private List<UsuarioVoluntario> voluntariosAprobados;
+    private Ubicacion ubicacion;
     private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
     private  List<Publicacion> publicacionesEnEsperaDeAprobacion;
     private  List<Publicacion> publicacionesInteresDeAdopcion;
@@ -76,6 +78,14 @@ public class Organizacion {
 
     public void setCaracteristicasDeMascotasRequeridas(List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas) {
         this.caracteristicasDeMascotasRequeridas = caracteristicasDeMascotasRequeridas;
+    }
+
+    public Ubicacion getUbicacion() {
+        return this.ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     // TODO: ver cual de estas 3 usamos y cual borramos, no tiene mucho sentido tener las 3 pero las deje por el test
