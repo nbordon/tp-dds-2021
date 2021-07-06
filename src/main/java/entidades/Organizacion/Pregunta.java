@@ -9,6 +9,7 @@ public class Pregunta {
 
     public Respuesta contestar(){
         return new Respuesta(this,valor);
+
     }
 
 
@@ -20,3 +21,4 @@ public class Pregunta {
         this.descripcion = descripcion;
     }
 }
+

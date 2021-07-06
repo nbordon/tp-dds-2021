@@ -11,4 +11,8 @@ public class PreguntasAdopcion extends Pregunta{
     public PreguntasAdopcion(List<Pregunta> preguntasObligatorias) {
         this.preguntasObligatorias = preguntasObligatorias;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/tercera-entrega

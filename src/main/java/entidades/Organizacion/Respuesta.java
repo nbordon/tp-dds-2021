@@ -4,8 +4,11 @@ import java.util.List;
 
 public class Respuesta {
 
-    private Pregunta preguntaALaQuePertenece;
-    private List<String> valor;
+
+private Pregunta preguntaALaQuePertenece;
+private List<String> valor;
+
+
 
     public Respuesta(Pregunta preguntaALaQuePertenece,List<String>valor) {
         this.preguntaALaQuePertenece = preguntaALaQuePertenece;
@@ -20,4 +23,6 @@ public class Respuesta {
         this.preguntaALaQuePertenece = preguntaALaQuePertenece;
     }
 
+
 }
+
