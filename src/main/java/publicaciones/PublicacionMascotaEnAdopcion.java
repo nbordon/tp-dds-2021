@@ -6,6 +6,7 @@ import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Respuesta;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PublicacionMascotaEnAdopcion extends Publicacion {
@@ -28,6 +29,8 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
     }
 
     public PublicacionMascotaEnAdopcion(Mascota mascotaEnAdopcion,String titulo,List<String> fotos) {
+        respuestasPreguntas = new ArrayList<>();
+        //TODO: borrar, no se usan los setters en el costructor
         this.setMascota(mascotaEnAdopcion);
         this.setTitulo(titulo);
         this.setFotosURL(fotos);
