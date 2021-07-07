@@ -1,7 +1,7 @@
 package entidades.Organizacion;
 
 import Api.services.entities.Ubicacion;
-import entidades.Mascotas.CaracteristicaDeMascota;
+import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
 import publicaciones.IntencionDeAdopcion;
 import publicaciones.Publicacion;
@@ -18,13 +18,12 @@ public class Organizacion {
     private String nombre;
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
-    private List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas = new ArrayList<CaracteristicaDeMascota>();
+    private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas = new ArrayList<>();
     private List<UsuarioVoluntario> voluntariosAprobados;
     private Ubicacion ubicacion;
     private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
     private  List<Publicacion> publicacionesEnEsperaDeAprobacion;
     private  List<Publicacion> publicacionesInteresDeAdopcion;
-    //private List<Publicacion>publicacionesAprobadas;
 
     private ContenedorPublicaciones contenedorPublicaciones;
 
@@ -68,7 +67,7 @@ public class Organizacion {
         this.anchoFotoEstandar = anchoFotoEstandar;
     }
 
-    public List<CaracteristicaDeMascota> getCaracteristicasDeMascotasRequeridas() {
+    public List<CaracterisiticaDeMascotaRequerida> getCaracteristicasDeMascotasRequeridas() {
         return caracteristicasDeMascotasRequeridas;
     }
 
@@ -76,7 +75,7 @@ public class Organizacion {
         return preguntasRequeridasAdopcion;
     }
 
-    public void setCaracteristicasDeMascotasRequeridas(List<CaracteristicaDeMascota> caracteristicasDeMascotasRequeridas) {
+    public void setCaracteristicasDeMascotasRequeridas(List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas) {
         this.caracteristicasDeMascotasRequeridas = caracteristicasDeMascotasRequeridas;
     }
 
@@ -89,19 +88,19 @@ public class Organizacion {
     }
 
     // TODO: ver cual de estas 3 usamos y cual borramos, no tiene mucho sentido tener las 3 pero las deje por el test
-    public void addCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristica) {
+    public void addCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida caracteristica) {
         this.caracteristicasDeMascotasRequeridas.add(caracteristica);
     }
 
-    public void addCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota... caracteristicas) {
+    public void addCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida... caracteristicas) {
         this.caracteristicasDeMascotasRequeridas.addAll(Arrays.stream(caracteristicas).collect(Collectors.toList()));
     }
 
-    public void addCaracteristicaDeMascotasRequerida(List<CaracteristicaDeMascota> caracteristicas) {
+    public void addCaracteristicaDeMascotasRequerida(List<CaracterisiticaDeMascotaRequerida> caracteristicas) {
         this.caracteristicasDeMascotasRequeridas.addAll(caracteristicas);
     }
 
-    public void removeCaracteristicaDeMascotasRequerida(CaracteristicaDeMascota caracteristicaDeMascota) {
+    public void removeCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida caracteristicaDeMascota) {
         this.caracteristicasDeMascotasRequeridas.remove(caracteristicaDeMascota);
     }
 

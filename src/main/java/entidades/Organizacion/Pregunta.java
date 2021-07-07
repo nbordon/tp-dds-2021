@@ -9,9 +9,7 @@ public class Pregunta {
 
     public Respuesta contestar(){
         return new Respuesta(this,valor);
-
     }
-
 
     public String getDescripcion() {
         return descripcion;
@@ -19,6 +17,14 @@ public class Pregunta {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<String> getValor() {
+        return valor;
+    }
+
+    public void setValor(List<String> valor) {
+        this.valor = valor;
     }
 }
 

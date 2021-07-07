@@ -36,4 +36,8 @@ public class ContenedorPublicaciones {
         this.publicacionesEnEsperaDeAprobacion.add(publicacionMascotaEnAdopcion);
     }
 
+    public void addPublicacionMascotaEncontradaSinChapita(PublicacionMascotaEncontradaSinChapita publicacion){
+        this.publicacionesMascotaEncontradaSinChapita.add(publicacion);
+    }
+
 }

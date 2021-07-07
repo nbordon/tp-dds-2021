@@ -1,3 +1,4 @@
+import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Administrador;
@@ -13,9 +14,9 @@ import java.util.List;
 
 public class TestPublicaciones {
     Organizacion organizacion;
-    CaracteristicaDeMascota colorPrincipal;
-    CaracteristicaDeMascota colorSecundario;
-    CaracteristicaDeMascota estaCastrada;
+    CaracterisiticaDeMascotaRequerida colorPrincipal;
+    CaracterisiticaDeMascotaRequerida colorSecundario;
+    CaracterisiticaDeMascotaRequerida estaCastrada;
     Administrador administrador;
     Persona duenioMascota;
     Persona interesado;
@@ -24,19 +25,50 @@ public class TestPublicaciones {
     String linkBaja;
     IntencionDeAdopcion publicacionIntencion;
 
+    List<String> opciones1;
+    List<String> opciones2;
+    List<String> opciones3;
+    CaracteristicaDeMascota resp1;
+    CaracteristicaDeMascota resp2;
+    CaracteristicaDeMascota resp3;
+
     @Before
     public void inicializar(){
+        opciones1 = new ArrayList<>();
+        opciones2 = new ArrayList<>();
+        opciones3 = new ArrayList<>();
+
+        opciones1.add("marron");
+        opciones1.add("negro");
+        opciones1.add("blanco");
+
         duenioMascota = new Persona("emailTrucho42069@usuario.com");
         mascota = new Mascota();
         listaCaracteristicas = new ArrayList<>();
-        colorPrincipal = new CaracteristicaDeMascota();
+
+        colorPrincipal = new CaracterisiticaDeMascotaRequerida();
+        colorPrincipal.setValor(opciones1);
         colorPrincipal.setDescripcion("color principal");
-        colorSecundario = new CaracteristicaDeMascota();
+
+        opciones2.add("marron");
+        opciones2.add("negro");
+        opciones2.add("blanco");
+        colorSecundario = new CaracterisiticaDeMascotaRequerida();
+        colorSecundario.setValor(opciones2);
         colorSecundario.setDescripcion("color secundario");
-        listaCaracteristicas.add(colorPrincipal);
-        listaCaracteristicas.add(colorSecundario);
-        estaCastrada = new CaracteristicaDeMascota();
+
+        resp1 = colorPrincipal.contestar("marron");
+        resp2 = colorPrincipal.contestar("blanco");
+
+        listaCaracteristicas.add(resp1);
+        listaCaracteristicas.add(resp2);
+
+        opciones3.add("si");
+        opciones3.add("no");
+        estaCastrada = new CaracterisiticaDeMascotaRequerida();
+        estaCastrada.setValor(opciones3);
         estaCastrada.setDescripcion("esta castrada");
+
         mascota.setApodo("El comandante");
         mascota.setCaracteristicas(listaCaracteristicas);
         administrador = new Administrador("admin@admin.com");
