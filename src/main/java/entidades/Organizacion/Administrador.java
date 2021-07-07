@@ -1,6 +1,6 @@
 package entidades.Organizacion;
 
-import entidades.Mascotas.CaracteristicaDeMascota;
+import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Usuario;
 import entidades.UsuarioVoluntario;
 
@@ -49,11 +49,11 @@ public class Administrador extends Usuario {
         voluntariosDadosDeAlta.remove(voluntario);
     }
 
-    public void agregarCaracteristica(CaracteristicaDeMascota caracteristicaDeMascota){
-        organizacionPerteneciente.addCaracteristicaDeMascotasRequerida(caracteristicaDeMascota);
+    public void agregarCaracteristica(CaracterisiticaDeMascotaRequerida caracteristica){
+        organizacionPerteneciente.addCaracteristicaDeMascotasRequerida(caracteristica);
     }
 
-    public void removerCaracteristica(CaracteristicaDeMascota caracteristicaDeMascota){
-        organizacionPerteneciente.removeCaracteristicaDeMascotasRequerida(caracteristicaDeMascota);
+    public void removerCaracteristica(CaracterisiticaDeMascotaRequerida caracteristica){
+        organizacionPerteneciente.removeCaracteristicaDeMascotasRequerida(caracteristica);
     }
 }
