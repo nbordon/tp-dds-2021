@@ -1,6 +1,5 @@
 package entidades.Organizacion;
 
-import com.sun.deploy.net.MessageHeader;
 import publicaciones.Publicacion;
 import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;

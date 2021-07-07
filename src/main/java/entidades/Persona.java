@@ -5,17 +5,19 @@ import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import exception.MascotaNoPerteneceAlUsuarioException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Persona extends Usuario {
 
     private InformacionPersonal informacionPersonal;
-    private List<Mascota> mascotas;
+    private List<Mascota> mascotas ;
     private Organizacion organizacion;
 
     public Persona(String email) {
         super(email);
+        mascotas = new ArrayList<>();
     }
 
     public InformacionPersonal getInformacionPersonal() {
