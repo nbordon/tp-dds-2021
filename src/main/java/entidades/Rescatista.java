@@ -25,6 +25,6 @@ public class Rescatista extends PersonaNoRegistrada{
 
     @Override
     public void notificar() {
-        //TODO informar al dueño o generar publicacion
+        this.mascotaEncontrada.notificar();
     }
 }

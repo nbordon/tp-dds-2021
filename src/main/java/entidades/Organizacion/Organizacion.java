@@ -112,4 +112,11 @@ public class Organizacion {
         publicacionesInteresDeAdopcion.add(intencionDeAdopcion);
     }
 
+    public ContenedorPublicaciones getContenedorPublicaciones() {
+        return contenedorPublicaciones;
+    }
+
+    public void setContenedorPublicaciones(ContenedorPublicaciones contenedorPublicaciones) {
+        this.contenedorPublicaciones = contenedorPublicaciones;
+    }
 }

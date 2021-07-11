@@ -5,6 +5,7 @@ import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,13 @@ public class ContenedorPublicaciones {
     private List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
     private List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion;
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
+
+    public ContenedorPublicaciones(){
+        this.publicacionesEnEsperaDeAprobacion = new ArrayList<>();
+        this.publicacionesIntencionDeAdopcion = new ArrayList<>();
+        this.publicacionesMascotaEncontradaSinChapita = new ArrayList<>();
+        this.publicacionesMascotaEnAdopcion = new ArrayList<>();
+    }
 
     public List<PublicacionMascotaEnAdopcion> publicacionesAprobadasMascotaEnAdopcion() {
         return publicacionesMascotaEnAdopcion.stream().

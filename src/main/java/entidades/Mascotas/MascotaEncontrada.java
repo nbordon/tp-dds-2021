@@ -1,5 +1,6 @@
 package entidades.Mascotas;
 
+import Api.services.entities.Ubicacion;
 import entidades.Rescatista;
 
 import java.util.Date;
@@ -10,6 +11,15 @@ public abstract class MascotaEncontrada {
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
     private Rescatista rescatista;
+    private Ubicacion ubicacion;
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
 
     public List<String> getFotos() {
         return fotos;
