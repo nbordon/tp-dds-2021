@@ -11,7 +11,18 @@ import java.util.List;
 
 public class IntencionDeAdopcion extends Publicacion {
     private Persona personaInteresada;
+
+    public Persona getPersonaInteresada() {
+        return personaInteresada;
+    }
+
     private String linkBaja;
+    private List<Respuesta> respuestasCaracteristicasDeMascota;
+
+    public List<Respuesta> getListaPreferencias() {
+        return listaPreferencias;
+    }
+
     private List<Respuesta> listaPreferencias;
 
     public IntencionDeAdopcion(){
@@ -27,6 +38,10 @@ public class IntencionDeAdopcion extends Publicacion {
         listaPreferencias.forEach(preferencia->this.cargarPreferencias(preferencia));
         this.cambiarEstadoAPendiente();
         this.notificar();
+    }
+
+    public List<Respuesta> getRespuestasCaracteristicasDeMascota() {
+        return respuestasCaracteristicasDeMascota;
     }
 
     private Contacto getContactoInteresado() {

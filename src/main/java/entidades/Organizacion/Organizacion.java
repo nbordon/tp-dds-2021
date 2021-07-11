@@ -5,7 +5,6 @@ import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
 import publicaciones.IntencionDeAdopcion;
 import publicaciones.Publicacion;
-import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
 
@@ -35,7 +34,7 @@ public class Organizacion {
         return contenedorPublicaciones.publicacionesAprobadasMascotaEncontradaSinChapita();
     }
 
-    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
+    public List<IntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
         return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
     }
 

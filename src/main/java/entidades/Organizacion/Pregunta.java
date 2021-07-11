@@ -7,8 +7,8 @@ public class Pregunta {
     private List<String> valor;
 
 
-    public Respuesta contestar(){
-        return new Respuesta(this,valor);
+    public Respuesta contestar(String unValor){
+        return new Respuesta(this,unValor);
     }
 
     public String getDescripcion() {

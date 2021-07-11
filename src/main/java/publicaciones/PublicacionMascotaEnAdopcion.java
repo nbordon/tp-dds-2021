@@ -13,10 +13,20 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
     private Mascota mascotaEnAdopcion;
     private List<Respuesta> respuestasPreguntas;
 
+    public Mascota getMascotaEnAdopcion() {
+        return mascotaEnAdopcion;
+    }
+
+    public List<Respuesta> getRespuestasPreguntas() {
+        return respuestasPreguntas;
+    }
+    //TODO Borrar
+    /*
+
     public void completarPreguntas(){
         this.getOrganizacion().getPreguntasRequeridasAdopcion().forEach(
                 pregunta-> pregunta.contestar());
-    }
+    }*/
 
     @Override
     public void notificar() {
@@ -34,7 +44,7 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
         this.setMascota(mascotaEnAdopcion);
         this.setTitulo(titulo);
         this.setFotosURL(fotos);
-        this.completarPreguntas();
+        //this.completarPreguntas();
         this.cambiarEstadoAPendiente();
         this.notificar();
     }

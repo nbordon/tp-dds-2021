@@ -6,14 +6,10 @@ import java.util.List;
 public class Respuesta {
 
 
-private Pregunta preguntaALaQuePertenece;
-    private List<String> valor;
+    private Pregunta preguntaALaQuePertenece;
+    private String valor;
 
-    public Respuesta(){
-        this.valor = new ArrayList<>();
-    }
-
-    public Respuesta(Pregunta preguntaALaQuePertenece,List<String>valor) {
+    public Respuesta(Pregunta preguntaALaQuePertenece, String valor) {
         this.preguntaALaQuePertenece = preguntaALaQuePertenece;
         this.valor=valor;
     }
@@ -26,11 +22,11 @@ private Pregunta preguntaALaQuePertenece;
         this.preguntaALaQuePertenece = preguntaALaQuePertenece;
     }
 
-    public List<String> getValor() {
+    public String getValor() {
         return valor;
     }
 
-    public void setValor(List<String> valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 }
