@@ -56,6 +56,10 @@ public class TestPublicaciones {
         colorPrincipal.setValor(opciones1);
         colorPrincipal.setDescripcion("color principal");
 
+        estaCastrada = new CaracterisiticaDeMascotaRequerida();
+        estaCastrada.setDescripcion("Esta castrado/a");
+        estaCastrada.setValor(opciones2);
+
         organizacion = new Organizacion();
 
         duenio = new Persona("duenio@duenio.com");
