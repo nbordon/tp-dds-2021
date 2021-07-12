@@ -9,6 +9,7 @@ import entidades.Organizacion.Organizacion;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import publicaciones.EstadoPublicacion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,37 +19,42 @@ public class TestMascotaEncontradaSinChapita {
     Organizacion organizacion1;
     Organizacion organizacion2;
     Organizacion organizacion3;
-    Ubicacion ubicacion;
+    Ubicacion ubicacion1;
+    Ubicacion ubicacion2;
+    Ubicacion ubicacion3;
+    Ubicacion ubicacion4;
     InformacionPersonal informacionPersonal;
     MascotaEncontradaSinChapita mascota;
 
     @Before
     public void init(){
         mascota = new MascotaEncontradaSinChapita();
-        ubicacion = new Ubicacion();
-        ubicacion.direccion = "Corrientes 2320, CABA";
-        ubicacion.latitud = -34.604660;
-        ubicacion.longitud = -58.399792;
+        ubicacion1 = new Ubicacion();
+        ubicacion1.direccion = "Corrientes 2320, CABA";
+        ubicacion1.latitud = -34.604660;
+        ubicacion1.longitud = -58.399792;
 
         organizacion1 = new Organizacion();
-        organizacion1.setUbicacion(ubicacion);
+        organizacion1.setUbicacion(ubicacion1);
         organizacion1.setNombre("RescuePets");
         organizacion1.setContenedorPublicaciones(new ContenedorPublicaciones());
 
-        ubicacion.direccion = "Av. Mosconi 1328, Quilmes";
-        ubicacion.latitud = -34.742298;
-        ubicacion.longitud = -58.294991;
+        ubicacion2 = new Ubicacion();
+        ubicacion2.direccion = "Av. Mosconi 1328, Quilmes";
+        ubicacion2.latitud = -34.742298;
+        ubicacion2.longitud = -58.294991;
 
         organizacion2 = new Organizacion();
-        organizacion2.setUbicacion(ubicacion);
+        organizacion2.setUbicacion(ubicacion2);
         organizacion2.setNombre("Los michis");
         organizacion2.setContenedorPublicaciones(new ContenedorPublicaciones());
 
-        ubicacion.direccion = "Arenales 1916, Florida";
-        ubicacion.latitud = -34.525610;
-        ubicacion.longitud = -58.489597;
+        ubicacion3 = new Ubicacion();
+        ubicacion3.direccion = "Arenales 1916, Florida";
+        ubicacion3.latitud = -34.525610;
+        ubicacion3.longitud = -58.489597;
         organizacion3 = new Organizacion();
-        organizacion3.setUbicacion(ubicacion);
+        organizacion3.setUbicacion(ubicacion3);
         organizacion3.setNombre("Rescate Patito");
         organizacion3.setContenedorPublicaciones(new ContenedorPublicaciones());
     }
@@ -81,11 +87,12 @@ public class TestMascotaEncontradaSinChapita {
         Rescatista rescatista = new Rescatista();
         rescatista.setInformacionPersonal(informacionPersonal);
 
-        ubicacion.direccion = "Arenales 1916, Florida";
-        ubicacion.latitud = -34.525610;
-        ubicacion.longitud = -58.489597;
+        ubicacion4 = new Ubicacion();
+        ubicacion4.direccion = "Arenales 1916, Florida";
+        ubicacion4.latitud = -34.525610;
+        ubicacion4.longitud = -58.489597;
         mascota.setRescatista(rescatista);
-        mascota.setUbicacion(ubicacion);
+        mascota.setUbicacion(ubicacion4);
 
         mascota.addOrganizacionALocalizador(organizacion1);
         mascota.addOrganizacionALocalizador(organizacion2);
@@ -93,9 +100,9 @@ public class TestMascotaEncontradaSinChapita {
 
         mascota.notificar();
 
-        Assert.assertEquals(0,organizacion1.getPublicacionesAprobadasMascotaEncontradaSinChapita().size());
-        Assert.assertEquals(0,organizacion2.getPublicacionesAprobadasMascotaEncontradaSinChapita().size());
-        Assert.assertEquals(0,organizacion3.getPublicacionesAprobadasMascotaEncontradaSinChapita().size());
+        Assert.assertEquals(0,organizacion1.getPublicacionesMascotaEncontrada(EstadoPublicacion.PENDIENTE).size());
+        Assert.assertEquals(0,organizacion2.getPublicacionesMascotaEncontrada(EstadoPublicacion.PENDIENTE).size());
+        Assert.assertEquals(1,organizacion3.getPublicacionesMascotaEncontrada(EstadoPublicacion.PENDIENTE).size());
 
     }
 }

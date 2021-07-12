@@ -3,10 +3,7 @@ package entidades.Organizacion;
 import Api.services.entities.Ubicacion;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
-import publicaciones.IntencionDeAdopcion;
-import publicaciones.Publicacion;
-import publicaciones.PublicacionMascotaEnAdopcion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
+import publicaciones.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -107,6 +104,10 @@ public class Organizacion {
        contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
     }
 
+    public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacion) {
+        contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacion);
+    }
+
     public void agregarPublicacionIntencionDeAdopcion(IntencionDeAdopcion intencionDeAdopcion) {
         publicacionesInteresDeAdopcion.add(intencionDeAdopcion);
     }
@@ -117,5 +118,9 @@ public class Organizacion {
 
     public void setContenedorPublicaciones(ContenedorPublicaciones contenedorPublicaciones) {
         this.contenedorPublicaciones = contenedorPublicaciones;
+    }
+
+    public List<Publicacion> getPublicacionesMascotaEncontrada(EstadoPublicacion estadoPublicacion){
+        return this.contenedorPublicaciones.getPublicacionesMascotaEncontrada(estadoPublicacion);
     }
 }

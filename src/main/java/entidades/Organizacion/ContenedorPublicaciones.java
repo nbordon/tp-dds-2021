@@ -1,9 +1,6 @@
 package entidades.Organizacion;
 
-import publicaciones.IntencionDeAdopcion;
-import publicaciones.Publicacion;
-import publicaciones.PublicacionMascotaEnAdopcion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
+import publicaciones.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +41,16 @@ public class ContenedorPublicaciones {
         this.publicacionesEnEsperaDeAprobacion.add(publicacionMascotaEnAdopcion);
     }
 
+    public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacion) {
+        this.publicacionesEnEsperaDeAprobacion.add(publicacion);
+    }
+
     public void addPublicacionMascotaEncontradaSinChapita(PublicacionMascotaEncontradaSinChapita publicacion){
         this.publicacionesMascotaEncontradaSinChapita.add(publicacion);
+    }
+
+    public List<Publicacion> getPublicacionesMascotaEncontrada(EstadoPublicacion estadoPublicacion){
+        return this.publicacionesMascotaEncontradaSinChapita.stream().filter(p -> p.getEstado().equals(estadoPublicacion)).collect(Collectors.toList());
     }
 
 }
