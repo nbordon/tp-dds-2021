@@ -1,6 +1,6 @@
 package entidades.Organizacion;
 
-import publicaciones.IntencionDeAdopcion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.Publicacion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 public class ContenedorPublicaciones {
     private List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion;
     private List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
-    private List<IntencionDeAdopcion> publicacionesIntencionDeAdopcion;
+    private List<PublicacionIntencionDeAdopcion> publicacionesPublicacionIntencionDeAdopcion;
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
 
     public ContenedorPublicaciones(){
         this.publicacionesEnEsperaDeAprobacion = new ArrayList<>();
-        this.publicacionesIntencionDeAdopcion = new ArrayList<>();
+        this.publicacionesPublicacionIntencionDeAdopcion = new ArrayList<>();
         this.publicacionesMascotaEncontradaSinChapita = new ArrayList<>();
         this.publicacionesMascotaEnAdopcion = new ArrayList<>();
     }
@@ -34,8 +34,8 @@ public class ContenedorPublicaciones {
                 collect(Collectors.toList());
     }
 
-    public List<IntencionDeAdopcion> publicacionesAprobadasIntencionDeAdopcion() {
-        return publicacionesIntencionDeAdopcion.stream().
+    public List<PublicacionIntencionDeAdopcion> publicacionesAprobadasIntencionDeAdopcion() {
+        return publicacionesPublicacionIntencionDeAdopcion.stream().
                 filter(publicacionIntencionDeAdopcion -> publicacionIntencionDeAdopcion.esAprobada()).
                 collect(Collectors.toList());
     }

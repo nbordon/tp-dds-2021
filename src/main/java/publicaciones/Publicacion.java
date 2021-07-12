@@ -72,8 +72,6 @@ public abstract class Publicacion {
         this.setEstado(EstadoPublicacion.PENDIENTE);
     }
 
-    public abstract void notificar();
-
     public boolean esAprobada(){
         return this.estado == EstadoPublicacion.APROBADA;
     }

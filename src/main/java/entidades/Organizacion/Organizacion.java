@@ -3,7 +3,7 @@ package entidades.Organizacion;
 import Api.services.entities.Ubicacion;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
-import publicaciones.IntencionDeAdopcion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.Publicacion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
@@ -30,11 +30,15 @@ public class Organizacion {
         return contenedorPublicaciones.publicacionesAprobadasMascotaEnAdopcion();
     }
 
+    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
+        return publicacionesEnEsperaDeAprobacion;
+    }
+
     public List<PublicacionMascotaEncontradaSinChapita> getPublicacionesAprobadasMascotaEncontradaSinChapita(){
         return contenedorPublicaciones.publicacionesAprobadasMascotaEncontradaSinChapita();
     }
 
-    public List<IntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
+    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
         return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
     }
 
@@ -107,8 +111,8 @@ public class Organizacion {
        contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
     }
 
-    public void agregarPublicacionIntencionDeAdopcion(IntencionDeAdopcion intencionDeAdopcion) {
-        publicacionesInteresDeAdopcion.add(intencionDeAdopcion);
+    public void agregarPublicacionIntencionDeAdopcion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
+        publicacionesInteresDeAdopcion.add(publicacionIntencionDeAdopcion);
     }
 
     public ContenedorPublicaciones getContenedorPublicaciones() {

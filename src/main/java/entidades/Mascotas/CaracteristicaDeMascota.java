@@ -1,6 +1,5 @@
 package entidades.Mascotas;
 
-import entidades.Organizacion.Pregunta;
 import entidades.Organizacion.Respuesta;
 
 import java.util.ArrayList;
@@ -8,7 +7,8 @@ import java.util.List;
 
 public class CaracteristicaDeMascota extends Respuesta {
 
-    //TODO Preguntar que hace esto exactamente y verificar que funcione
+
+    //TODO Tira error porque no puede inferir el tipo del array
     public CaracteristicaDeMascota(){
         super.setValor(new ArrayList<>());
     }

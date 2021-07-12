@@ -1,109 +1,108 @@
+import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
+import entidades.Contacto;
+import entidades.InformacionPersonal;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Mascotas.Mascota;
-import entidades.Organizacion.Administrador;
-import entidades.Organizacion.Organizacion;
+import entidades.Mascotas.MascotaBuilder;
+import entidades.Organizacion.*;
 import entidades.Persona;
+import entidades.TipoDeDocumento;
+import exception.CaracteristicaRequeridaException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import publicaciones.IntencionDeAdopcion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestPublicaciones {
     Organizacion organizacion;
+    Persona duenio;
+    Persona personaInteresada;
     CaracterisiticaDeMascotaRequerida colorPrincipal;
-    CaracterisiticaDeMascotaRequerida colorSecundario;
-    CaracterisiticaDeMascotaRequerida estaCastrada;
-    Administrador administrador;
-    Persona duenioMascota;
-    Persona interesado;
-    Mascota mascota;
-    List<CaracteristicaDeMascota> listaCaracteristicas;
     String linkBaja;
-    IntencionDeAdopcion publicacionIntencion;
+    Mascota mascota;
+    CaracterisiticaDeMascotaRequerida estaCastrada;
+    PublicacionIntencionDeAdopcion publicacionIntencion;
+    PublicacionMascotaEnAdopcion  publicacionMascotaEnAdopcion;
 
     List<String> opciones1;
-    List<String> opciones2;
-    List<String> opciones3;
+
     CaracteristicaDeMascota resp1;
     CaracteristicaDeMascota resp2;
-    CaracteristicaDeMascota resp3;
+
+    Pregunta preguntaColorPrincipal;
+    Respuesta preferencia1;
 
     @Before
     public void inicializar(){
         opciones1 = new ArrayList<>();
-        opciones2 = new ArrayList<>();
-        opciones3 = new ArrayList<>();
 
         opciones1.add("marron");
         opciones1.add("negro");
         opciones1.add("blanco");
 
-        duenioMascota = new Persona("emailTrucho42069@usuario.com");
-        mascota = new Mascota();
-        listaCaracteristicas = new ArrayList<>();
+         preguntaColorPrincipal = new Pregunta();
+
+        preferencia1 = new Respuesta(preguntaColorPrincipal,"marron");
 
         colorPrincipal = new CaracterisiticaDeMascotaRequerida();
         colorPrincipal.setValor(opciones1);
         colorPrincipal.setDescripcion("color principal");
 
-        opciones2.add("marron");
-        opciones2.add("negro");
-        opciones2.add("blanco");
-        colorSecundario = new CaracterisiticaDeMascotaRequerida();
-        colorSecundario.setValor(opciones2);
-        colorSecundario.setDescripcion("color secundario");
-
-        resp1 = colorPrincipal.contestar("marron");
-        resp2 = colorPrincipal.contestar("blanco");
-
-        listaCaracteristicas.add(resp1);
-        listaCaracteristicas.add(resp2);
-
-        opciones3.add("si");
-        opciones3.add("no");
-        estaCastrada = new CaracterisiticaDeMascotaRequerida();
-        estaCastrada.setValor(opciones3);
-        estaCastrada.setDescripcion("esta castrada");
-
-        mascota.setApodo("El comandante");
-        mascota.setCaracteristicas(listaCaracteristicas);
-        administrador = new Administrador("admin@admin.com");
         organizacion = new Organizacion();
-        duenioMascota.setOrganizacion(organizacion);
-        duenioMascota.registrarMascota(mascota);
-        mascota.setDuenio(duenioMascota);
-        administrador.setOrganizacionPerteneciente(organizacion);
-        administrador.agregarCaracteristica(colorPrincipal);
-        administrador.agregarCaracteristica(estaCastrada);
-        interesado = new Persona("emailInteresado@email.com");
-        linkBaja = "unLink";
-        publicacionIntencion = new IntencionDeAdopcion();
-        publicacionIntencion.cambiarEstadoAPendiente();
-        publicacionIntencion.setPersonaInteresada(interesado);
-        publicacionIntencion.setMascota(mascota);
+
+        duenio = new Persona("duenio@duenio.com");
+        duenio.setOrganizacion(organizacion);
+
+        personaInteresada = new Persona("interesado@interesado.com");
+        personaInteresada.setOrganizacion(organizacion);
+
+        resp1 = new CaracteristicaDeMascota();
+        resp2 = new CaracteristicaDeMascota();
+
+        publicacionMascotaEnAdopcion = new PublicacionMascotaEnAdopcion();
+
+        publicacionIntencion = new PublicacionIntencionDeAdopcion();
 
     }
 
     @Test
-    public void publicarMascotaEnAdopcion(){
-        //PublicacionMascotaEnAdopcion publicacionAdopcion = new PublicacionMascotaEnAdopcion(mascota,"Adopcion de pepito", new ArrayList());
-      //  publicacionAdopcion.setMascota(mascota);
-        // publicacionAdopcion.notificar();
-        //No esta cargando las caracteristicas a la mascota pq "this.mascotas" is null
-        //TODO terminar test: agregar respuestas a pregunta
-        //TODO ver que la publicacion se agregue a la lista en espera de aprobacion
-        //TODO ver que se envie el mensaje
+    public void publicarMascotaEnAdopcion() throws CaracteristicaRequeridaException {
+        resp1 = colorPrincipal.contestar("marron");
+        resp2 = estaCastrada.contestar("si");
+        mascota = MascotaBuilder.crear()
+                .conCaracteristicasDeMascota(resp1)
+                .conCaracteristicasDeMascota(resp2)
+                .conDescripcionFisica("grande")
+                .conFotosUrl("/foto1")
+                .conPersona(duenio)
+                .construir();
+
+        publicacionMascotaEnAdopcion.setMascota(mascota);
+       // publicacionMascotaEnAdopcion.cargarRespuestasPreguntas(resp1);
+       // publicacionMascotaEnAdopcion.cargarRespuestasPreguntas(resp2);
+
+        organizacion.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
+        Assert.assertEquals(1,organizacion.getPublicacionesEnEsperaDeAprobacion().size());
+
     }
 
     @Test
-    public void interesDeAdopcion(){
-        //publicacionIntencion.notificar();
+    public void PublicacioninteresDeAdopcion(){
+        publicacionIntencion.setPersonaInteresada(personaInteresada);
 
-    //TODO terminar estrategiaDeEmail
+        linkBaja = "www.linkBaja.com";
+
+        publicacionIntencion.cargarPreferencias(preferencia1);
+
+        organizacion.agregarPublicacionIntencionDeAdopcion(publicacionIntencion);
+        Assert.assertEquals(1,organizacion.getPublicacionesAprobadasIntencionDeAdopcion().size());
 
     }
 

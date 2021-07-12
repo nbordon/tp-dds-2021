@@ -17,8 +17,7 @@ public class PublicacionMascotaEncontradaSinChapita extends Publicacion {
         this.mascotaEncontradaSinChapita = mascotaEncontradaSinChapita;
     }
 
-    @Override
-    public void notificar() {
+    public void notificarMascotaEnconrtadaSinChapita() {
         //TODO notificar cuando encontre a mi mascota
     }
 }
