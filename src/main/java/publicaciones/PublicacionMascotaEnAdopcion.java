@@ -13,7 +13,7 @@ import java.util.List;
 public class PublicacionMascotaEnAdopcion extends Publicacion {
     private Mascota mascotaEnAdopcion;
     private List<Respuesta> respuestasPreguntas;
-    private Organizacion organizacionDuenio = mascotaEnAdopcion.getDuenio().getOrganizacion();
+    //private Organizacion organizacionDuenio = mascotaEnAdopcion.getDuenio().getOrganizacion();
 
     public Mascota getMascotaEnAdopcion() {
         return mascotaEnAdopcion;
@@ -23,13 +23,16 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
         return respuestasPreguntas;
     }
 
-    public List<PreguntasAdopcion> getPreguntasAdopcion(){return organizacionDuenio.getPreguntasRequeridasAdopcion();}
+    public List<PreguntasAdopcion> getPreguntasAdopcion(){return this.organizacionDuenio().getPreguntasRequeridasAdopcion();}
 /*
     public void cargarRespuestasPreguntas(Respuesta respuesta){
         respuestasPreguntas.add(respuesta);
     }
 
  */
+    private Organizacion organizacionDuenio(){
+        return mascotaEnAdopcion.getDuenio().getOrganizacion();
+    }
 
     public void notificarAdoptanteEncontrado() {
         String mensaje;

@@ -18,28 +18,28 @@ public class Organizacion {
     private String nombre;
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
-    private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas = new ArrayList<>();
+    private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
     private List<UsuarioVoluntario> voluntariosAprobados;
     private Ubicacion ubicacion;
-    private List<PreguntasAdopcion>preguntasRequeridasAdopcion;
-    private  List<Publicacion> publicacionesEnEsperaDeAprobacion;
-    private  List<Publicacion> publicacionesInteresDeAdopcion;
-
+    private List<PreguntasAdopcion> preguntasRequeridasAdopcion;
+    private List<Publicacion> publicacionesEnEsperaDeAprobacion;
     private ContenedorPublicaciones contenedorPublicaciones;
 
-    public List<PublicacionMascotaEnAdopcion> getPublicacionesAprobadasMascotaEnAdopcion(){
+    public Organizacion() {
+        caracteristicasDeMascotasRequeridas = new ArrayList<>();
+        preguntasRequeridasAdopcion = new ArrayList<>();
+        publicacionesEnEsperaDeAprobacion = new ArrayList<>();
+    }
+
+    public List<PublicacionMascotaEnAdopcion> getPublicacionesAprobadasMascotaEnAdopcion() {
         return contenedorPublicaciones.publicacionesAprobadasMascotaEnAdopcion();
     }
 
-    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
-        return publicacionesEnEsperaDeAprobacion;
-    }
-
-    public List<PublicacionMascotaEncontradaSinChapita> getPublicacionesAprobadasMascotaEncontradaSinChapita(){
+    public List<PublicacionMascotaEncontradaSinChapita> getPublicacionesAprobadasMascotaEncontradaSinChapita() {
         return contenedorPublicaciones.publicacionesAprobadasMascotaEncontradaSinChapita();
     }
 
-    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion(){
+    public List<PublicacionIntencionDeAdopcion> getPublicacionesAprobadasIntencionDeAdopcion() {
         return contenedorPublicaciones.publicacionesAprobadasIntencionDeAdopcion();
     }
 
@@ -75,7 +75,7 @@ public class Organizacion {
         return caracteristicasDeMascotasRequeridas;
     }
 
-    public List<PreguntasAdopcion> getPreguntasRequeridasAdopcion(){
+    public List<PreguntasAdopcion> getPreguntasRequeridasAdopcion() {
         return preguntasRequeridasAdopcion;
     }
 
@@ -109,11 +109,11 @@ public class Organizacion {
     }
 
     public void agregarPublicacionEnEsperaDeAprobacion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
-       contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
+        contenedorPublicaciones.agregarPublicacionEnEsperaDeAprobacion(publicacionMascotaEnAdopcion);
     }
 
     public void agregarPublicacionIntencionDeAdopcion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
-        publicacionesInteresDeAdopcion.add(publicacionIntencionDeAdopcion);
+        this.contenedorPublicaciones.agregarPublicacionIntecnioDeAdopcion(publicacionIntencionDeAdopcion);
 
     }
 
@@ -125,7 +125,15 @@ public class Organizacion {
         this.contenedorPublicaciones = contenedorPublicaciones;
     }
 
-    public List<Publicacion> getPublicacionesMascotaEncontrada(EstadoPublicacion estadoPublicacion){
+    public List<Publicacion> getPublicacionesMascotaEncontrada(EstadoPublicacion estadoPublicacion) {
         return this.contenedorPublicaciones.getPublicacionesMascotaEncontrada(estadoPublicacion);
+    }
+
+    public List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion(EstadoPublicacion estado){
+        return this.contenedorPublicaciones.publicacionesIntencionDeAdopcion(estado);
+    }
+
+    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
+        return this.contenedorPublicaciones.getPublicacionesEnEsperaDeAprobacion();
     }
 }
