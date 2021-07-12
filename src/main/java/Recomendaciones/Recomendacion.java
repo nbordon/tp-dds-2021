@@ -12,7 +12,7 @@ public class Recomendacion {
 
     public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesRecomendadasPorIntencion(IntencionDeAdopcion intencionAdopcion) {
         List<Respuesta> preferenciasCaracteristicasIntencion = intencionAdopcion.getRespuestasCaracteristicasDeMascota();
-        List<Respuesta> comodidadesIntencion = intencionAdopcion.getListaPreferencias();
+        List<Respuesta> comodidadesIntencion = intencionAdopcion.getPreferencias();
         List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion = getPublicacionesAdopcionOrganizacion(intencionAdopcion);
         List<PublicacionMascotaEnAdopcion> publicacionesRecomendadas = new ArrayList<>();
         //Preferencias = Caracteristicas de la mascota
@@ -32,41 +32,58 @@ public class Recomendacion {
     public List<PublicacionMascotaEnAdopcion> getPublicacionesAdopcionOrganizacion(IntencionDeAdopcion publicacionIntencionDeAdopcion) {
         return publicacionIntencionDeAdopcion.getPersonaInteresada().getOrganizacion().getPublicacionesAprobadasMascotaEnAdopcion();
 
+
     }
 
     public List<CaracteristicaDeMascota> obtenerCaracteristicasMascota(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
         return publicacionMascotaEnAdopcion.getMascotaEnAdopcion().getCaracteristicas();
     }
 
+
     public List<Respuesta> obtenerComodidadesAdoptante(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
         return publicacionMascotaEnAdopcion.getRespuestasPreguntas();
     }
 
     public boolean caracteristicasCumplenPreferencias(List<Respuesta> caracteristicasMascotaIntencion, List<CaracteristicaDeMascota> caracteristicasDeMascotaAdopcion) {
-        List<String> valoresPreferencias = new ArrayList<>();
-        List<String> valoresCaracteristicas = new ArrayList<>();
+        int contadorDeMatcheo = 0;
         for (int i = 0; i <= caracteristicasMascotaIntencion.size(); i++) {
-            valoresPreferencias.add(caracteristicasMascotaIntencion.get(i).getValor());
-        }
-        for (int i = 0; i <= caracteristicasDeMascotaAdopcion.size(); i++) {
-            valoresCaracteristicas.add(caracteristicasDeMascotaAdopcion.get(i).getValor());
+            for (int j = 0; j <= caracteristicasDeMascotaAdopcion.size(); j++) {
+                if (esMatch(caracteristicasMascotaIntencion.get(i), caracteristicasDeMascotaAdopcion.get(j))) {
+                    contadorDeMatcheo++;
+                }
+            }
         }
 
-        return valoresCaracteristicas.containsAll(valoresPreferencias);
+        return contadorDeMatcheo == caracteristicasMascotaIntencion.size();
 
     }
 
     public boolean respuestasCumplenComodidades(List<Respuesta> preferenciasIntencion, List<Respuesta> comodidadesAdopcion) {
-        List<String> valoresRespuestasPersonaInteresada = new ArrayList<>();
-        List<String> valoresComodidadesAdoptante = new ArrayList<>();
-        for (int i = 0; i <= preferenciasIntencion.size(); i++) {
-            valoresRespuestasPersonaInteresada.add(preferenciasIntencion.get(i).getValor());
-        }
+        int contadorDeMatcheo = 0;
         for (int i = 0; i <= comodidadesAdopcion.size(); i++) {
-            valoresComodidadesAdoptante.add(comodidadesAdopcion.get(i).getValor());
+            for (int j = 0; j <= preferenciasIntencion.size(); j++) {
+                if (esMatch(comodidadesAdopcion.get(i), preferenciasIntencion.get(j))) {
+                    contadorDeMatcheo++;
+                }
+            }
         }
-        return valoresRespuestasPersonaInteresada.containsAll(valoresComodidadesAdoptante);
+        return contadorDeMatcheo == comodidadesAdopcion.size();
+
     }
 
+    //esMatch si tienen el mismo valor de respuesta y la misma pregunta
+    public boolean esMatch(Respuesta caracteristicaIntencion, Respuesta caracteristicaMascotaAdopcion) {
+        return (mismoValorRespuesta(caracteristicaIntencion.getValor(), caracteristicaMascotaAdopcion.getValor())
+                && mismoIdPregunta(caracteristicaIntencion.getPreguntaALaQuePertenece().getId(), caracteristicaMascotaAdopcion.getPreguntaALaQuePertenece().getId()));
+    }
+
+    public boolean mismoValorRespuesta(String unValor, String otroValor) {
+        return unValor.equals(otroValor);
+    }
+
+    public boolean mismoIdPregunta(Integer unId, Integer otrId) {
+        return unId.equals(otrId);
+
+    
 }
 

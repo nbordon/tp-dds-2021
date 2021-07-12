@@ -5,7 +5,11 @@ import java.util.List;
 public class Pregunta {
     private String descripcion;
     private List<String> valor;
+    private Integer id;
 
+    public int getId() {
+        return id;
+    }
 
     public Respuesta contestar(String unValor){
         return new Respuesta(this,unValor);
