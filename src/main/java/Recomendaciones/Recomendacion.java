@@ -2,7 +2,7 @@ package Recomendaciones;
 
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Organizacion.Respuesta;
-import publicaciones.IntencionDeAdopcion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.List;
 
 public class Recomendacion {
 
-    public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesRecomendadasPorIntencion(IntencionDeAdopcion intencionAdopcion) {
+    public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesRecomendadasPorIntencion(PublicacionIntencionDeAdopcion intencionAdopcion) {
         List<Respuesta> preferenciasCaracteristicasIntencion = intencionAdopcion.getRespuestasCaracteristicasDeMascota();
-        List<Respuesta> comodidadesIntencion = intencionAdopcion.getPreferencias();
+        List<Respuesta> comodidadesIntencion = intencionAdopcion.getListaPreferencias();
         List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion = getPublicacionesAdopcionOrganizacion(intencionAdopcion);
         List<PublicacionMascotaEnAdopcion> publicacionesRecomendadas = new ArrayList<>();
         //Preferencias = Caracteristicas de la mascota
@@ -29,7 +29,7 @@ public class Recomendacion {
         return publicacionesRecomendadas;
     }
 
-    public List<PublicacionMascotaEnAdopcion> getPublicacionesAdopcionOrganizacion(IntencionDeAdopcion publicacionIntencionDeAdopcion) {
+    public List<PublicacionMascotaEnAdopcion> getPublicacionesAdopcionOrganizacion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
         return publicacionIntencionDeAdopcion.getPersonaInteresada().getOrganizacion().getPublicacionesAprobadasMascotaEnAdopcion();
 
 
@@ -84,6 +84,6 @@ public class Recomendacion {
     public boolean mismoIdPregunta(Integer unId, Integer otrId) {
         return unId.equals(otrId);
 
-    
+    }
 }
 

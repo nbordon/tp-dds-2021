@@ -2,7 +2,7 @@ package Recomendaciones;
 
 import entidades.Organizacion.Organizacion;
 import entidades.Persona;
-import publicaciones.IntencionDeAdopcion;
+import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.List;
@@ -18,11 +18,11 @@ public class NotificadorSemanal extends TimerTask {
 
     @Override
     public void run() {
-        List<IntencionDeAdopcion> publicacionesIntencionDeAdopcion = organizacion.getPublicacionesAprobadasIntencionDeAdopcion();
-        for (int i=0;i<=publicacionesIntencionDeAdopcion.size();i++){
-            List<PublicacionMascotaEnAdopcion> recomendaciones = recomendacion.obtenerPublicacionesRecomendadasPorIntencion(publicacionesIntencionDeAdopcion.get(i));
+        List<PublicacionIntencionDeAdopcion> publicacionesPublicacionIntencionDeAdopcion = organizacion.getPublicacionesAprobadasIntencionDeAdopcion();
+        for (int i = 0; i<= publicacionesPublicacionIntencionDeAdopcion.size(); i++){
+            List<PublicacionMascotaEnAdopcion> recomendaciones = recomendacion.obtenerPublicacionesRecomendadasPorIntencion(publicacionesPublicacionIntencionDeAdopcion.get(i));
             if(!recomendaciones.isEmpty()){
-                notificarRecomendaciones(recomendaciones,publicacionesIntencionDeAdopcion.get(i).getPersonaInteresada());//notificamos al interesado y limpiamos lista de recomendaciones
+                notificarRecomendaciones(recomendaciones, publicacionesPublicacionIntencionDeAdopcion.get(i).getPersonaInteresada());//notificamos al interesado y limpiamos lista de recomendaciones
                 recomendaciones.clear();
             }else throw new RuntimeException("Nada para recomendar");
         }

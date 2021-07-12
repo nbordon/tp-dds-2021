@@ -1,5 +1,8 @@
 package entidades.Organizacion;
-
+import publicaciones.PublicacionIntencionDeAdopcion;
+import publicaciones.Publicacion;
+import publicaciones.PublicacionMascotaEnAdopcion;
+import publicaciones.PublicacionMascotaEncontradaSinChapita;
 import publicaciones.*;
 
 import java.util.ArrayList;
@@ -9,7 +12,7 @@ import java.util.stream.Collectors;
 public class ContenedorPublicaciones {
     private List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion;
     private List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
-    private List<IntencionDeAdopcion> publicacionesIntencionDeAdopcion;
+    private List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion;
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
 
     public ContenedorPublicaciones(){
@@ -31,14 +34,24 @@ public class ContenedorPublicaciones {
                 collect(Collectors.toList());
     }
 
-    public List<IntencionDeAdopcion> publicacionesAprobadasIntencionDeAdopcion() {
+    public List<PublicacionIntencionDeAdopcion> publicacionesAprobadasIntencionDeAdopcion() {
         return publicacionesIntencionDeAdopcion.stream().
                 filter(publicacionIntencionDeAdopcion -> publicacionIntencionDeAdopcion.esAprobada()).
                 collect(Collectors.toList());
     }
 
+    public List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion(EstadoPublicacion estado) {
+        return publicacionesIntencionDeAdopcion.stream().
+                filter(publicacionIntencionDeAdopcion -> publicacionIntencionDeAdopcion.getEstado().equals(estado)).
+                collect(Collectors.toList());
+    }
+
     public void agregarPublicacionEnEsperaDeAprobacion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
         this.publicacionesEnEsperaDeAprobacion.add(publicacionMascotaEnAdopcion);
+    }
+
+    public List<Publicacion> getPublicacionesEnEsperaDeAprobacion() {
+        return publicacionesEnEsperaDeAprobacion;
     }
 
     public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacion) {
@@ -53,4 +66,7 @@ public class ContenedorPublicaciones {
         return this.publicacionesMascotaEncontradaSinChapita.stream().filter(p -> p.getEstado().equals(estadoPublicacion)).collect(Collectors.toList());
     }
 
+    public void agregarPublicacionIntecnioDeAdopcion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
+        this.publicacionesIntencionDeAdopcion.add(publicacionIntencionDeAdopcion);
+    }
 }
