@@ -66,6 +66,10 @@ public class TestCaracteristicasDeMascota {
         resp2 = new CaracteristicaDeMascota();
         resp3 = new CaracteristicaDeMascota();
 
+        resp1.setPreguntaALaQuePertenece(colorPrincipal);
+        resp2.setPreguntaALaQuePertenece(colorSecundario);
+        resp3.setPreguntaALaQuePertenece(estaCastrada);
+
         duenio = new Persona("duenio@duenio.com");
         duenio.setOrganizacion(organizacion);
     }

@@ -7,6 +7,7 @@ import publicaciones.PublicacionIntencionDeAdopcion;
 import publicaciones.Publicacion;
 import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
+import publicaciones.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -113,6 +114,7 @@ public class Organizacion {
 
     public void agregarPublicacionIntencionDeAdopcion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
         publicacionesInteresDeAdopcion.add(publicacionIntencionDeAdopcion);
+
     }
 
     public ContenedorPublicaciones getContenedorPublicaciones() {
@@ -121,5 +123,9 @@ public class Organizacion {
 
     public void setContenedorPublicaciones(ContenedorPublicaciones contenedorPublicaciones) {
         this.contenedorPublicaciones = contenedorPublicaciones;
+    }
+
+    public List<Publicacion> getPublicacionesMascotaEncontrada(EstadoPublicacion estadoPublicacion){
+        return this.contenedorPublicaciones.getPublicacionesMascotaEncontrada(estadoPublicacion);
     }
 }

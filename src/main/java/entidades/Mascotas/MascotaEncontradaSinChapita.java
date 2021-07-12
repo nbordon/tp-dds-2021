@@ -1,6 +1,7 @@
 package entidades.Mascotas;
 
 import entidades.Organizacion.Organizacion;
+import publicaciones.EstadoPublicacion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
 import utils.localizador.LocalizadorDeOrganizacion;
 
@@ -20,6 +21,8 @@ public class MascotaEncontradaSinChapita extends MascotaEncontrada {
         Organizacion organizacionDePublicacion;
         organizacionDePublicacion = this.localizadorDeOrganizacion.obtenerOrganizacionMasCercana(super.getUbicacion(),RADIO_MINIMO);
         publicacion.setOrganizacion(organizacionDePublicacion);
+        publicacion.setEstado(EstadoPublicacion.PENDIENTE);
+        organizacionDePublicacion.getContenedorPublicaciones().addPublicacionMascotaEncontradaSinChapita(publicacion);
     }
 
     public void addOrganizacionALocalizador(Organizacion organizacion){

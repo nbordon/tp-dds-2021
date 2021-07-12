@@ -2,22 +2,13 @@ package entidades.Mascotas;
 
 import entidades.Organizacion.Respuesta;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CaracteristicaDeMascota extends Respuesta {
 
-
-    //TODO Tira error porque no puede inferir el tipo del array
     public CaracteristicaDeMascota(){
-        super.setValor(new ArrayList<>());
+        super();
     }
 
-    public CaracteristicaDeMascota(CaracterisiticaDeMascotaRequerida caracterisiticaDeMascotaRequerida) {
-        super(caracterisiticaDeMascotaRequerida,new ArrayList<>());
-    }
-
-    public CaracteristicaDeMascota(CaracterisiticaDeMascotaRequerida caracterisiticaDeMascotaRequerida, List<String> respuestas){
+    public CaracteristicaDeMascota(CaracterisiticaDeMascotaRequerida caracterisiticaDeMascotaRequerida, String respuestas){
         super(caracterisiticaDeMascotaRequerida,respuestas);
     }
 }

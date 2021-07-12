@@ -23,11 +23,11 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
         return listaPreferencias;
     }
 
-    public PublicacionIntencionDeAdopcion(){
+    public PublicacionIntencionDeAdopcion() {
         listaPreferencias = new ArrayList<>();
     }
 
-    public void cargarPreferencias(Respuesta preferencia){
+    public void cargarPreferencias(Respuesta preferencia) {
         listaPreferencias.add(preferencia);
     }
 
@@ -39,7 +39,7 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
         return personaInteresada.getInformacionPersonal().getContactoDuenio();
     }
 
-    public void setPersonaInteresada(Persona unaPersonaInteresada){
+    public void setPersonaInteresada(Persona unaPersonaInteresada) {
         personaInteresada = unaPersonaInteresada;
     }
 
@@ -53,7 +53,7 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
         listaPreferencias = new ArrayList<>();
         this.setPersonaInteresada(personaInteresada);
         this.linkBaja = linkBaja;
-        listaPreferencias.forEach(preferencia->this.cargarPreferencias(preferencia));
+        listaPreferencias.forEach(preferencia -> this.cargarPreferencias(preferencia));
         this.cambiarEstadoAPendiente();
     }
 }
