@@ -109,5 +109,10 @@
             <artifactId>core</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>1.6.4</version>
+        </dependency>
     </dependencies>
 </project>

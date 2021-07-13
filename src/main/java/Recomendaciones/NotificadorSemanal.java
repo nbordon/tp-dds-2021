@@ -29,12 +29,12 @@ public class NotificadorSemanal extends TimerTask {
 
 
     }
-
+//TODO: arreglar mensaje de email. 
     public void notificarRecomendaciones(List<PublicacionMascotaEnAdopcion> recomendaciones, Persona personaInteresada){
         recomendaciones.forEach(publicacion ->
                 personaInteresada.getInformacionPersonal().getFormaComunicacion().forEach(
                         estrategiaDeNotificacion -> estrategiaDeNotificacion.notificar(
-                                publicacion.getTitulo(), personaInteresada.getInformacionPersonal().getContactoDuenio())));
+                               "Recomendacion de adopcion", publicacion.getTitulo(), personaInteresada.getInformacionPersonal().getContactoDuenio())));
 
     }
 }

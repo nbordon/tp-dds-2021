@@ -4,5 +4,5 @@ import entidades.Contacto;
 
 public interface WhatsAppAdapterInterface {
 
-    void notificarViaWhatsApp(String mensaje, Contacto contacto);
+    void notificarViaWhatsApp(String asunto, String mensaje, Contacto contacto);
 }

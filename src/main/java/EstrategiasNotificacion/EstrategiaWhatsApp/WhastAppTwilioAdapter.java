@@ -13,7 +13,7 @@ public class WhastAppTwilioAdapter implements WhatsAppAdapterInterface {
     private static final String PREFIJO_WHASTAPP_ARGENTINA = "+549";
 
     @Override
-    public void notificarViaWhatsApp(String mensaje, Contacto contacto) {
+    public void notificarViaWhatsApp(String asunto, String mensaje, Contacto contacto) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message.creator(
                 new com.twilio.type.PhoneNumber(PREFIJO_WHATSAPP + PREFIJO_WHASTAPP_ARGENTINA + contacto.getNumeroDeTelefono()),

@@ -1,7 +1,7 @@
 package publicaciones;
 
 import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
+import EstrategiasNotificacion.EstrategiaEmail.EstrategiaMailtrapAdapter;
 import entidades.Contacto;
 import entidades.Organizacion.Respuesta;
 import entidades.Persona;
@@ -45,8 +45,9 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
 
     public void notificarLinkDeBaja() {
         personaInteresada.getOrganizacion().agregarPublicacionIntencionDeAdopcion(this);
-        EstrategiaDeNotificacion comunicacionEmail = new EstrategiaDeEmail();
-        comunicacionEmail.notificar(linkBaja, getContactoInteresado());
+        //TODO: finish
+        //EstrategiaDeNotificacion comunicacionEmail = new EstrategiaMailtrapAdapter();
+        //comunicacionEmail.notificar(linkBaja, getContactoInteresado());
     }
 
     public PublicacionIntencionDeAdopcion(Persona personaInteresada, List<Respuesta> listaPreferencias, String linkBaja) {
