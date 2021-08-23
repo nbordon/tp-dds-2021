@@ -7,9 +7,9 @@ public class Pregunta {
     private List<String> valor;
     private Integer id;
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public Respuesta contestar(String unValor){
         return new Respuesta(this,unValor);

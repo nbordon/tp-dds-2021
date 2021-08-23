@@ -40,6 +40,10 @@ public class Persona extends Usuario {
         this.organizacion = organizacion;
     }
 
+    public void setInformacionPersonal(InformacionPersonal informacionPersonal) {
+        this.informacionPersonal = informacionPersonal;
+    }
+
     public void registrarMascota(Mascota mascota) {
         mascotas.add(mascota);
     }

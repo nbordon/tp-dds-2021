@@ -4,6 +4,7 @@ import EstrategiasNotificacion.EstrategiaDeNotificacion;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InformacionPersonal {
 
@@ -63,6 +64,7 @@ public class InformacionPersonal {
     }
 
     public Contacto getContactoDuenio(){
-        return (Contacto) this.getContactos().stream().filter(contacto -> contacto.getEsPrincipal());
+        //return this.getContactos().
+        return this.getContactos().stream().filter(contacto -> contacto.getEsPrincipal()).collect(Collectors.toList()).get(0);
     }
 }

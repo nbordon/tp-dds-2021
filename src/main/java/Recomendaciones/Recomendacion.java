@@ -12,15 +12,11 @@ public class Recomendacion {
 
     public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesRecomendadasPorIntencion(PublicacionIntencionDeAdopcion intencionAdopcion) {
         List<Respuesta> preferenciasCaracteristicasIntencion = intencionAdopcion.getRespuestasCaracteristicasDeMascota();
-        List<Respuesta> comodidadesIntencion = intencionAdopcion.getListaPreferencias();
-        List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion = getPublicacionesAdopcionOrganizacion(intencionAdopcion);
+        List<Respuesta> comodidadesIntencion = intencionAdopcion.getRespuestasComodidades();
+        List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion = obtenerPublicacionesAdopcionOrganizacion(intencionAdopcion);
         List<PublicacionMascotaEnAdopcion> publicacionesRecomendadas = new ArrayList<>();
-        //Preferencias = Caracteristicas de la mascota
-        //Comodidades = Respuestas
-        // Aca se tiene que matchear las respuestas de la intencion con las de las publicaciones de adopcion
-        // y se van agregando a la lista de publicaciones recomendadas
 
-        for (int i = 0; i <= publicacionesMascotaEnAdopcion.size(); i++) {
+        for (int i = 0; i < publicacionesMascotaEnAdopcion.size(); i++) {
             if (caracteristicasCumplenPreferencias(preferenciasCaracteristicasIntencion, obtenerCaracteristicasMascota(publicacionesMascotaEnAdopcion.get(i)))
                     && respuestasCumplenComodidades(comodidadesIntencion, obtenerComodidadesAdoptante(publicacionesMascotaEnAdopcion.get(i)))) {
                 publicacionesRecomendadas.add(publicacionesMascotaEnAdopcion.get(i));
@@ -29,10 +25,8 @@ public class Recomendacion {
         return publicacionesRecomendadas;
     }
 
-    public List<PublicacionMascotaEnAdopcion> getPublicacionesAdopcionOrganizacion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
+    public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesAdopcionOrganizacion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
         return publicacionIntencionDeAdopcion.getPersonaInteresada().getOrganizacion().getPublicacionesAprobadasMascotaEnAdopcion();
-
-
     }
 
     public List<CaracteristicaDeMascota> obtenerCaracteristicasMascota(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {
@@ -46,29 +40,26 @@ public class Recomendacion {
 
     public boolean caracteristicasCumplenPreferencias(List<Respuesta> caracteristicasMascotaIntencion, List<CaracteristicaDeMascota> caracteristicasDeMascotaAdopcion) {
         int contadorDeMatcheo = 0;
-        for (int i = 0; i <= caracteristicasMascotaIntencion.size(); i++) {
-            for (int j = 0; j <= caracteristicasDeMascotaAdopcion.size(); j++) {
+        for (int i = 0; i < caracteristicasMascotaIntencion.size(); i++) {
+            for (int j = 0; j < caracteristicasDeMascotaAdopcion.size(); j++) {
                 if (esMatch(caracteristicasMascotaIntencion.get(i), caracteristicasDeMascotaAdopcion.get(j))) {
                     contadorDeMatcheo++;
                 }
             }
         }
-
         return contadorDeMatcheo == caracteristicasMascotaIntencion.size();
-
     }
 
     public boolean respuestasCumplenComodidades(List<Respuesta> preferenciasIntencion, List<Respuesta> comodidadesAdopcion) {
         int contadorDeMatcheo = 0;
-        for (int i = 0; i <= comodidadesAdopcion.size(); i++) {
-            for (int j = 0; j <= preferenciasIntencion.size(); j++) {
+        for (int i = 0; i < comodidadesAdopcion.size(); i++) {
+            for (int j = 0; j < preferenciasIntencion.size(); j++) {
                 if (esMatch(comodidadesAdopcion.get(i), preferenciasIntencion.get(j))) {
                     contadorDeMatcheo++;
                 }
             }
         }
         return contadorDeMatcheo == comodidadesAdopcion.size();
-
     }
 
     //esMatch si tienen el mismo valor de respuesta y la misma pregunta

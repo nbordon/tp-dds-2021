@@ -14,12 +14,14 @@ public class ContenedorPublicaciones {
     private List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
     private List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion;
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
+    private List<Publicacion>publicacionesAprobadas;
 
     public ContenedorPublicaciones(){
         this.publicacionesEnEsperaDeAprobacion = new ArrayList<>();
         this.publicacionesIntencionDeAdopcion = new ArrayList<>();
         this.publicacionesMascotaEncontradaSinChapita = new ArrayList<>();
         this.publicacionesMascotaEnAdopcion = new ArrayList<>();
+        this.publicacionesAprobadas = new ArrayList<>();
     }
 
     public List<PublicacionMascotaEnAdopcion> publicacionesAprobadasMascotaEnAdopcion() {
@@ -68,5 +70,13 @@ public class ContenedorPublicaciones {
 
     public void agregarPublicacionIntecnioDeAdopcion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
         this.publicacionesIntencionDeAdopcion.add(publicacionIntencionDeAdopcion);
+    }
+
+    public void agregarPublicacionMascotaEnAdopcion(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion){
+        this.publicacionesMascotaEnAdopcion.add(publicacionMascotaEnAdopcion);
+    }
+
+    public void agregarPublicacionAprobada(Publicacion publicacion) {
+        this.publicacionesAprobadas.add(publicacion);
     }
 }

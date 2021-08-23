@@ -23,11 +23,12 @@ public class TestApi {
         }
     }
 
-    @Test
-    public void postUsuario() throws IOException {
-        String emailPrueba = "pruebaTest4@frba.utn.edu.com.ar";
-        Usuario usuarioPrueba = new Usuario(emailPrueba);
-        UsuarioResponse usuarioRespuesta = serviceRefugio.postUsuarios(emailPrueba);
-        System.out.println((usuarioRespuesta.getToken()));
-    }
+    //TODO: mockear el test de usuario
+//    @Test
+//    public void postUsuario() throws IOException {
+//        String emailPrueba = "pruebaTest4@frba.utn.edu.com.ar";
+//        Usuario usuarioPrueba = new Usuario(emailPrueba);
+//        UsuarioResponse usuarioRespuesta = serviceRefugio.postUsuarios(emailPrueba);
+//        System.out.println((usuarioRespuesta.getToken()));
+//    }
 }

@@ -104,7 +104,7 @@ public class TestPublicaciones {
 
         linkBaja = "www.linkBaja.com";
 
-        publicacionIntencion.cargarPreferencias(preferencia1);
+        publicacionIntencion.cargarComodidad(preferencia1);
         publicacionIntencion.setEstado(EstadoPublicacion.PENDIENTE);
 
         organizacion.agregarPublicacionIntencionDeAdopcion(publicacionIntencion);
