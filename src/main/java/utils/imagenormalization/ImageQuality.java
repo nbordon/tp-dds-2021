@@ -1,4 +1,4 @@
-package imagenormalization;
+package utils.imagenormalization;
 
 public enum ImageQuality {
 

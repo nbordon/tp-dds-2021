@@ -3,6 +3,8 @@ package entidades.Mascotas;
 import entidades.Persona;
 import exception.CaracteristicaRequeridaException;
 
+import java.util.List;
+
 public class MascotaBuilder {
     private Mascota mascota;
 

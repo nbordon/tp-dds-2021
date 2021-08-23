@@ -4,6 +4,7 @@ import EstrategiasNotificacion.EstrategiaDeNotificacion;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class InformacionPersonal {
 
@@ -27,6 +28,8 @@ public class InformacionPersonal {
         this.contactos = contactos;
 
     }
+
+    //TODO pasar lo de agarrar al duenio de entre la lista de contactos
 
     public String getNombre() {
         return nombre;
@@ -58,5 +61,10 @@ public class InformacionPersonal {
 
     public List<Contacto> getContactos() {
         return contactos;
+    }
+
+    public Contacto getContactoDuenio(){
+        //return this.getContactos().
+        return this.getContactos().stream().filter(contacto -> contacto.getEsPrincipal()).collect(Collectors.toList()).get(0);
     }
 }

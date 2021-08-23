@@ -1,32 +1,17 @@
 package entidades.Mascotas;
 
-public class CaracteristicaDeMascota {
-    private String descripcion;
-    private String valor;
+import entidades.Organizacion.Pregunta;
+import entidades.Organizacion.Respuesta;
 
-    public CaracteristicaDeMascota() {
-        this.descripcion = new String();
-        this.valor = new String();
+public class CaracteristicaDeMascota extends Respuesta {
+
+    public CaracteristicaDeMascota(){
+        super();
     }
 
-    public CaracteristicaDeMascota(String descripcion, String valor) {
-        this.descripcion = descripcion;
-        this.valor = valor;
-    }
+    public CaracteristicaDeMascota(Pregunta preguntaALaQuePertenece , String unValor){super();}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getValor() {
-        return valor;
-    }
-
-    public void setValor(String valor) {
-        this.valor = valor;
+    public CaracteristicaDeMascota(CaracterisiticaDeMascotaRequerida caracterisiticaDeMascotaRequerida, String respuestas){
+        super(caracterisiticaDeMascotaRequerida,respuestas);
     }
 }

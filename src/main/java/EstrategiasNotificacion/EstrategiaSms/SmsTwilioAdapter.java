@@ -12,7 +12,7 @@ public class SmsTwilioAdapter implements SmsAdapterInterface {
     private static final String PREFIJO_ARGENTINA = "+54";
 
     @Override
-    public void notificarViaSms(String mensaje, Contacto contacto) {
+    public void notificarViaSms(String asunto, String mensaje, Contacto contacto) {
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message.creator(
                 new com.twilio.type.PhoneNumber(PREFIJO_ARGENTINA + contacto.getNumeroDeTelefono()),

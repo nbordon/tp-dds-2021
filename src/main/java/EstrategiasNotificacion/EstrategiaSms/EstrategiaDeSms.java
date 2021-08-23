@@ -8,7 +8,7 @@ public class EstrategiaDeSms implements EstrategiaDeNotificacion {
     private static final SmsAdapterInterface notificadorSms = new SmsTwilioAdapter();
 
     @Override
-    public void notificar(String mensaje, Contacto contacto) {
-        notificadorSms.notificarViaSms(mensaje, contacto);
+    public void notificar(String asunto, String mensaje, Contacto contacto) {
+        notificadorSms.notificarViaSms(asunto, mensaje, contacto);
     }
 }

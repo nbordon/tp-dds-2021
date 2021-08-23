@@ -1,4 +1,4 @@
-package imagenormalization;
+package utils.imagenormalization;
 
 import net.coobird.thumbnailator.Thumbnails;
 

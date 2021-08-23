@@ -4,5 +4,5 @@ import entidades.Contacto;
 
 public interface SmsAdapterInterface {
 
-    void notificarViaSms(String mensaje, Contacto contacto);
+    void notificarViaSms(String asunto, String mensaje, Contacto contacto);
 }
