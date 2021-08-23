@@ -54,3 +54,21 @@ out/
 ##############################
 *.jpg
 *.png
+
+##############################
+## Bootstrap
+##############################
+*.map
+/src/main/java/resources/public/scss
+/src/main/java/resources/public/libs/bootstrap/.*
+/src/main/java/resources/public/libs/bootstrap/*.md
+/src/main/java/resources/public/libs/bootstrap/*.json
+/src/main/java/resources/public/libs/bootstrap/*.yml
+/src/main/java/resources/public/libs/bootstrap/LICENSE
+/src/main/java/resources/public/libs/bootstrap/package.js
+/src/main/java/resources/public/libs/bootstrap/dist/css
+/src/main/java/resources/public/libs/bootstrap/js
+/src/main/java/resources/public/libs/bootstrap/nuget
+/src/main/java/resources/public/libs/bootstrap/scss
+/src/main/java/resources/public/libs/bootstrap/site
+
