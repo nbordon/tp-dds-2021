@@ -7,7 +7,7 @@
 
 [Decisiones de diseño](https://docs.google.com/document/d/1tiVJ2-eRE2DF3YTbqpE26BZDL5_okTDb/edit)
 
-[Diagrama de clases](https://lucid.app/lucidchart/7b5d4e9d-b17d-4e58-a95a-a62dd2fa21e2/edit?page=0_0#)
+[Diagrama de clases](https://drive.google.com/file/d/1G_D2Ed6DilnLKMjwqUsi7WlB1QpMoF2P/view?usp=sharing)
 
 **Grupo**: 05
 
