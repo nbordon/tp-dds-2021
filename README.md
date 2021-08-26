@@ -1,4 +1,4 @@
-[![CI](https://github.com/dds-utn/2021-mi-no-grupo_05/actions/workflows/githubActions.yml/badge.svg)](https://github.com/dds-utn/2021-mi-no-grupo_05/actions/workflows/githubActions.yml)
+[![CI](https://github.com/dds-utn/2021-mi-no-grupo_05/actions/workflows/githubActions.yml/badge.svg?branch=main)](https://github.com/dds-utn/2021-mi-no-grupo_05/actions/workflows/githubActions.yml)
 
 
 ## **Trabajo practico para Diseño de sistemas**
