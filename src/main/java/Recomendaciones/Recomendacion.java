@@ -27,7 +27,6 @@ public class Recomendacion {
 
     public List<PublicacionMascotaEnAdopcion> obtenerPublicacionesAdopcionOrganizacion(PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion) {
         return publicacionIntencionDeAdopcion.getPersonaInteresada().getOrganizacion().getPublicacionesAprobadasMascotaEnAdopcion();
-
     }
 
     public List<CaracteristicaDeMascota> obtenerCaracteristicasMascota(PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion) {

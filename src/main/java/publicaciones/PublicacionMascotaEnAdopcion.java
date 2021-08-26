@@ -6,8 +6,6 @@ import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import entidades.Organizacion.PreguntasAdopcion;
 import entidades.Organizacion.Respuesta;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
