@@ -1,3 +1,5 @@
+package test;
+
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Mascotas.Mascota;

@@ -1,3 +1,5 @@
+package test;
+
 import ValidadorContrasenia.CumpleLargoMinimoYMaximo;
 import ValidadorContrasenia.EsDeLas10kPeores;
 import ValidadorContrasenia.EstaCaduca;

@@ -1,3 +1,5 @@
+package test;
+
 import Api.services.entities.Ubicacion;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,15 @@
 package entidades;
 
-public class Direccion {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "direccion")
+public class Direccion extends EntidadPersistente {
+    @Column(name = "calle")
     public String calle;
+    @Column(name = "numero")
     public String numero;
     public String codigoPostal;
     public String ciudad;

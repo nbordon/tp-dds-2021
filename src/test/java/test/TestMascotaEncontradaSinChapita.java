@@ -1,3 +1,5 @@
+package test;
+
 import Api.services.entities.Ubicacion;
 import EstrategiasNotificacion.EstrategiaDeNotificacion;
 import EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;

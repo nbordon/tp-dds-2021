@@ -1,3 +1,5 @@
+package test;
+
 import entidades.Mascotas.Mascota;
 import entidades.Persona;
 import org.junit.Assert;
