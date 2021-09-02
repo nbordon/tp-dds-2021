@@ -5,19 +5,21 @@ import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import entidades.Persona;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@Table(name = "publicacion")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Publicacion extends EntidadPersistente {
     @ManyToOne
     private Mascota mascota;
     @ManyToOne
     private Organizacion organizacion;
+    @Enumerated(EnumType.STRING)
     private EstadoPublicacion estado;
     private String titulo;
+    //TODO: agregar converter de lista de strings
     @Transient
     private List<String> fotosURL;
 

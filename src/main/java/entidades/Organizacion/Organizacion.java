@@ -13,18 +13,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 @Entity
+@Table(name = "organizacion")
 public class Organizacion extends EntidadPersistente {
     private String nombre;
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
-    @Transient
+    @OneToMany
+    @JoinTable(name="caracteristicas_requeridas_organizacion")
     private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
-    @Transient
+    @OneToMany
+    @JoinTable(name = "voluntario_organizacion")
     private List<UsuarioVoluntario> voluntariosAprobados;
     @OneToOne
     private Ubicacion ubicacion;
     @OneToMany
     private List<PreguntasAdopcion> preguntasRequeridasAdopcion;
+    //TODO: como se carga la lista o el contenedor cuando se trae la organizacion de la db
     @Transient
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
     @Transient

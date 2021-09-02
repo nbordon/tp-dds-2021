@@ -3,16 +3,25 @@ package entidades.publicaciones;
 import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
 import entidades.Contacto;
+import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Organizacion.Respuesta;
 import entidades.Persona;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "publicacion_intencion_adopcion")
 public class PublicacionIntencionDeAdopcion extends Publicacion {
+    @ManyToOne
     private Persona personaInteresada;
     private String linkBaja;
+    @OneToMany
+    @JoinTable(name = "respuesta_intencion_adopcion")
     private List<Respuesta> respuestasCaracteristicasDeMascota;
+    @OneToMany
+    @JoinTable(name = "respuesta_comodidades_intencion_adopcion")
     private List<Respuesta> respuestasComodidades;
 
     public Persona getPersonaInteresada() {

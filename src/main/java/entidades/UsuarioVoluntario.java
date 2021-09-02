@@ -3,12 +3,22 @@ package entidades;
 import entidades.publicaciones.EstadoPublicacion;
 import entidades.publicaciones.Publicacion;
 
-public class UsuarioVoluntario extends Usuario {
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="usuario_voluntario")
+public class UsuarioVoluntario extends Usuario {
+    @OneToOne
     private Persona personaVoluntaria;
 
     public UsuarioVoluntario(String email) {
         super(email);
+    }
+
+    public UsuarioVoluntario() {
+
     }
 
     public Persona getPersonaVoluntaria() {
