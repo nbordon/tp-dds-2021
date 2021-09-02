@@ -1,6 +1,7 @@
 package entidades.Organizacion;
 
 import Api.services.entities.Ubicacion;
+import entidades.EntidadPersistente;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
 import publicaciones.PublicacionIntencionDeAdopcion;
@@ -9,20 +10,30 @@ import publicaciones.PublicacionMascotaEnAdopcion;
 import publicaciones.PublicacionMascotaEncontradaSinChapita;
 import publicaciones.*;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-public class Organizacion {
+@Entity
+public class Organizacion extends EntidadPersistente {
     private String nombre;
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
+    @Transient
     private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
+    @Transient
     private List<UsuarioVoluntario> voluntariosAprobados;
+    @OneToOne
     private Ubicacion ubicacion;
+    @OneToMany
     private List<PreguntasAdopcion> preguntasRequeridasAdopcion;
+    @Transient
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
+    @Transient
     private ContenedorPublicaciones contenedorPublicaciones;
 
     public Organizacion() {

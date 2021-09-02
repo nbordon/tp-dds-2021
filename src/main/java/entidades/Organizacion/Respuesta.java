@@ -1,8 +1,14 @@
 package entidades.Organizacion;
 
-public class Respuesta {
+import entidades.EntidadPersistente;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
+@Entity
+public class Respuesta extends EntidadPersistente {
+
+    @ManyToOne
     private Pregunta preguntaALaQuePertenece;
     private String valor;
 

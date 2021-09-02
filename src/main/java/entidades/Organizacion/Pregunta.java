@@ -1,15 +1,19 @@
 package entidades.Organizacion;
 
+import entidades.EntidadPersistente;
+
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.util.List;
 
-public class Pregunta {
+@Entity
+public class Pregunta extends EntidadPersistente {
     private String descripcion;
+    @Transient
     private List<String> valor;
-    private Integer id;
 
-    public int getId() { return id; }
-
-    public void setId(Integer id) { this.id = id; }
+    //TODO: delete this, it is used in a test
+    public void setId(Integer id) {  }
 
     public Respuesta contestar(String unValor){
         return new Respuesta(this,unValor);

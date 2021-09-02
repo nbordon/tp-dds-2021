@@ -4,16 +4,27 @@ import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Usuario;
 import entidades.UsuarioVoluntario;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import java.util.List;
 
+@Entity
 public class Administrador extends Usuario {
 
     private String nombre;
+    @ManyToOne
     private Organizacion organizacionPerteneciente;
+    @Transient
     private List<UsuarioVoluntario> voluntariosDadosDeAlta;
 
     public Administrador(String email) {
         super(email);
+    }
+
+    public Administrador() {
+
     }
 
     public String getNombre() {

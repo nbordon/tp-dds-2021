@@ -1,21 +1,30 @@
 package entidades.Mascotas;
 
+import entidades.EntidadPersistente;
 import entidades.Persona;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-public class Mascota {
+@Entity
+@Table(name = "mascota")
+public class Mascota extends EntidadPersistente {
 
     private String nombre;
     private String apodo;
     private int edadAproximada;
     private String sexo;
+    @Transient
     private List<String> descripcionFisica;
+    @Transient
     private List<CaracteristicaDeMascota> caracteristicas;
+    @Transient
     private List<String> fotosUrl;
+    @Transient
     private EstadoMascota estado;
     private TipoMascota tipoMascota;
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
     private Persona duenio;
 
 

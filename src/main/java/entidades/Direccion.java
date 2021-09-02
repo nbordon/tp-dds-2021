@@ -1,17 +1,14 @@
 package entidades;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "direccion")
 public class Direccion extends EntidadPersistente {
-    @Column(name = "calle")
     public String calle;
-    @Column(name = "numero")
     public String numero;
     public String codigoPostal;
+    //TODO: deberiamos sacar ciudad provincia y pais a otras clases.
     public String ciudad;
     public String provincia;
     public String pais;

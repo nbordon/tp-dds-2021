@@ -5,17 +5,22 @@ import EstrategiasNotificacion.EstrategiaDeNotificacion;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.*;
 
-public class InformacionPersonal {
-
-    private final String nombre;
-    private final String apellido;
-    private final TipoDeDocumento tipoDoc;
-    private final int nroDocumento;
-    private final LocalDate fechaNacimiento;
-    private final String email;
-    private final List<EstrategiaDeNotificacion> formaComunicacion;
-    private final List<Contacto> contactos;
+@Entity
+@Table(name = "informacionPersonal")
+public class InformacionPersonal extends EntidadPersistente{
+    private  String nombre;
+    private  String apellido;
+    private  TipoDeDocumento tipoDoc;
+    private int nroDocumento;
+    //Todo: agregar tipo fecha
+    private  LocalDate fechaNacimiento;
+    private  String email;
+   @Transient
+    private  List<EstrategiaDeNotificacion> formaComunicacion;
+    @OneToMany
+    private  List<Contacto> contactos;
 
     public InformacionPersonal(String nombre, String apellido, TipoDeDocumento tipoDoc, int nroDocumento, LocalDate fechaNacimiento, String email, List<EstrategiaDeNotificacion> formaComunicacion, List<Contacto> contactos) {
         this.nombre = nombre;
@@ -26,6 +31,10 @@ public class InformacionPersonal {
         this.email = email;
         this.formaComunicacion = formaComunicacion;
         this.contactos = contactos;
+
+    }
+
+    public InformacionPersonal() {
 
     }
 

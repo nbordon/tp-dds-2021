@@ -1,18 +1,24 @@
 package publicaciones;
 
+import entidades.EntidadPersistente;
 import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import entidades.Persona;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
-
-public abstract class Publicacion {
+@Entity
+public abstract class Publicacion extends EntidadPersistente {
+    @ManyToOne
     private Mascota mascota;
-
+    @ManyToOne
     private Organizacion organizacion;
     private EstadoPublicacion estado;
     private String titulo;
+    @Transient
     private List<String> fotosURL;
 
     public Publicacion(){

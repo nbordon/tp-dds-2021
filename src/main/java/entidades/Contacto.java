@@ -1,6 +1,10 @@
 package entidades;
 
-public class Contacto {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "contacto")
+public class Contacto extends EntidadPersistente {
     private String nombre;
     private String apellido;
     private String numeroDeTelefono;

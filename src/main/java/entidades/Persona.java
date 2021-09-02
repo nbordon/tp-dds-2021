@@ -4,20 +4,30 @@ import entidades.Mascotas.EstadoMascota;
 import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import exception.MascotaNoPerteneceAlUsuarioException;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Entity
+@Table(name = "persona")
 public class Persona extends Usuario {
-
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "informacion_personal_id")
     private InformacionPersonal informacionPersonal;
+    @Transient
     private List<Mascota> mascotas ;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "organizacion_id")
     private Organizacion organizacion;
 
     public Persona(String email) {
         super(email);
         mascotas = new ArrayList<>();
+    }
+
+    public Persona() {
+
     }
 
     public InformacionPersonal getInformacionPersonal() {

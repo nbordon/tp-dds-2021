@@ -3,8 +3,16 @@ package entidades;
 import Api.services.entities.Hogar;
 import entidades.Mascotas.MascotaEncontrada;
 
-public class Rescatista extends PersonaNoRegistrada{
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+public class Rescatista extends PersonaNoRegistrada {
+    @OneToOne
     private MascotaEncontrada mascotaEncontrada;
+    @ManyToOne
     private Hogar hogarDeTransito;
 
     public MascotaEncontrada getMascotaEncontrada() {

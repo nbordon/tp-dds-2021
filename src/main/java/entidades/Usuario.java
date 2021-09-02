@@ -1,6 +1,11 @@
 package entidades;
 
-public class Usuario {
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+public class Usuario extends EntidadPersistente {
 
     protected String contrasenia;
     private String nombreUsuario;
@@ -9,6 +14,10 @@ public class Usuario {
 
     public Usuario(String email) {
         this.email = email;
+    }
+
+    public Usuario() {
+
     }
 
     public String getEmail() {
