@@ -2,7 +2,9 @@ package test;
 
 import db.EntityManagerHelper;
 import entidades.Direccion;
+import entidades.Organizacion.Administrador;
 import entidades.Organizacion.Pregunta;
+import entidades.Persona;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -23,10 +25,10 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		withTransaction(() -> {});
 	}
 
-	@Test @Ignore
+	@Test
 	public void persistir1UsuarioTest(){
-		Pregunta dir = new Pregunta();
-		dir.setDescripcion("¿Color?");
+		Administrador dir = new Administrador();
+		dir.setNombreUsuario("Nico");
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(dir);
 		EntityManagerHelper.commit();

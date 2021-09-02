@@ -13,12 +13,12 @@ import java.util.Optional;
 @Table(name = "persona")
 public class Persona extends Usuario {
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "informacion_personal_id")
+    @JoinColumn(name = "informacion_personal_id", referencedColumnName = "id")
     private InformacionPersonal informacionPersonal;
-    @Transient
+    @OneToMany
     private List<Mascota> mascotas ;
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "organizacion_id")
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
 
     public Persona(String email) {

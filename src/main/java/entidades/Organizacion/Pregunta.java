@@ -2,17 +2,19 @@ package entidades.Organizacion;
 
 import entidades.EntidadPersistente;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_de_pregunta")
 public class Pregunta extends EntidadPersistente {
     private String descripcion;
+    //TODO: agregar converter de list string
     @Transient
     private List<String> valor;
 
-    //TODO: delete this, it is used in a test
+    //TODO: ver como manejamos esta relacion.
     public void setId(Integer id) {  }
 
     public Respuesta contestar(String unValor){
