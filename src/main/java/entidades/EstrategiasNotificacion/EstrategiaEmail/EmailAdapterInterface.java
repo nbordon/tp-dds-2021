@@ -1,4 +1,4 @@
-package EstrategiasNotificacion.EstrategiaEmail;
+package entidades.EstrategiasNotificacion.EstrategiaEmail;
 
 import entidades.Contacto;
 

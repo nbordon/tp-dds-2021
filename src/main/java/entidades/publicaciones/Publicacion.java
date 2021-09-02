@@ -1,4 +1,4 @@
-package publicaciones;
+package entidades.publicaciones;
 
 import entidades.EntidadPersistente;
 import entidades.Mascotas.Mascota;

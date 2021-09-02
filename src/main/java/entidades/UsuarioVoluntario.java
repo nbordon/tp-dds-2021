@@ -1,7 +1,7 @@
 package entidades;
 
-import publicaciones.EstadoPublicacion;
-import publicaciones.Publicacion;
+import entidades.publicaciones.EstadoPublicacion;
+import entidades.publicaciones.Publicacion;
 
 public class UsuarioVoluntario extends Usuario {
 

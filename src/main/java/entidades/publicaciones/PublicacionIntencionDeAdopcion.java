@@ -1,7 +1,7 @@
-package publicaciones;
+package entidades.publicaciones;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
 import entidades.Contacto;
 import entidades.Organizacion.Respuesta;
 import entidades.Persona;

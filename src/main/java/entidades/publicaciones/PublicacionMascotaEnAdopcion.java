@@ -1,6 +1,6 @@
-package publicaciones;
+package entidades.publicaciones;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;

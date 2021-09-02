@@ -1,4 +1,4 @@
-package EstrategiasNotificacion.EstrategiaWhatsApp;
+package entidades.EstrategiasNotificacion.EstrategiaWhatsApp;
 
 import entidades.Contacto;
 

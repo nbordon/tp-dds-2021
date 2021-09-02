@@ -1,9 +1,6 @@
 package entidades.Organizacion;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.Publicacion;
-import publicaciones.PublicacionMascotaEnAdopcion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
-import publicaciones.*;
+import entidades.publicaciones.*;
+
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,8 @@
 package entidades.Mascotas;
 
 import entidades.Organizacion.Organizacion;
-import publicaciones.EstadoPublicacion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
+import entidades.publicaciones.EstadoPublicacion;
+import entidades.publicaciones.PublicacionMascotaEncontradaSinChapita;
 import utils.localizador.LocalizadorDeOrganizacion;
 
 public class MascotaEncontradaSinChapita extends MascotaEncontrada {

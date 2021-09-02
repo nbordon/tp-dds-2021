@@ -1,6 +1,6 @@
 package entidades;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 
 import java.time.LocalDate;
 import java.util.List;

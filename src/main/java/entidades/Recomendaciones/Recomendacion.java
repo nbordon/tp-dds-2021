@@ -1,9 +1,9 @@
-package Recomendaciones;
+package entidades.Recomendaciones;
 
 import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Organizacion.Respuesta;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.PublicacionMascotaEnAdopcion;
+import entidades.publicaciones.PublicacionIntencionDeAdopcion;
+import entidades.publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
 import java.util.List;

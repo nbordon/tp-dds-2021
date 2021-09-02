@@ -5,6 +5,7 @@ import Api.services.entities.Hogar;
 import Api.services.entities.ListadoHogares;
 import Api.services.entities.UsuarioResponse;
 import entidades.Usuario;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class TestApi {
     public ServiceRefugio serviceRefugio = ServiceRefugio.getInstance();
 
     @Test
+    @Ignore
     public void getHogares() throws IOException {
         String numOffset = "1";
         System.out.println("Seleccione uno de los siguientes refugios:");
