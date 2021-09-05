@@ -4,7 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+	<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+
+	<script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
+
+	<style>
         .thumnail-border {
           border-width: 10px;
           border-radius: 80%;
@@ -23,20 +34,8 @@
 	<title>Caracteristicas</title>
 </head>
 <body>
-	<header class="container">
-		<div class="row">
-			<div class="col">
-				<nav class="nav bg-primary">
-					<a href="" class="nav-link text-dark">Adopciones</a>
-					<a href="" class="nav-link text-dark">Encontre una Mascota</a>
-					<a href="" class="nav-link text-dark">Mascotas Perdidas</a>
-					<a href="" class="nav-link text-dark active">Mi cuenta</a>
-					<a href="" class="nav-link text-dark">Desconectarse</a>
-				</nav>
-			</div>
-		</div>
-	</header>
-	<div class="container">
+<div id="includedContent" class="container-fluid p-0"></div>
+		<div class="container">
 		<div class="row">
 			<div class="col-3">
 				<div class="accordion" id="accordionExample">
