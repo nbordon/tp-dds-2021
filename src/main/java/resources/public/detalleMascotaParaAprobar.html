@@ -8,11 +8,24 @@
 
     <link rel="stylesheet" href="css/estilos.css">
 
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
+
 
     <title>Detalle Mascota</title>
 </head>
 
 <body class="bg-light">
+<div id="includedContent" class="container-fluid p-0"></div>
+
     <div class="container d-flex flex-column justify-content-center shadow-lg">
         <div class="row bg-dark p-3">
             <div class="col-4"></div>
