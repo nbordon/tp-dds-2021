@@ -4,54 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+ 
     <link rel="stylesheet" href="css/estilos.css">
 
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
     <title>Home</title>
 </head>
 <body class="bg-secondary">
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-            <div class="rounded-circle bg-secondary mx-2">
-                <img class="navbar-brand mx-auto" src="./images/logo.svg" alt="logo" width="60" height="60">
-            </div>
-            <a class="navbar-brand text-light" href="#">Rescate de patitas</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse d-flex justify-content-end pe-2" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link text-light" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            Mi cuenta
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Datos personales</a></li>
-                            <li><a class="dropdown-item" href="#">Mis mascotas</a></li>
-                            <div class="dropdown-divider"></div>
-                            <li><a class="dropdown-item" href="#">Contactos</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Adopciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Encontré una mascota</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Mascota encontradas</a>
-                    </li>
-                    
-                </ul>
-            </div>
-        </nav>
-        </div>
+    <div id="includedContent" class="container-fluid p-0"></div>
         <div class="container py-2 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5 text-center">
