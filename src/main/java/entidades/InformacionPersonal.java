@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "informacionPersonal")
+@Table(name = "informacion_personal")
 public class InformacionPersonal extends EntidadPersistente{
     private  String nombre;
     private  String apellido;

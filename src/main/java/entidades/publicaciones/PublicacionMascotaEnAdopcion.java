@@ -6,11 +6,19 @@ import entidades.Mascotas.Mascota;
 import entidades.Organizacion.Organizacion;
 import entidades.Organizacion.PreguntasAdopcion;
 import entidades.Organizacion.Respuesta;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "publicacion_mascota_adopcion")
 public class PublicacionMascotaEnAdopcion extends Publicacion {
+
+    @Transient
     private Mascota mascotaEnAdopcion;
+    @OneToMany
+    @JoinTable(name = "respuestas_x_publicacion")
     private List<Respuesta> respuestasPreguntas = new ArrayList<>();
 
     public Mascota getMascotaEnAdopcion() {

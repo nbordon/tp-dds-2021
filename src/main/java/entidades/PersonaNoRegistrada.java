@@ -1,13 +1,11 @@
 package entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
-@Entity
+@MappedSuperclass
 public abstract class PersonaNoRegistrada extends EntidadPersistente {
     @OneToOne
+    @JoinColumn(name = "informacion_personal_id", referencedColumnName = "id")
     public InformacionPersonal informacionPersonal;
     @OneToOne
     public Direccion direccion;

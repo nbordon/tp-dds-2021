@@ -8,19 +8,22 @@ import entidades.Persona;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
-@Table(name = "publicacion")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Publicacion extends EntidadPersistente {
     @ManyToOne
+    @JoinColumn(name = "mascota_id", referencedColumnName = "id")
     private Mascota mascota;
     @ManyToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacion;
     @Enumerated(EnumType.STRING)
     private EstadoPublicacion estado;
     private String titulo;
-    //TODO: agregar converter de lista de strings
-    @Transient
+    @ElementCollection
+    @CollectionTable(name="fotos_url_publicacion",
+            joinColumns = @JoinColumn(name="publicacion_id",referencedColumnName = "id"))
     private List<String> fotosURL;
 
     public Publicacion(){

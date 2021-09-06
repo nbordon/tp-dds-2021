@@ -3,14 +3,13 @@ package entidades;
 import Api.services.entities.Hogar;
 import entidades.Mascotas.MascotaEncontrada;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "rescatista")
 public class Rescatista extends PersonaNoRegistrada {
     @OneToOne
+    @JoinColumn(name = "mascota_encontrada_id", referencedColumnName = "id")
     private MascotaEncontrada mascotaEncontrada;
     @ManyToOne
     private Hogar hogarDeTransito;

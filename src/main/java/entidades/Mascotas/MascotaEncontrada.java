@@ -4,19 +4,19 @@ import Api.services.entities.Ubicacion;
 import entidades.EntidadPersistente;
 import entidades.Rescatista;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class MascotaEncontrada extends EntidadPersistente {
-    @Transient
+    @ElementCollection
     private List<String> fotos;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "rescatista_id", referencedColumnName = "id")
     private Rescatista rescatista;
     @Transient
     private Ubicacion ubicacion;

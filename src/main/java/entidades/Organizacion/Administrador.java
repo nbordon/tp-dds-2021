@@ -4,17 +4,16 @@ import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Usuario;
 import entidades.UsuarioVoluntario;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "administrador")
 public class Administrador extends Usuario {
 
     private String nombre;
     @ManyToOne
+    @JoinColumn(name = "organizacion_id", referencedColumnName = "id")
     private Organizacion organizacionPerteneciente;
     @Transient
     private List<UsuarioVoluntario> voluntariosDadosDeAlta;
