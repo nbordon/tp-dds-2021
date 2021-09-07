@@ -9,6 +9,8 @@
 
 [Diagrama de clases](https://drive.google.com/file/d/1G_D2Ed6DilnLKMjwqUsi7WlB1QpMoF2P/view?usp=sharing)
 
+[Diseño de vistas](https://drive.google.com/file/d/1R03mMJLkCljX5l1AUw9fpTqZxu-1tPZ0/view?usp=sharing)
+
 **Grupo**: 05
 
 **Año**: 2021
