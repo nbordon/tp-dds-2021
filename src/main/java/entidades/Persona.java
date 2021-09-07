@@ -15,7 +15,7 @@ public class Persona extends Usuario {
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "informacion_personal_id", referencedColumnName = "id")
     private InformacionPersonal informacionPersonal;
-    @OneToMany
+    @OneToMany(mappedBy = "duenio")
     private List<Mascota> mascotas ;
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "organizacion_id", referencedColumnName = "id")

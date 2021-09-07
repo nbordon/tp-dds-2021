@@ -23,7 +23,7 @@ public class Mascota extends EntidadPersistente {
     @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
     //TODO: agregar converter
-    @Transient
+    @ElementCollection
     private List<String> fotosUrl;
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_mascota")
