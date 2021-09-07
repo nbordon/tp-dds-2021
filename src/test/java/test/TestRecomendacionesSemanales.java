@@ -1,10 +1,10 @@
 package test;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
-import EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
-import Recomendaciones.NotificadorSemanal;
-import Recomendaciones.Recomendacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
+import entidades.EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
+import entidades.Recomendaciones.NotificadorSemanal;
+import entidades.Recomendaciones.Recomendacion;
 import entidades.Contacto;
 import entidades.InformacionPersonal;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
@@ -18,14 +18,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import publicaciones.EstadoPublicacion;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.PublicacionMascotaEnAdopcion;
+import entidades.publicaciones.EstadoPublicacion;
+import entidades.publicaciones.PublicacionIntencionDeAdopcion;
+import entidades.publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-import java.util.logging.Logger;
 
 public class TestRecomendacionesSemanales {
 

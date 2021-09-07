@@ -1,8 +1,12 @@
 package Api.services.entities;
 
 import com.google.gson.annotations.SerializedName;
+import entidades.EntidadPersistente;
 
-public class Ubicacion {
+import javax.persistence.Entity;
+
+@Entity
+public class Ubicacion extends EntidadPersistente {
 
     @SerializedName("direccion")
     public String direccion;

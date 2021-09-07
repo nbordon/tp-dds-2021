@@ -1,7 +1,8 @@
-package EstrategiasNotificacion.EstrategiaWhatsApp;
+package entidades.EstrategiasNotificacion.EstrategiaWhatsApp;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
+
 
 public class EstrategiaDeWhatsApp implements EstrategiaDeNotificacion {
 

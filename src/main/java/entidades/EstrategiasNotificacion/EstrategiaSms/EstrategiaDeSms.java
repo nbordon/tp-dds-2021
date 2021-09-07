@@ -1,6 +1,6 @@
-package EstrategiasNotificacion.EstrategiaSms;
+package entidades.EstrategiasNotificacion.EstrategiaSms;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 
 public class EstrategiaDeSms implements EstrategiaDeNotificacion {

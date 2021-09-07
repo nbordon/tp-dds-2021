@@ -1,8 +1,15 @@
 package entidades.Organizacion;
 
-public class Respuesta {
+import entidades.EntidadPersistente;
 
+import javax.persistence.*;
 
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_de_respuesta")
+public class Respuesta extends EntidadPersistente {
+
+    @ManyToOne
     private Pregunta preguntaALaQuePertenece;
     private String valor;
 

@@ -1,14 +1,25 @@
 package entidades;
 
-public class Usuario {
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name="usuario")
+public class Usuario extends EntidadPersistente {
 
     protected String contrasenia;
     private String nombreUsuario;
     public String email;
-    public String bearerToken;
 
     public Usuario(String email) {
         this.email = email;
+    }
+
+    public Usuario() {
+
     }
 
     public String getEmail() {

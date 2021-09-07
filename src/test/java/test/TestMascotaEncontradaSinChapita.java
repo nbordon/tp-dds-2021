@@ -1,17 +1,16 @@
 package test;
 
 import Api.services.entities.Ubicacion;
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
 import entidades.*;
-import entidades.Mascotas.MascotaEncontrada;
 import entidades.Mascotas.MascotaEncontradaSinChapita;
 import entidades.Organizacion.ContenedorPublicaciones;
 import entidades.Organizacion.Organizacion;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import publicaciones.EstadoPublicacion;
+import entidades.publicaciones.EstadoPublicacion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package EstrategiasNotificacion.EstrategiaSms;
+package entidades.EstrategiasNotificacion.EstrategiaSms;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;

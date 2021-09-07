@@ -1,8 +1,6 @@
-package EstrategiasNotificacion.EstrategiaEmail;
+package entidades.EstrategiasNotificacion.EstrategiaEmail;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaSms.SmsAdapterInterface;
-import EstrategiasNotificacion.EstrategiaSms.SmsTwilioAdapter;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 
 public class EstrategiaDeEmail implements EstrategiaDeNotificacion {

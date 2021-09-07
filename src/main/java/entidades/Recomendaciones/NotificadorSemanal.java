@@ -1,9 +1,9 @@
-package Recomendaciones;
+package entidades.Recomendaciones;
 
 import entidades.Organizacion.Organizacion;
 import entidades.Persona;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.PublicacionMascotaEnAdopcion;
+import entidades.publicaciones.PublicacionIntencionDeAdopcion;
+import entidades.publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.List;
 import java.util.TimerTask;

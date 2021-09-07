@@ -1,13 +1,18 @@
-package publicaciones;
+package entidades.publicaciones;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 import entidades.InformacionPersonal;
 import entidades.Mascotas.MascotaEncontradaSinChapita;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "publicacion_mascota_sin_chapita")
 public class PublicacionMascotaEncontradaSinChapita extends Publicacion {
+    @OneToOne
+    @JoinColumn(name = "mascota_sin_chapita_id", referencedColumnName = "id")
     private MascotaEncontradaSinChapita mascotaEncontradaSinChapita;
 
     public PublicacionMascotaEncontradaSinChapita(){

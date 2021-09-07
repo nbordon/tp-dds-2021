@@ -1,18 +1,27 @@
-package publicaciones;
+package entidades.publicaciones;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
-import EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
 import entidades.Contacto;
+import entidades.Mascotas.CaracteristicaDeMascota;
 import entidades.Organizacion.Respuesta;
 import entidades.Persona;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "public_intenc_adop")
 public class PublicacionIntencionDeAdopcion extends Publicacion {
+    @ManyToOne
     private Persona personaInteresada;
     private String linkBaja;
+    @OneToMany
+    @JoinTable(name = "rts_intenc_adop")
     private List<Respuesta> respuestasCaracteristicasDeMascota;
+    @OneToMany
+    @JoinTable(name = "rta_com_intenc_adop")
     private List<Respuesta> respuestasComodidades;
 
     public Persona getPersonaInteresada() {

@@ -3,9 +3,10 @@ package entidades;
 import exception.VerificadorException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.Entity;
 import java.time.LocalDate;
-
-public class Password {
+//TODO: creo que al final no usamos esta clase. Borrarla?
+public class Password extends EntidadPersistente {
 
     private final String password;
     private LocalDate fechaModificacion;

@@ -1,6 +1,6 @@
-package EstrategiasNotificacion.EstrategiaEmail;
+package entidades.EstrategiasNotificacion.EstrategiaEmail;
 
-import EstrategiasNotificacion.EstrategiaDeNotificacion;
+import entidades.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import entidades.Contacto;
 
 public class EstrategiaEmail implements EstrategiaDeNotificacion {

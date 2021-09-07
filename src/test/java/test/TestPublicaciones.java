@@ -10,9 +10,9 @@ import exception.CaracteristicaRequeridaException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import publicaciones.EstadoPublicacion;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.PublicacionMascotaEnAdopcion;
+import entidades.publicaciones.EstadoPublicacion;
+import entidades.publicaciones.PublicacionIntencionDeAdopcion;
+import entidades.publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
 import java.util.List;
