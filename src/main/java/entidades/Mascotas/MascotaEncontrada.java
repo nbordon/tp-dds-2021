@@ -3,14 +3,13 @@ package entidades.Mascotas;
 import Api.services.entities.Ubicacion;
 import entidades.EntidadPersistente;
 import entidades.Rescatista;
-
-import javax.persistence.Convert;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="mascota_encontrada")
 public abstract class MascotaEncontrada extends EntidadPersistente {
     @Transient
     private List<String> fotos;

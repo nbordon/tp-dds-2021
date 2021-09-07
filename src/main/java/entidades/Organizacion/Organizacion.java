@@ -19,7 +19,7 @@ public class Organizacion extends EntidadPersistente {
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
     @OneToMany
-    @JoinTable(name="caracteristicas_requeridas_organizacion")
+    @JoinTable(name="caract_req_org")
     private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
     @OneToMany
     @JoinTable(name = "voluntario_organizacion")

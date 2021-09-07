@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "publicacion_intencion_adopcion")
+@Table(name = "public_intenc_adop")
 public class PublicacionIntencionDeAdopcion extends Publicacion {
     @ManyToOne
     private Persona personaInteresada;
     private String linkBaja;
     @OneToMany
-    @JoinTable(name = "respuesta_intencion_adopcion")
+    @JoinTable(name = "rts_intenc_adop")
     private List<Respuesta> respuestasCaracteristicasDeMascota;
     @OneToMany
-    @JoinTable(name = "respuesta_comodidades_intencion_adopcion")
+    @JoinTable(name = "rta_com_intenc_adop")
     private List<Respuesta> respuestasComodidades;
 
     public Persona getPersonaInteresada() {

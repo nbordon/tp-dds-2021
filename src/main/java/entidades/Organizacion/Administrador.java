@@ -4,13 +4,13 @@ import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.Usuario;
 import entidades.UsuarioVoluntario;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.util.List;
 
 @Entity
+@Table(name="administrador")
 public class Administrador extends Usuario {
 
     private String nombre;

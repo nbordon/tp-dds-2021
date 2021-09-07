@@ -1,11 +1,9 @@
 package entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name="persona_no_registrada")
 public abstract class PersonaNoRegistrada extends EntidadPersistente {
     @OneToOne
     public InformacionPersonal informacionPersonal;

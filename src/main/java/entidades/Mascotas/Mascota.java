@@ -20,7 +20,7 @@ public class Mascota extends EntidadPersistente {
     @Transient
     private List<String> descripcionFisica;
     @OneToMany
-    @JoinTable(name = "caracteristica_de_mascota")
+    @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
     //TODO: agregar converter
     @Transient
