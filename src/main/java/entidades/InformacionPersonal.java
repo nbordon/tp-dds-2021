@@ -18,8 +18,8 @@ public class InformacionPersonal extends EntidadPersistente{
     private  String nombre;
     private  String apellido;
     private  TipoDeDocumento tipoDoc;
+    @Column(unique = true)
     private int nroDocumento;
-    //Todo: agregar tipo fecha
     private  LocalDate fechaNacimiento;
     private  String email;
     @Convert(converter = EstrategiaNotificacionConverter.class)

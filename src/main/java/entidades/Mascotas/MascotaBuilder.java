@@ -37,7 +37,7 @@ public class MascotaBuilder {
     }
 
     public MascotaBuilder conDescripcionFisica(String descripcion){
-        this.mascota.getDescripcionFisica().add(descripcion);
+        this.mascota.setDescripcionFisica(descripcion);
         return this;
     }
 

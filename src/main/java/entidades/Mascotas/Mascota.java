@@ -16,14 +16,12 @@ public class Mascota extends EntidadPersistente {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
     private String sexo;
-    //TODO: agregar converter de list separado por coma
-    @Transient
-    private List<String> descripcionFisica;
+    private String descripcionFisica;
     @OneToMany
     @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
-    //TODO: agregar converter
     @ElementCollection
+    @CollectionTable(name="mascota_fotos_url")
     private List<String> fotosUrl;
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_mascota")
@@ -36,13 +34,12 @@ public class Mascota extends EntidadPersistente {
     private Persona duenio;
 
 
-    public Mascota(){
-        this.descripcionFisica = new ArrayList<>();
+    public Mascota(){ ;
         this.caracteristicas = new ArrayList<>();
         this.fotosUrl = new ArrayList<>();
     };
 
-    public Mascota(String nombre, String apodo, LocalDate fechaNacimiento, String sexo, List<String>descripcionFisica, List<CaracteristicaDeMascota> caracteristicas, List<String>fotosUrl, String codigoQr, EstadoMascota estado, TipoMascota tipoMascota, Persona duenio)
+    public Mascota(String nombre, String apodo, LocalDate fechaNacimiento, String sexo, String descripcionFisica, List<CaracteristicaDeMascota> caracteristicas, List<String>fotosUrl, String codigoQr, EstadoMascota estado, TipoMascota tipoMascota, Persona duenio)
     {
         this.nombre=nombre;
         this.apodo= apodo;
@@ -80,7 +77,7 @@ public class Mascota extends EntidadPersistente {
         return sexo;
     }
 
-    public List<String> getDescripcionFisica() {
+    public String getDescripcionFisica() {
         return descripcionFisica;
     }
 
@@ -116,7 +113,7 @@ public class Mascota extends EntidadPersistente {
         this.sexo = sexo;
     }
 
-    public void setDescripcionFisica(List<String> descripcionFisica) {
+    public void setDescripcionFisica(String descripcionFisica) {
         this.descripcionFisica = descripcionFisica;
     }
 

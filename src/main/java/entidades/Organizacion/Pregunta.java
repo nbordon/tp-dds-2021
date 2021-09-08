@@ -8,10 +8,12 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_de_pregunta")
+@Table(name = "pregunta")
 public class Pregunta extends EntidadPersistente {
     private String descripcion;
-    //TODO: agregar converter de list string
-    @Transient
+    @ElementCollection
+    @CollectionTable(name="valor_pregunta",
+            joinColumns = @JoinColumn(name="pregunta_id",referencedColumnName = "id"))
     private List<String> valor;
 
     //TODO: ver como manejamos esta relacion.

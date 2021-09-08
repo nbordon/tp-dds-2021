@@ -7,6 +7,7 @@ import entidades.UsuarioVoluntario;
 import javax.persistence.*;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,8 @@ public class Administrador extends Usuario {
     @ManyToOne
     private Organizacion organizacionPerteneciente;
     @Transient
-    private List<UsuarioVoluntario> voluntariosDadosDeAlta;
+    private List<UsuarioVoluntario> voluntariosDadosDeAlta = new ArrayList<>();
+
 
     public Administrador(String email) {
         super(email);

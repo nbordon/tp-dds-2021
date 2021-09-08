@@ -5,6 +5,7 @@ import entidades.EntidadPersistente;
 import javax.persistence.*;
 
 @Entity
+@Table(name="respuesta")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_de_respuesta")
 public class Respuesta extends EntidadPersistente {

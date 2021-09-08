@@ -21,8 +21,7 @@ public class Organizacion extends EntidadPersistente {
     @OneToMany
     @JoinTable(name="caract_req_org")
     private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
-    @OneToMany
-    @JoinTable(name = "voluntario_organizacion")
+    @OneToMany(mappedBy = "organizacion")
     private List<UsuarioVoluntario> voluntariosAprobados;
     @OneToOne
     private Ubicacion ubicacion;

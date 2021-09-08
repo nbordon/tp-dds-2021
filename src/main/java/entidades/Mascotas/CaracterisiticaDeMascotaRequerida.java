@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.util.ArrayList;
 
 @Entity
-@DiscriminatorValue("caracteristica_mascota_requerida")
+@DiscriminatorValue("caract_mascot_req")
 public class CaracterisiticaDeMascotaRequerida extends Pregunta {
     public CaracterisiticaDeMascotaRequerida(){
         super.setValor(new ArrayList<>());

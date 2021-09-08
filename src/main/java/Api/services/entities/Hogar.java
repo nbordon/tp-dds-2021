@@ -3,10 +3,12 @@ package Api.services.entities;
 import entidades.EntidadPersistente;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.util.List;
 
 @Entity
+@Table(name="hogar")
 public class Hogar extends EntidadPersistente {
 
     public String id_hogar;

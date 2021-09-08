@@ -11,11 +11,14 @@ import java.util.List;
 @Entity
 @Table(name="mascota_encontrada")
 public abstract class MascotaEncontrada extends EntidadPersistente {
-    @Transient
+
+    @ElementCollection
+    @CollectionTable(name="masco_encontrda_fotos")
     private List<String> fotos;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "rescatista_id")
     private Rescatista rescatista;
     @Transient
     private Ubicacion ubicacion;
