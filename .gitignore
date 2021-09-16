@@ -60,5 +60,6 @@ out/
 ##############################
 *.map
 /src/main/resources/public/libs
-
+/src/main/resources/public/scss
+!/src/main/resources/public/libs/bootstrap/dist/js
 
