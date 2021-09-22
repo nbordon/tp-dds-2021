@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(function(){
+            $("#includedContent").load("navBar.html");
+        });
+    </script>
+
+    <title>Mascota encntrada</title>
+</head>
+<body>
+<div id="includedContent" class="container-fluid p-0"></div>
+<div class="container py-5 h-100">
+
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-secondary shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+
+
+
+                            <h2 class="fw-bold mb-2">Encontré una mascota</h2>
+
+                            <form action="#">
+                                <br>
+                                <h5>Imagen</h5>
+                                <div class="row d-flex justify-content-left align-items-center h-100">
+                                <div class="col-4 my-2 ">
+
+                                    <input class="form-control-sm" type="file" id="formFileMultiple" multiple required>
+                                </div>
+
+                                    <div class="form-group">
+                                        <br>
+                                        <h5 for="exampleFormControlTextarea1">Estado de la mascota encontrada</h5>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                        <br>
+                                    </div>
+                                    <br>
+                                    <h5>Ubicación</h5>
+                                    <br>
+                                    <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                         style="height: 160px; width: 100%; display: block;"
+                                         src="https://d500.epimg.net/cincodias/imagenes/2017/05/05/lifestyle/1493972078_448475_1493972405_noticia_normal.jpg"
+                                         data-holder-rendered="true">
+
+
+                                    <button style="margin-top: 30px;" class="btn btn-primary rounded-pill btn-lg pull-right" type="submit">Enviar</button>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,16 +1,26 @@
 package entidades.Mascotas;
 
 import Api.services.entities.Ubicacion;
+import entidades.EntidadPersistente;
 import entidades.Rescatista;
-
+import javax.persistence.*;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.List;
 
-public abstract class MascotaEncontrada {
+@Entity
+@Table(name="mascota_encontrada")
+public abstract class MascotaEncontrada extends EntidadPersistente {
+
+    @ElementCollection
+    @CollectionTable(name="masco_encontrda_fotos")
     private List<String> fotos;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
+    @OneToOne
+    @JoinColumn(name = "rescatista_id")
     private Rescatista rescatista;
+    @Transient
     private Ubicacion ubicacion;
 
     public Ubicacion getUbicacion() {

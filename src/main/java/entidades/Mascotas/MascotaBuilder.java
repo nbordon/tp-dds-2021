@@ -3,7 +3,7 @@ package entidades.Mascotas;
 import entidades.Persona;
 import exception.CaracteristicaRequeridaException;
 
-import java.util.List;
+import java.time.LocalDate;
 
 public class MascotaBuilder {
     private Mascota mascota;
@@ -26,8 +26,8 @@ public class MascotaBuilder {
         return this;
     }
 
-    public MascotaBuilder conEdadAproximada(Integer edad){
-        this.mascota.setEdadAproximada(edad);
+    public MascotaBuilder conFechaNacimiento(LocalDate edad){
+        this.mascota.setFechaNacimiento(edad);
         return this;
     }
 
@@ -37,7 +37,7 @@ public class MascotaBuilder {
     }
 
     public MascotaBuilder conDescripcionFisica(String descripcion){
-        this.mascota.getDescripcionFisica().add(descripcion);
+        this.mascota.setDescripcionFisica(descripcion);
         return this;
     }
 

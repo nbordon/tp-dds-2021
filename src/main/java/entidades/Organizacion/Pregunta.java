@@ -1,15 +1,23 @@
 package entidades.Organizacion;
 
+import entidades.EntidadPersistente;
+
+import javax.persistence.*;
 import java.util.List;
 
-public class Pregunta {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_de_pregunta")
+@Table(name = "pregunta")
+public class Pregunta extends EntidadPersistente {
     private String descripcion;
+    @ElementCollection
+    @CollectionTable(name="valor_pregunta",
+            joinColumns = @JoinColumn(name="pregunta_id",referencedColumnName = "id"))
     private List<String> valor;
-    private Integer id;
 
-    public int getId() { return id; }
-
-    public void setId(Integer id) { this.id = id; }
+    //TODO: ver como manejamos esta relacion.
+    public void setId(Integer id) {  }
 
     public Respuesta contestar(String unValor){
         return new Respuesta(this,unValor);

@@ -1,9 +1,14 @@
 package entidades;
 
-public class Direccion {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "direccion")
+public class Direccion extends EntidadPersistente {
     public String calle;
     public String numero;
     public String codigoPostal;
+    //TODO: deberiamos sacar ciudad provincia y pais a otras clases.
     public String ciudad;
     public String provincia;
     public String pais;

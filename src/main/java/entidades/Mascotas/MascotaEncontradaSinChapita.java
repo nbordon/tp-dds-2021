@@ -1,12 +1,20 @@
 package entidades.Mascotas;
 
 import entidades.Organizacion.Organizacion;
-import publicaciones.EstadoPublicacion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
+import entidades.publicaciones.EstadoPublicacion;
+import entidades.publicaciones.PublicacionMascotaEncontradaSinChapita;
 import utils.localizador.LocalizadorDeOrganizacion;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "mascota_encontrada")
 public class MascotaEncontradaSinChapita extends MascotaEncontrada {
+    @Transient
     private static final double RADIO_MINIMO = 5.0;
+    @Transient
     private LocalizadorDeOrganizacion localizadorDeOrganizacion;
 
     public MascotaEncontradaSinChapita(){

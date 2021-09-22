@@ -1,28 +1,36 @@
 package entidades.Organizacion;
 
 import Api.services.entities.Ubicacion;
+import entidades.EntidadPersistente;
 import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
 import entidades.UsuarioVoluntario;
-import publicaciones.PublicacionIntencionDeAdopcion;
-import publicaciones.Publicacion;
-import publicaciones.PublicacionMascotaEnAdopcion;
-import publicaciones.PublicacionMascotaEncontradaSinChapita;
-import publicaciones.*;
+import entidades.publicaciones.*;
+import entidades.publicaciones.*;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-public class Organizacion {
+@Entity
+@Table(name = "organizacion")
+public class Organizacion extends EntidadPersistente {
     private String nombre;
     private Integer altoFotoEstandar;
     private Integer anchoFotoEstandar;
+    @OneToMany
+    @JoinTable(name="caract_req_org")
     private List<CaracterisiticaDeMascotaRequerida> caracteristicasDeMascotasRequeridas;
+    @OneToMany(mappedBy = "organizacion")
     private List<UsuarioVoluntario> voluntariosAprobados;
+    @OneToOne
     private Ubicacion ubicacion;
+    @OneToMany
     private List<PreguntasAdopcion> preguntasRequeridasAdopcion;
+    //TODO: como se carga la lista o el contenedor cuando se trae la organizacion de la db
+    @Transient
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
+    @Transient
     private ContenedorPublicaciones contenedorPublicaciones;
 
     public Organizacion() {

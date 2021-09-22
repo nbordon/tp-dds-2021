@@ -1,35 +1,49 @@
 package entidades.Mascotas;
 
+import entidades.EntidadPersistente;
 import entidades.Persona;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-public class Mascota {
+@Entity
+@Table(name = "mascota")
+public class Mascota extends EntidadPersistente {
 
     private String nombre;
     private String apodo;
-    private int edadAproximada;
+    @Column(name = "fecha_nacimiento")
+    private LocalDate fechaNacimiento;
     private String sexo;
-    private List<String> descripcionFisica;
+    private String descripcionFisica;
+    @OneToMany
+    @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
+    @ElementCollection
+    @CollectionTable(name="mascota_fotos_url")
     private List<String> fotosUrl;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_mascota")
     private EstadoMascota estado;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_mascota")
     private TipoMascota tipoMascota;
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
     private Persona duenio;
 
 
-    public Mascota(){
-        this.descripcionFisica = new ArrayList<>();
+    public Mascota(){ ;
         this.caracteristicas = new ArrayList<>();
         this.fotosUrl = new ArrayList<>();
     };
 
-    public Mascota(String nombre, String apodo, int edadAproximada,String sexo, List<String>descripcionFisica, List<CaracteristicaDeMascota> caracteristicas, List<String>fotosUrl,String codigoQr,EstadoMascota estado,TipoMascota tipoMascota,Persona duenio)
+    public Mascota(String nombre, String apodo, LocalDate fechaNacimiento, String sexo, String descripcionFisica, List<CaracteristicaDeMascota> caracteristicas, List<String>fotosUrl, String codigoQr, EstadoMascota estado, TipoMascota tipoMascota, Persona duenio)
     {
         this.nombre=nombre;
         this.apodo= apodo;
-        this.edadAproximada=edadAproximada;
+        this.fechaNacimiento = fechaNacimiento;
         this.sexo=sexo;
         this.descripcionFisica=descripcionFisica;
         this.caracteristicas=caracteristicas;
@@ -55,15 +69,15 @@ public class Mascota {
         return apodo;
     }
 
-    public int getEdadAproximada() {
-        return edadAproximada;
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
     public String getSexo() {
         return sexo;
     }
 
-    public List<String> getDescripcionFisica() {
+    public String getDescripcionFisica() {
         return descripcionFisica;
     }
 
@@ -91,15 +105,15 @@ public class Mascota {
         this.apodo = apodo;
     }
 
-    public void setEdadAproximada(int edadAproximada) {
-        this.edadAproximada = edadAproximada;
+    public void setFechaNacimiento(LocalDate edadAproximada) {
+        this.fechaNacimiento = edadAproximada;
     }
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public void setDescripcionFisica(List<String> descripcionFisica) {
+    public void setDescripcionFisica(String descripcionFisica) {
         this.descripcionFisica = descripcionFisica;
     }
 

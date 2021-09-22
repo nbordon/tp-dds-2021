@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+   <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+
+      <script
+              src="https://code.jquery.com/jquery-3.6.0.min.js"
+              integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+              crossorigin="anonymous"></script>
+
+      <script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
+    <title>Registrar Mascota</title>
+  </head>
+
+  <body>
+  <div id="includedContent" class="container-fluid p-0"></div>
+
+    <div class="container bg-secondary my-5 shadow-lg">
+
+      <div class="row">
+        <h1 class="h1 text-center">
+          Registrar Mascota
+        </h1>
+
+        <form class="" action="index.html" method="post">
+          <div class="row">
+
+          <div class="col-4 my-2">
+            <label for="inputNombreMascota" class="form-label">Nombre*</label>
+            <input type="text" class="form-control" id="inputNombreMascota" required>
+          </div>
+  
+          <div class="col-4 my-2">
+            <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
+            <select class="form-select" aria-label="tipoMascota" id="eleccionTipoMascota"required>
+            <option selected>Seleccionar Tipo</option>
+            <option value="1">Gato</option>
+            <option value="2">Perro</option>
+          </select>
+          </div>
+
+    <div class="col-4 my-2">
+            <label for="eleccionColorMascota" class="form-label">Color principal</label>
+            <select class="form-select" aria-label="Color primario" id="eleccionColorMascota" required>
+  
+            <option selected>Seleccionar color</option>
+            <option value="1">rojo satanas</option>
+            <option value="2">azul boquita</option>
+            <option value="3">color generico</option>
+  
+            </select>
+          </div>
+
+          <div class="col-4 my-2">
+            <label for="inputNombreMascota" class="form-label">Apodo*</label>
+            <input type="text" class="form-control" id="inputApodo" id="inputNombreMascota"required>
+          </div>
+  
+          <div class="col-4 my-2">
+            <label for="eleccionColorMascota" class="form-label">Color Secundario</label>
+            <select class="form-select" aria-label="Color Secundario" id="eleccionColorMascota" required>
+                <option selected>Seleccionar color</option>
+                <option value="1">Negro</option>
+                <option value="2">Marron</option>
+                <option value="3">Crema</option>
+              </select>
+          </div>
+
+          <div class="col-4 my-2">
+
+          <label>Castrada
+  
+          <div class="form-check col-4 my-2">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+            <label class="form-check-label" for="exampleRadios1">
+              Si
+            </label>
+          </div>
+          <div class="form-check col-4 my-2">
+            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+            <label class="form-check-label" for="exampleRadios2">
+              No
+            </label>
+          </div>
+
+        </label>
+
+      </div>
+  
+      <div class="col-4 my-2">
+          <div class="input-group">
+            <span class="input-group-text">Descripcion fisica</span>
+            <textarea class="text-input" aria-label="With textarea"></textarea>
+          </div>
+        </div>
+
+     <div class="col-4 my-2">
+            <label for="formFileMultiple" class="form-label">Fotos</label>
+            <input class="form-control" type="file" id="formFileMultiple" multiple required>
+          </div>
+          
+    <div class="row justify-content-center d-flex">
+      <div class="col-2 my-2">
+      <button type="submit" name="agregar" class="btn btn-primary rounded-pill text-secondary">Agregar</button>
+      </div>
+    </div>
+
+  </div>
+
+      </form>
+
+    </div>
+
+  </body>
+
+</html>
