@@ -1,6 +1,8 @@
 package db;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class EntityManagerHelper {
@@ -10,8 +12,24 @@ public class EntityManagerHelper {
     private static ThreadLocal<EntityManager> threadLocal;
 
     static {
+        Map<String, String> env = System.getenv();
+
+        Map<String, Object> configOverrides = new HashMap<String, Object>();
+        String db_url = env.get("DB_URL");
+        String db_user = env.get("DB_USERNAME");
+        String db_pass = env.get("DB_PASSWORD");
+        String db_port = env.get("DB_PORT");
+        String db_name = env.get("DB_NAME");
+
+        if(!db_url.isEmpty() && !db_user.isEmpty() && !db_pass.isEmpty() && !db_port.isEmpty() && !db_name.isEmpty()){
+            System.out.println("Using env config for database");
+            configOverrides.put("hibernate.connection.url","jdbc:mysql://"+db_url+":"+db_port+"/"+db_name+"" );
+            configOverrides.put("hibernate.connection.username", db_user);
+            configOverrides.put("hibernate.connection.password",db_pass);
+        }
+
         try {
-            emf = Persistence.createEntityManagerFactory("db");
+            emf = Persistence.createEntityManagerFactory("db", configOverrides);
             threadLocal = new ThreadLocal<>();
         } catch (Exception e) {
             e.printStackTrace();

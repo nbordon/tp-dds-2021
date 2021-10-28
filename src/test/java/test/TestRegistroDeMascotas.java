@@ -1,7 +1,7 @@
 package test;
 
-import entidades.Mascotas.Mascota;
-import entidades.Persona;
+import domain.entities.Mascotas.Mascota;
+import domain.entities.Persona;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

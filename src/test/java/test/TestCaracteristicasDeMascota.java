@@ -1,12 +1,12 @@
 package test;
 
-import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
-import entidades.Mascotas.CaracteristicaDeMascota;
-import entidades.Mascotas.Mascota;
-import entidades.Mascotas.MascotaBuilder;
-import entidades.Organizacion.Administrador;
-import entidades.Organizacion.Organizacion;
-import entidades.Persona;
+import domain.entities.Mascotas.CaracterisiticaDeMascotaRequerida;
+import domain.entities.Mascotas.CaracteristicaDeMascota;
+import domain.entities.Mascotas.Mascota;
+import domain.entities.Mascotas.MascotaBuilder;
+import domain.entities.Organizacion.Administrador;
+import domain.entities.Organizacion.Organizacion;
+import domain.entities.Persona;
 import exception.CaracteristicaRequeridaException;
 import org.junit.Assert;
 import org.junit.Before;

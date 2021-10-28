@@ -7,7 +7,7 @@ import ValidadorContrasenia.TieneCaracteresRepetidos;
 import ValidadorContrasenia.TieneUnNumero;
 import ValidadorContrasenia.TieneUnaMayuscula;
 import ValidadorContrasenia.ValidadorDeContrasenias;
-import entidades.Password;
+import domain.entities.Password;
 import exception.VerificadorException;
 import org.junit.Assert;
 import org.junit.Rule;

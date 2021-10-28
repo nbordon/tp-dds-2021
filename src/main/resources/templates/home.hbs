@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Home</title>
+</head>
+<body class="bg-secondary">
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {{#if usuario}}
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            {{>menu.hbs}}
+        </div>
+        {{/if}}
+        <div class="col p-0">
+            {{>navbar.hbs}}
+            <div class="row p-0">
+                <div class="col p-0 text-center">
+                    <h1 class="fw-bold mb-2">Mascotas en Adopcion</h1>
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col p-0 text-center">
+                    <img class="mx-auto"
+                         src="https://estaticos.muyinteresante.es/uploads/images/gallery/59d5f5b75cafe8d6407d8db7/perro-boca-arriba-redes.jpg"
+                         alt="perro-panza-arriba" height="341">
+                </div>
+            </div>
+            <div class="row p-0">
+                <div class="col p-0 text-center">
+                    <h5>Son muchos los animales que necestian tu ayuda!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../libs/bootstrap/dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Revisarport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
+
+    <title>Mascotas en adopción</title>
+</head>
+
+<body>
+<div id="includedContent" class="container-fluid p-0"></div>
+    <section>
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col">
+                    <div class="card bg-secondary shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-center">Mascotas en adopción</h2>
+                            <div class="container" style="border-radius: 1rem;">
+                                <div class="m-5">
+
+                                    <div class="row container">
+
+                                        <div class="col-3">
+
+                                            <select class="form-select form-select-sm mb-3"
+                                                    aria-label=".form-select-lg example">
+                                                <option selected>Edad</option>
+                                                <option value="1">Cachorro</option>
+                                                <option value="2">Adulto</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-3">
+                                            <select class="form-select form-select-sm mb-3"
+                                                    aria-label=".form-select-lg example">
+                                                <option selected>Sexo</option>
+                                                <option value="1">Hembra</option>
+                                                <option value="2">Macho</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-3">
+                                            <select class="form-select form-select-sm mb-3"
+                                                    aria-label=".form-select-lg example">
+                                                <option selected>Tipo</option>
+                                                <option value="1">Perro</option>
+                                                <option value="2">Gato</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                                    <div class="container">
+                                        <div class="row row-cols-1 row-cols-md-3 g-2">
+                                        {{#each publicacionesMascotaEnAdopcion}}
+                                            <div class="col">
+                                                <div class="card box-shadow">
+                                                    <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                                        style="height: 160px; width: 100%; display: block;"
+                                                        src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/opening.jpg"
+                                                        data-holder-rendered="true">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">{{titulo}}</h5>
+                                                        <p class="card-text">{{mascotaEnAdopcion.descripcionFisica}}</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="btn-group">
+                                                                <a href="/detalle-mascota-en-adopcion/{{id}}">
+                                                                <button type="button"
+                                                                    class="btn btn-sm btn-primary rounded-pill px-2 text-secondary">Detalle</button></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <nav aria-label="Page navigation example">
+                                                    <ul class="pagination justify-content-center m-4">
+                                                        <li class="page-item"><a class="page-link" href="#">Anterior</a>
+                                                        </li>
+                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                        <li class="page-item"><a class="page-link"
+                                                                href="#">Siguiente</a>
+                                                        </li>
+                                                    </ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript
+                                      ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="../../js/vendor/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.js"></script> -->
+
+
+    <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

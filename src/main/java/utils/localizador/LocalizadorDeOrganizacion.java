@@ -1,8 +1,12 @@
 package utils.localizador;
 
 import Api.services.entities.Ubicacion;
-import entidades.Organizacion.Organizacion;
+import domain.entities.Organizacion.Organizacion;
+import domain.entities.Persona;
+import domain.repositories.Repositorio;
+import domain.repositories.factories.FactoryRepositorio;
 
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,10 +16,12 @@ import java.util.stream.Stream;
 public class LocalizadorDeOrganizacion {
 
     //TODO: deberiamos ver de donde sacamos la lista de organizaciones
-    private List<Organizacion> organizaciones;
+    private List<Organizacion> organizaciones ;
+    private Repositorio<Organizacion> repoOrganizaciones;
 
     public LocalizadorDeOrganizacion(){
-        this.organizaciones = new ArrayList<>();
+        this.repoOrganizaciones = FactoryRepositorio.get(Organizacion.class);
+        this.organizaciones = repoOrganizaciones.buscarTodos();
     }
 
     public Organizacion obtenerOrganizacionMasCercana(Ubicacion ubicacion) {

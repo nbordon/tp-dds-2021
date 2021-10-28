@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"></script>
+
+	<script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+    </script>
+
+	<style>
+        .thumnail-border {
+          border-width: 10px;
+          border-radius: 80%;
+        }
+        .smaller-image {
+          width: 1px;
+        }
+  </style>
+
+   <script src="https://kit.fontawesome.com/27517fada0.js"></script>
+      <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="/js/generales.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="css/estilos.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+	<title>Caracteristicas</title>
+</head>
+<body>
+<div id="includedContent" class="container-fluid p-0"></div>
+		<div class="container">
+		<div class="row d-flex justify-content-center">
+
+			<div class="col-9 py-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<h3>Mis Mascotas</h3>
+						</div>
+
+						<div class="col-6">
+							<a href="/registrar-mascota" class="btn btn-primary rounded-pill">Registrar Mascota</a>
+						</div>
+					</div>
+				</div>
+
+				<table class="table table-secondary">
+					<thead class="table-primary">
+						<tr>
+							<th></th>
+              <th></th>
+              <th></th>
+							<th>Nombre</th>
+							<th>Tipo de Mascota</th>
+						</tr>
+					</thead>
+					<tbody>
+					{{#each mascotas}}
+						<tr>
+							<th>
+								<a href="/detalle-mascota/{{id}}" name="button" class=" btn btn-edit"><i class="bi bi-search px-2 text-primary"></i>
+								<a href="/editar-mascota/{{id}}" name="button" class=" btn btn-edit"><i class="bi bi-pencil-fill px-2 text-warning"></i></a>
+								<button type="button" class="btn" onclick="confirmarEliminacion('{{id}}')"><i class="bi bi-trash-fill px-2 text-danger"></i>
+							</th>
+                <th>
+                    <td>{{fotosUrl}}</td>
+                </th>
+					<td>{{nombre}}</td>
+					<td>{{tipoMascota}}</td>
+				</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+
+
+
+</html>

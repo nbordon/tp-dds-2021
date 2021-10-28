@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="css/estilos.css" rel="stylesheet">
+  <script
+            crossorigin="anonymous"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            src="https://code.jquery.com/jquery-3.6.0.min.js">
+  </script>
+  <script>
+    $(function(){
+      $("#includedContent").load("navBar.html");
+    });
+  </script>
+  <title>Patitas, Exito mascota encontrada</title>
+</head>
+
+<body>
+  <div class="container-fluid p-0" id="includedContent"></div>
+  <div class="container mt-4 justify-content-center table-bordered rounded bg-secondary shadow-lg border-radius">
+
+    <h1 class="text-center pt-4"><span>&#9989;</span></h1>
+    <h1 class="text-center pt-4">Exito!!</h1>
+
+
+    <h5 class="text-center pt-4">Gracias por reportar a esta mascota perdida.</h5>
+
+    <div class="row">
+
+      <form class="col-8 m-4">
+        <div class="form-group row my-1">
+          <label class="col-5 col-form-label fw-bold">¿Que pasa ahora?</label>
+          <div class="col-7">
+            <div class="input-group">
+              <label>Se genero una publicacion de mascota encontrada en nuestra plataforma./ Se le notifico al duenio que has encontrado a su mascota</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row my-1">
+          <label class="col-5 col-form-label">¿Hogar de transito?</label>
+          <div class="col-7">
+          <label>Los datos del hogar de transito al que debes llevar a la mascota son:</label>
+          </div>
+        </div>
+        <br></br>
+        <div class="mx-auto">
+          <table ; border="2" class="mx-auto"style="border-collapse: collapse; width: 50%; border-color: #6f42c1">
+            <tbody>
+            <tr>
+              <td style="width: 50%;">Nombre</td>
+              <td style="width: 50%;">Patitas</td>
+            </tr>
+            <tr>
+              <td style="width: 50%;">Direccion</td>
+              <td style="width: 50%;">Bulnes 597</td>
+            </tr>
+            <tr>
+              <td style="width: 50%;">Telefono&nbsp;</td>
+              <td style="width: 50%;">123123123</td>
+            </tr>
+            <tr>
+              <td style="width: 50%;">&nbsp;</td>
+              <td style="width: 50%;">&nbsp;</td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+        <br></br>
+      </form>
+    </div>
+  </div>
+  <script src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

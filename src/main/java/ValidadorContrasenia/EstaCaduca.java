@@ -1,6 +1,6 @@
 package ValidadorContrasenia;
 
-import entidades.Password;
+import domain.entities.Password;
 import exception.VerificadorException;
 
 import java.time.LocalDate;

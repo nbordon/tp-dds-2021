@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+        $(function(){
+            $("#includedContent").load("navBar.html");
+        });
+    </script>
+    <title>Registrar Usuario</title>
+</head>
+
+<body>
+<div id="includedContent" class="container-fluid p-0"></div>
+
+<div class="container bg-secondary my-5 shadow-lg">
+
+    <div class="row">
+        <h1 class="h1 text-center">
+            Registrar Usuario
+        </h1>
+
+        <form class="" action="/usuarios/registrar" method="post">
+            <div class="row">
+
+                <div class="col-4 my-2">
+                    <label for="inputNombreUsuario" class="form-label">Nombre de Usuario*</label>
+                    <input type="text" class="form-control" id="inputNombreUsuario" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputNombre" class="form-label">Nombre*</label>
+                    <input type="text" class="form-control" id="inputNombre" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputApellido" class="form-label">Apellido*</label>
+                    <input type="text" class="form-control" id="inputApellido" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputNumero" class="form-label">Numero*</label>
+                    <input type="tel" class="form-control" id="inputNumero" required>
+                </div>
+
+                <div class="col-4 my-2">
+                    <label for="inputEmail" class="form-label">email*</label>
+                    <input type="email" class="form-control" id="inputEmail" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputContrasenia" class="form-label">Contrasenia*</label>
+                    <input type="text" class="form-control" id="inputContrasenia" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputRepetirContrasenia" class="form-label">Repetir Contrasenia*</label>
+                    <input type="text" class="form-control" id="inputRepetirContrasenia" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputFechaDeNacimiento" class="form-label">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" id="inputFechaDeNacimiento" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="checkbox_0" class="col-form-label">Formas de comunicación:</label>
+
+                    <div class="form-group row my-1">
+                        <div class="col">
+                            <div class="form-check form-check-inline">
+                                <input name="checkbox" id="checkbox_0" type="checkbox" class="form-check-input" value="Email" checked>
+                                <label for="checkbox_0" class="form-check-label">Email</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input name="checkbox" id="checkbox_1" type="checkbox" class="form-check-input" value="WhatsApp">
+                                <label for="checkbox_1" class="form-check-label">WhatsApp</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input name="checkbox" id="checkbox_2" type="checkbox" class="form-check-input" value="Sms">
+                                <label for="checkbox_2" class="form-check-label">Sms</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center d-flex">
+                    <div class="col-2 my-2">
+                        <button type="submit" name="registrarse" class="btn btn-primary rounded-pill text-secondary">Registrarse</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+</body>
+
+</html>

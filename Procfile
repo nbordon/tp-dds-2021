@@ -1,0 +1,1 @@
+web: java -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Xmx256m -Xss512k -XX:MetaspaceSize=100m -jar target/2021-mi-no-grupo_05-1.0.0.jar

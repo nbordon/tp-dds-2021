@@ -2,7 +2,7 @@ package Api.services;
 
 import Api.services.entities.ListadoHogares;
 import Api.services.entities.UsuarioResponse;
-import entidades.Usuario;
+import domain.entities.Usuario;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;

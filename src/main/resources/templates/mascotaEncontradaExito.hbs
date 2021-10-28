@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <!--
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../css/estilos.css">
+
+  <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("../../navBar.html");
+    });
+    </script>
+
+  <title>Patitas, Home</title>
+</head>
+
+<body>
+  <div class="container-fluid p-0" id="includedContent"></div>
+    <div class="container mt-4 justify-content-center table-bordered rounded bg-secondary shadow-lg border-radius">
+
+      <h1 class="text-center pt-4"><span>&#9989;</span></h1>
+      <h1 class="text-center pt-4">Exito!!</h1>
+
+
+      <h5 class="text-center pt-4">Gracias por reportar a esta mascota perdida.</h5>
+
+      <div class="row">
+
+        <form class="col-8 m-4">
+          <div class="form-group row my-1">
+            <label class="col-5 col-form-label fw-bold">¿Que pasa ahora?</label>
+            <div class="col-7">
+              <div class="input-group">
+                  {{#if publicacion}}
+                      <label>Se genero una publicacion de mascota encontrada en nuestra plataforma para buscar al duenio.</label>
+                  {{else}}
+                    <label>Se le envio una notificacion al duenio de la mascota con tus datos. </label>
+                  {{/if}}
+              </div>
+            </div>
+          </div>
+            <br>
+{{#if hogar}}
+          <div class="form-group row my-1">
+            <label class="col-5 col-form-label fw-bold">¿Hogar de transito?</label>
+            <div class="col-7">
+            <label>Los datos del hogar de transito al que debes llevar a la mascota son:</label>
+            </div>
+          </div>
+          <br></br>
+          <div class="mx-auto">
+            <table border="2" class="mx-auto"style="border-collapse: collapse; width: 50%; border-color: #6f42c1">
+              <tbody>
+              <tr>
+                <td style="width: 50%;">Nombre</td>
+                <td style="width: 50%;">{{hogar.nombre}}</td>
+              </tr>
+              <tr>
+                <td style="width: 50%;">Direccion</td>
+                <td style="width: 50%;">{{hogar.ubicacion.direccion}}</td>
+              </tr>
+              <tr>
+                <td style="width: 50%;">Telefono&nbsp;</td>
+                <td style="width: 50%;">{{hogar.telefono}}</td>
+              </tr>
+              <tr>
+                <td style="width: 50%;">&nbsp;</td>
+                <td style="width: 50%;">&nbsp;</td>
+              </tr>
+              </tbody>
+            </table>
+            </div>
+{{/if}}
+            {{#if mascotaEncontrada}}
+                <div class="form-group row my-1">
+                    <label class="col-5 col-form-label fw-bold">Datos del duenio</label>
+                    <div class="col-7">
+                        <label>Te dejamos algunos datos del duenio de la mascota para que se puedan contactar</label>
+                    </div>
+                </div>
+                <br></br>
+                <div class="mx-auto">
+                    <table border="2" class="mx-auto"style="border-collapse: collapse; width: 50%; border-color: #6f42c1">
+                        <tbody>
+                        <tr>
+                            <td style="width: 50%;">Nombre</td>
+                            <td style="width: 50%;">{{mascotaEncontrada.duenio.informacionPersonal.nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">Apellido</td>
+                            <td style="width: 50%;">{{mascotaEncontrada.duenio.informacionPersonal.apellido}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">Telefono&nbsp;</td>
+                            <td style="width: 50%;">{{telefonoDuenio}}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 50%;">&nbsp;</td>
+                            <td style="width: 50%;">&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {{/if}}
+          <br></br>
+        </form>
+      </div>
+    </div>
+
+</body>
+
+</html>

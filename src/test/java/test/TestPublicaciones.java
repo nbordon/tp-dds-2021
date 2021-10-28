@@ -1,18 +1,18 @@
 package test;
 
-import entidades.Mascotas.CaracterisiticaDeMascotaRequerida;
-import entidades.Mascotas.CaracteristicaDeMascota;
-import entidades.Mascotas.Mascota;
-import entidades.Mascotas.MascotaBuilder;
-import entidades.Organizacion.*;
-import entidades.Persona;
+import domain.entities.Mascotas.CaracterisiticaDeMascotaRequerida;
+import domain.entities.Mascotas.CaracteristicaDeMascota;
+import domain.entities.Mascotas.Mascota;
+import domain.entities.Mascotas.MascotaBuilder;
+import domain.entities.Organizacion.*;
+import domain.entities.Persona;
 import exception.CaracteristicaRequeridaException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import entidades.publicaciones.EstadoPublicacion;
-import entidades.publicaciones.PublicacionIntencionDeAdopcion;
-import entidades.publicaciones.PublicacionMascotaEnAdopcion;
+import domain.entities.publicaciones.EstadoPublicacion;
+import domain.entities.publicaciones.PublicacionIntencionDeAdopcion;
+import domain.entities.publicaciones.PublicacionMascotaEnAdopcion;
 
 import java.util.ArrayList;
 import java.util.List;
