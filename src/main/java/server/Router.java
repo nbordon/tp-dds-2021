@@ -31,6 +31,8 @@ public class Router {
         ControllersMascota controllersMascota = new ControllersMascota();
         UsuariosController usuariosController = new UsuariosController();
 
+        Spark.get("/health", ((request, response) -> "Status UP"));
+
         Spark.get("/", loginController::mostrarHome,engine);
         Spark.get("/login", loginController::login,engine);
         Spark.post("/login",loginController::iniciarSesion);
