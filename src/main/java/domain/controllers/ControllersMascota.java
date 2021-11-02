@@ -1,61 +1,88 @@
 package domain.controllers;
 
+
 import domain.entities.Mascotas.*;
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.Persona;
+import domain.entities.Usuario;
+import domain.entities.UsuarioVoluntario;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
+
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 public class ControllersMascota {
     private Repositorio<Mascota> repositorio;
     private Repositorio<Persona> repoPersonas;
+    private Repositorio<Usuario> repoUsuarios;
     private Repositorio<Organizacion> repoOrganizaciones;
 
     public ControllersMascota(){
         this.repositorio = FactoryRepositorio.get(Mascota.class);
         this.repoPersonas= FactoryRepositorio.get(Persona.class);
         this.repoOrganizaciones = FactoryRepositorio.get(Organizacion.class);
+        this.repoUsuarios = FactoryRepositorio.get(Usuario.class);
     }
 
     public ModelAndView mostrarTodos(Request request, Response response){
-        Map<String, Object> parametros = new HashMap<>();
+        HashMap<String, Object> parametros = new HashMap<>();
         List<Mascota> mascotas = this.repositorio.buscarTodos();
+        Usuario usuario = this.repoUsuarios.buscar(request.session().attribute("id"));
+        parametros.put("usuario",usuario);
+        LoginController.cargarPerfiles(parametros,request);
         parametros.put("mascotas", mascotas);
         return new ModelAndView(parametros,"listado-mascotas.hbs");
     }
 
     public ModelAndView mostrar(Request request, Response response){
-        Map<String, Object> parametros = new HashMap<>();
+        HashMap<String, Object> parametros = new HashMap<>();
         Mascota mascota = this.repositorio.buscar(new Integer(request.params("id")));
+        LoginController.cargarUsuario(parametros,request);
+        if(parametros.get("usuario")==null){
+            response.redirect("/login");
+        }
+        Persona duenioMascota = this.obtenerPersona(request);
+        Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
+        parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
         if(mascota != null){
             parametros.put("mascota",mascota);
         }
-        return new ModelAndView(parametros, "registrarMascota.hbs");
+        return new ModelAndView(parametros, "detalle-mascota.hbs");
 
     }
 
     public ModelAndView registrar(Request request,Response response){
         Map<String, Object> parametros = new HashMap<>();
-        //Integer idPersona = request.session().attribute("id");
-        //Persona persona = this.repoPersonas.buscar(idPersona);
-        //Organizacion organizacionAsociada = persona.getOrganizacion();
-        //parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
-        Organizacion organizacionAsociada = this.repoOrganizaciones.buscar(1);
+        Persona duenioMascota = this.obtenerPersona(request);
+        Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
-        //TODO:^^^^^^^^^^^^^^^^^^^^^^ sacar estas lineas cuando tenga al usuario logeado ^^^^^^^^^^^^^^^
         return new ModelAndView(parametros,"registrarMascota.hbs");
     }
 
+    private Persona obtenerPersona(Request request){
+        HashMap<String,Object> perfiles = new HashMap<>();
+        LoginController.cargarPerfiles(perfiles,request);
+        Persona duenioMascota;
+        UsuarioVoluntario usuarioVoluntario;
+        if(perfiles.get("usuarioVoluntario") != null){
+            usuarioVoluntario = (UsuarioVoluntario) perfiles.get("usuarioVoluntario");
+            duenioMascota = usuarioVoluntario.getPersonaVoluntaria();
+        }else {
+            duenioMascota = (Persona) perfiles.get("persona");
+        }
+        return duenioMascota;
+    }
+
     private void asignarParametrosAMascota(Mascota mascota, Request request) {
+        Persona duenioMascota = this.obtenerPersona(request);
+        mascota.setDuenio(duenioMascota);
+        Organizacion org = duenioMascota.getOrganizacion();
         mascota.setNombre(request.queryParams("nombreMascota"));
         mascota.setApodo(request.queryParams("apodoMascota"));
         mascota.setDescripcionFisica(request.queryParams("descripcionFisica"));
@@ -67,18 +94,17 @@ public class ControllersMascota {
         mascota.setEstado(EstadoMascota.NO_PERDIDA);
         List<String> fotos = Collections.singletonList(request.queryParams("fotos"));
         fotos.forEach(foto->mascota.agregoFoto(foto));
-
-        //todo: asociar la pregunta del color y castrada con la respuesta y cargarla a mascota
-
-        /*TODO PROBAR CON EL USUARIO LOGEADO
-        Integer idPersona = request.session().attribute("id");
-        Persona duenioMascota = this.repoPersonas.buscar(idPersona);
-        mascota.setDuenio(duenioMascota);
-        Organizacion org = duenioMascota.getOrganizacion();
-        org.getCaracteristicasDeMascotasRequeridas().
-                forEach(caracteristica -> caracteristica.contestar(request.queryParams("caracteristica")));
-         */
-
+        List<CaracterisiticaDeMascotaRequerida > caracteristicasRequerida = org.getCaracteristicasDeMascotasRequeridas();
+        List<CaracteristicaDeMascota> listaCaracteristicasMascotaNueva = new ArrayList<>();
+        mascota.setCaracteristicas(listaCaracteristicasMascotaNueva);
+        for(CaracterisiticaDeMascotaRequerida caracteristica:caracteristicasRequerida){
+            CaracteristicaDeMascota caracteristicaDeMascota = new CaracteristicaDeMascota();
+            String valor = request.queryParams(new Integer(caracteristica.getId()).toString());
+            caracteristicaDeMascota.setValor(valor);
+            caracteristicaDeMascota.setPreguntaALaQuePertenece(caracteristica);
+            listaCaracteristicasMascotaNueva.add(caracteristicaDeMascota);
+     }
+        mascota.setCaracteristicas(listaCaracteristicasMascotaNueva);
     }
 
     public Response guardar(Request request, Response response){
@@ -86,7 +112,6 @@ public class ControllersMascota {
         asignarParametrosAMascota(mascota, request);
         this.repositorio.agregar(mascota);
         response.redirect("/listado-mascotas");
-
         return response;
     }
 
@@ -102,7 +127,8 @@ public class ControllersMascota {
         Mascota mascotaBuscada = this.repositorio.buscar(new Integer(request.params("id")));
         System.out.println(mascotaBuscada.getDescripcionFisica());
         parametros.put("mascota",mascotaBuscada);
-        Organizacion organizacionAsociada = this.repoOrganizaciones.buscar(1);
+        Persona duenioMascota = this.obtenerPersona(request);
+        Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
         return new ModelAndView(parametros, "registrarMascota.hbs");
     }

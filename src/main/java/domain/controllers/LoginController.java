@@ -93,7 +93,7 @@ public class LoginController {
         }
     }
 
-    public void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
+    public static void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
         try {
             Administrador administrador = repositorioAdministradores.buscar(request.session().attribute("id"));
             Persona persona = repositorioPersonas.buscar(request.session().attribute("id"));
@@ -115,6 +115,17 @@ public class LoginController {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void cargarUsuario(HashMap<String, Object> perfiles, Request request){
+        try {
+            Usuario usuario = usuarioRepositorio.buscar(request.session().attribute("id"));
+            if (usuario != null) {
+                perfiles.put("usuario", usuario);
             }
         } catch (Exception e) {
             e.printStackTrace();

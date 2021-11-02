@@ -17,7 +17,7 @@ public class Mascota extends EntidadPersistente {
     private LocalDate fechaNacimiento;
     private String sexo;
     private String descripcionFisica;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
     @ElementCollection
