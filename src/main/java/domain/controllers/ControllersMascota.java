@@ -32,10 +32,10 @@ public class ControllersMascota {
 
     public ModelAndView mostrarTodos(Request request, Response response){
         HashMap<String, Object> parametros = new HashMap<>();
-        List<Mascota> mascotas = this.repositorio.buscarTodos();
         Usuario usuario = this.repoUsuarios.buscar(request.session().attribute("id"));
         parametros.put("usuario",usuario);
         LoginController.cargarPerfiles(parametros,request);
+        List<Mascota> mascotas = this.repoPersonas.buscar(request.session().attribute("id")).getMascotas();
         parametros.put("mascotas", mascotas);
         return new ModelAndView(parametros,"listado-mascotas.hbs");
     }

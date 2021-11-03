@@ -407,4 +407,17 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 
 	}
 
+	@Test @Ignore
+	public  void otroVoluntario() throws VerificadorException {
+		Password pass = new Password("voluntario2");
+		Persona persona = new Persona();
+		persona.setNombreUsuario("voluntario2");
+		persona.setContrasenia(pass.getPassword());
+		persona.setEmail("nbordon@frba.utn.edu.ar");
+
+		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(persona);
+		EntityManagerHelper.commit();
+	}
+
 }
