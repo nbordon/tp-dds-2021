@@ -7,6 +7,7 @@ package domain.controllers;
         import domain.entities.EstrategiasNotificacion.EstrategiaEmail.EstrategiaEmail;
         import domain.entities.EstrategiasNotificacion.EstrategiaSms.EstrategiaDeSms;
         import domain.entities.EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
+        import domain.entities.Organizacion.Organizacion;
         import domain.repositories.Repositorio;
         import domain.repositories.factories.FactoryRepositorio;
         import exception.VerificadorException;
@@ -20,6 +21,9 @@ package domain.controllers;
         import java.util.HashMap;
         import java.util.List;
         import java.util.Map;
+
+        import static java.lang.Double.parseDouble;
+        import static java.lang.Integer.parseInt;
 
 public class UsuariosController {
     private Repositorio<Persona> repoPersona;
@@ -63,19 +67,19 @@ public class UsuariosController {
         contactoPrincipal.setNombre(request.queryParams("inputNombre"));
         contactoPrincipal.setApellido(request.queryParams("inputApellido"));
         List<Contacto> contactos = new ArrayList<Contacto>();
+        contactos.add(contactoPrincipal);
         infoPersonal.setContactos(contactos);
-        infoPersonal.setNroDocumento(new Integer(request.queryParams("inputNroDocumento")));
-
-
+        infoPersonal.setNroDocumento(parseInt(request.queryParams("inputNroDocumento")));
 
         persona.setNombreUsuario(request.queryParams("inputNombreUsuario"));
         persona.setEmail(request.queryParams("inputEmail"));
-        //persona.setOrganizacion();
         LocalizadorDeOrganizacion localizadorDeOrganizacion = new LocalizadorDeOrganizacion();
         Ubicacion ubicacion = new Ubicacion();
-        ubicacion.setLatitud(1111.0);
-        ubicacion.setLongitud(11111.0);
-        localizadorDeOrganizacion.obtenerOrganizacionMasCercana(ubicacion);
+        ubicacion.setLatitud(parseDouble(request.queryParams("inputLatitud")));
+        ubicacion.setLongitud(parseDouble(request.queryParams("inputLongitud")));
+        ubicacion.setDireccion(request.queryParams("inputDireccion"));
+        Organizacion organizacion = localizadorDeOrganizacion.obtenerOrganizacionMasCercana(ubicacion);
+        persona.setOrganizacion(organizacion);
 
         Password pass = new Password(request.queryParams("inputContrasenia"));
         persona.setContrasenia(pass.getPassword());
@@ -110,7 +114,7 @@ public class UsuariosController {
     }
 
     public ModelAndView agregarContacto(Request request, Response response) {
-        Persona persona = repoPersona.buscar(new Integer(request.params("idPersona")));
+        Persona persona = repoPersona.buscar(parseInt(request.params("idPersona")));
         Contacto nuevoContacto = new Contacto();
         nuevoContacto.setApellido(request.queryParams("inputApellido"));
         nuevoContacto.setNombre(request.queryParams("inputNombre"));
