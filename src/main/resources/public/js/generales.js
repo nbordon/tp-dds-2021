@@ -53,3 +53,27 @@ function eliminarMascota(id){
 function cerrarModal(){
     document.getElementsByClassName("modal")[0].style.display = 'none';
 }
+
+function aprobarPublicacion(id){
+    $.ajax({
+        type: "PUT",
+        url: "/detalle-para-aprobar/"+ id,
+        success: function(result){
+            location.href="/publicaciones-voluntario"
+        }
+    });
+
+
+}
+
+function desaprobarPublicacion(id){
+    $.ajax({
+        type: "PUT",
+        url: "/detalle-para-aprobar/"+ id,
+        success: function(result){
+            location.href="/publicaciones-voluntario"
+        }
+    });
+
+
+}

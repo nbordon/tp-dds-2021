@@ -2,12 +2,8 @@ package utils.localizador;
 
 import Api.services.entities.Ubicacion;
 import domain.entities.Organizacion.Organizacion;
-import domain.entities.Persona;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
-
-import javax.persistence.Transient;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

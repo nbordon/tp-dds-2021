@@ -15,7 +15,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "informacion_personal")
 public class InformacionPersonal extends EntidadPersistente{
+    @Getter @Setter
     private  String nombre;
+    @Getter @Setter
     private  String apellido;
     @Enumerated(EnumType.STRING)
     private  TipoDeDocumento tipoDoc;

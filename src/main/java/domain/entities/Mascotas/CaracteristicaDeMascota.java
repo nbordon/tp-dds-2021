@@ -3,9 +3,6 @@ package domain.entities.Mascotas;
 
 import domain.entities.Organizacion.Pregunta;
 import domain.entities.Organizacion.Respuesta;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 

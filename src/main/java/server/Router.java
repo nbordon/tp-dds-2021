@@ -1,7 +1,11 @@
 package server;
 
-import domain.controllers.*;
 
+import domain.controllers.ControllersMascota;
+import domain.controllers.LoginController;
+import domain.controllers.MascotaEncontradaController;
+import domain.controllers.PublicacionesController;
+import domain.controllers.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
@@ -74,7 +78,9 @@ public class Router {
 
         //Publicaciones Parar Voluntario
         Spark.get("/publicaciones-voluntario", publicacionesController::mostrarTodosParaAprobar, Router.engine);
-        Spark.get("detalle-para-aprobar/:id", publicacionesController::mostrarPublicacionParaAprobar, Router.engine);
+        Spark.get("/detalle-para-aprobar/:id", publicacionesController::mostrarPublicacionParaAprobar, Router.engine);
+        Spark.put("/detalle-para-aprobar/:id", publicacionesController::aprobarPublicacion);
+        Spark.put("/detalle-para-aprobar/:id", publicacionesController::desaprobarPublicacion);
 
         Spark.post("/usuarios/registrar", usuariosController::registrarUsuario, Router.engine);
         Spark.get("/usuarios/registrar", (request, response) -> {
@@ -89,4 +95,5 @@ public class Router {
             return response;
         });
     }
+
 }

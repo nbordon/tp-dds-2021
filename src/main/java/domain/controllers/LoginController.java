@@ -43,11 +43,11 @@ public class LoginController {
             if (usuarioRepositorio.existe(usuarioNombre)) {
                 Usuario usuario = usuarioRepositorio.buscarUsuario(usuarioNombre);
                 BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-                if (bcrypt.matches(usuarioPassword,usuario.getContrasenia())) {
+                if (bcrypt.matches(usuarioPassword, usuario.getContrasenia())) {
                     request.session(true);
                     request.session().attribute("id", usuario.getId());
                     response.redirect("/home");
-                }else {
+                } else {
                     response.redirect("/login");
                 }
             } else {
@@ -93,6 +93,7 @@ public class LoginController {
         }
     }
 
+
     public static void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
         try {
             Administrador administrador = repositorioAdministradores.buscar(request.session().attribute("id"));
@@ -121,7 +122,7 @@ public class LoginController {
         }
     }
 
-    public static void cargarUsuario(HashMap<String, Object> perfiles, Request request){
+    public static void cargarUsuario(HashMap<String, Object> perfiles, Request request) {
         try {
             Usuario usuario = usuarioRepositorio.buscar(request.session().attribute("id"));
             if (usuario != null) {
@@ -129,6 +130,7 @@ public class LoginController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 }

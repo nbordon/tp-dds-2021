@@ -16,7 +16,9 @@ import domain.entities.Mascotas.CaracteristicaDeMascota;
 import domain.entities.Mascotas.Mascota;
 import domain.entities.Organizacion.Administrador;
 import domain.entities.Organizacion.PreguntasAdopcion;
+import domain.entities.Organizacion.Respuesta;
 import domain.entities.publicaciones.EstadoPublicacion;
+import domain.entities.publicaciones.PublicacionIntencionDeAdopcion;
 import domain.entities.publicaciones.PublicacionMascotaEnAdopcion;
 import domain.entities.publicaciones.PublicacionMascotaEncontradaSinChapita;
 
@@ -175,10 +177,9 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		EntityManagerHelper.getEntityManager().persist(infoPersonal);
 		EntityManagerHelper.getEntityManager().persist(persona);
 		EntityManagerHelper.getEntityManager().persist(m);
-
-
 		EntityManagerHelper.commit();
 	}
+
 
 	@Test @Ignore
 	public void usuarioAdmin() throws VerificadorException {
@@ -314,6 +315,23 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		Organizacion organizacion = new Organizacion();
 		organizacion.setNombre("patitas felices");
 
+		PreguntasAdopcion tienePatio = new PreguntasAdopcion();
+		tienePatio.setDescripcion("¿Tiene patio?");
+		List<String> valoresTienePatio = new ArrayList<>();
+		valoresTienePatio.add("Si");
+		valoresTienePatio.add("No");
+		tienePatio.setValor(valoresTienePatio);
+
+		PreguntasAdopcion tieneOtrasMascotas = new PreguntasAdopcion();
+		tieneOtrasMascotas.setDescripcion("¿Cuantas mascotas tiene?");
+		List<String> valoresTieneOtrasMascotas = new ArrayList<>();
+		valoresTieneOtrasMascotas.add("Ninguna");
+		valoresTieneOtrasMascotas.add("Una");
+		valoresTieneOtrasMascotas.add("Mas de una");
+		tieneOtrasMascotas.setValor(valoresTieneOtrasMascotas);
+
+		organizacion.addPreguntasRequeridasDeAdopcion(tieneOtrasMascotas,tienePatio);
+
 		MascotaEncontradaSinChapita mascotaEncontradaSinChapita = new MascotaEncontradaSinChapita();
 		mascotaEncontradaSinChapita.setDescripcionEstadoEncotrado("Fue encontrado en la plaza temblando de frio y sucio");
 		mascotaEncontradaSinChapita.setFechaEnLaQueSeEncontro(new Date());
@@ -321,7 +339,7 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = new PublicacionMascotaEncontradaSinChapita();
 		publicacionMascotaEncontradaSinChapita.setMascotaEncontradaSinChapita(mascotaEncontradaSinChapita);
 		publicacionMascotaEncontradaSinChapita.setTitulo("Gatito encontrado");
-		publicacionMascotaEncontradaSinChapita.setEstado(EstadoPublicacion.PENDIENTE);
+		publicacionMascotaEncontradaSinChapita.setEstado(EstadoPublicacion.APROBADA);
 		publicacionMascotaEncontradaSinChapita.setOrganizacion(organizacion);
 
 		Persona otraPersona = new Persona();
@@ -372,7 +390,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		valoresRespuesta.add("No");
 		carReq.setValor(valoresRespuesta);
 
-
 		CaracteristicaDeMascota c1 = new CaracteristicaDeMascota();
 		c1.setPreguntaALaQuePertenece(carReq);
 		c1.setValor(carReq.getValor().get(0));
@@ -382,19 +399,60 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		m.setCaracteristicas(caracteristicasC1);
 
 
+
 		PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = new PublicacionMascotaEnAdopcion();
 		publicacionMascotaEnAdopcion.setMascotaEnAdopcion(m);
 		publicacionMascotaEnAdopcion.setOrganizacion(organizacion);
 		publicacionMascotaEnAdopcion.setEstado(EstadoPublicacion.PENDIENTE);
-		publicacionMascotaEnAdopcion.setTitulo("Cachorro busca hogar");
+		publicacionMascotaEnAdopcion.setTitulo("Perrito busca hogar");
+
+		Respuesta respuestaComodidad1 = new Respuesta();
+		respuestaComodidad1.setPreguntaALaQuePertenece(tieneOtrasMascotas);
+		respuestaComodidad1.setValor(tieneOtrasMascotas.getValor().get(0));
+
+		Respuesta respuestaComodidad2 = new Respuesta();
+		respuestaComodidad2.setPreguntaALaQuePertenece(tienePatio);
+		respuestaComodidad2.setValor(tienePatio.getValor().get(0));
+
+		publicacionMascotaEnAdopcion.cargarRespuestasPreguntas(respuestaComodidad1);
+		publicacionMascotaEnAdopcion.cargarRespuestasPreguntas(respuestaComodidad2);
+
+		Persona personaInteresada = new Persona();
+		personaInteresada.setEmail("Mati@gmail.com");
+		personaInteresada.setNombreUsuario("matii");
+		personaInteresada.setContrasenia("12345678");
+		personaInteresada.setOrganizacion(organizacion);
+		InformacionPersonal infoPersonalPersonaInteresada = new InformacionPersonal();
+		//infoPersonal.setTipoDoc(TipoDeDocumento.DNI);
+		infoPersonalPersonaInteresada.setNroDocumento(ThreadLocalRandom.current().nextInt());
+		infoPersonalPersonaInteresada.setEmail("Mati@gmail.com");
+		infoPersonalPersonaInteresada.setApellido("Perez");
+		infoPersonalPersonaInteresada.setNombre("Mati");
+		infoPersonalPersonaInteresada.setFechaNacimiento(LocalDate.of(1994, 7, 12));
+		personaInteresada.setInformacionPersonal(infoPersonalPersonaInteresada);
+
+
+		PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion = new PublicacionIntencionDeAdopcion();
+		publicacionIntencionDeAdopcion.setOrganizacion(organizacion);
+		publicacionIntencionDeAdopcion.setTitulo("Busco gatito");
+		publicacionIntencionDeAdopcion.setPersonaInteresada(personaInteresada);
+		publicacionIntencionDeAdopcion.cargarCaracteristicaMascotaDeseada(c1);
+		publicacionIntencionDeAdopcion.cargarComodidad(respuestaComodidad2);
+		publicacionIntencionDeAdopcion.setEstado(EstadoPublicacion.PENDIENTE);
 
 
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(organizacion);
+		EntityManagerHelper.getEntityManager().persist(tienePatio);
+		EntityManagerHelper.getEntityManager().persist(tieneOtrasMascotas);
+		EntityManagerHelper.getEntityManager().persist(respuestaComodidad1);
+		EntityManagerHelper.getEntityManager().persist(respuestaComodidad2);
 		EntityManagerHelper.getEntityManager().persist(infoPersonal);
+		EntityManagerHelper.getEntityManager().persist(infoPersonalPersonaInteresada);
 		EntityManagerHelper.getEntityManager().persist(otraInfoPersonal);
 		EntityManagerHelper.getEntityManager().persist(persona);
 		EntityManagerHelper.getEntityManager().persist(otraPersona);
+		EntityManagerHelper.getEntityManager().persist(personaInteresada);
 		EntityManagerHelper.getEntityManager().persist(carReq);
 		EntityManagerHelper.getEntityManager().persist(c1);
 		EntityManagerHelper.getEntityManager().persist(m);
@@ -402,9 +460,8 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		EntityManagerHelper.getEntityManager().persist(mascotaEncontradaSinChapita);
 		EntityManagerHelper.getEntityManager().persist(publicacionMascotaEncontradaSinChapita);
 		EntityManagerHelper.getEntityManager().persist(publicacionMascotaEnAdopcion);
+		EntityManagerHelper.getEntityManager().persist(publicacionIntencionDeAdopcion);
 		EntityManagerHelper.commit();
-
-
 	}
 
 	@Test @Ignore
@@ -418,6 +475,8 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		EntityManagerHelper.beginTransaction();
 		EntityManagerHelper.getEntityManager().persist(persona);
 		EntityManagerHelper.commit();
+
+
 	}
 
 }

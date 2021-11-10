@@ -10,6 +10,7 @@ import domain.entities.EstrategiasNotificacion.EstrategiaSms.EstrategiaDeSms;
 import domain.entities.EstrategiasNotificacion.EstrategiaWhatsApp.EstrategiaDeWhatsApp;
 import domain.entities.InformacionPersonal;
 import domain.entities.Mascotas.*;
+
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.Rescatista;
 import domain.entities.TipoDeDocumento;
@@ -23,6 +24,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import utils.localizador.LocalizadorDeOrganizacion;
+
 
 
 import java.time.LocalDate;
@@ -70,6 +72,8 @@ public class MascotaEncontradaController {
         infoPersonal.setFechaNacimiento(LocalDate.parse(request.queryParams("fechaNac")));
         infoPersonal.setNroDocumento(new Integer(request.queryParams("nroDoc")));
 
+        String te = request.queryParams("tipoDoc");
+
         switch(request.queryParams("tipoDoc")){
             case "1":
                 infoPersonal.setTipoDoc(TipoDeDocumento.DNI);
@@ -105,7 +109,11 @@ public class MascotaEncontradaController {
             EstrategiaDeNotificacion email = new EstrategiaEmail();
             estrategias.add(email);
             mensajeDuenioComunicacion = mensajeDuenioComunicacion + " Por EMAIL.";
+
+
         }
+
+
 
         Contacto contacto = new Contacto();
         contacto.setEsPrincipal(true);
@@ -137,11 +145,16 @@ public class MascotaEncontradaController {
             publicacion.setEstado(EstadoPublicacion.PENDIENTE);
             MascotaEncontradaSinChapita mascotaEncontradaSinChapita = repoMascotaSinChapita.buscar(rescatista.getMascotaEncontrada().getId());
             publicacion.setMascotaEncontradaSinChapita(mascotaEncontradaSinChapita);
+            publicacion.setTitulo(mascotaEncontradaSinChapita.getTipoMascota()+ " " + "Encontrado");
+            repoPublicacionSinChapita.agregar(publicacion);
+            //publicacion.setOrganizacion();
+
             LocalizadorDeOrganizacion localizadorDeOrganizacion = new LocalizadorDeOrganizacion();
             Organizacion org = localizadorDeOrganizacion.obtenerOrganizacionMasCercana(mascotaEncontradaSinChapita.getUbicacion());
 
             publicacion.setOrganizacion(org);
             repoPublicacionSinChapita.agregar(publicacion);
+
             parametros.put("publicacion",publicacion);
         } else {
             mascota.notificar(mensajeDuenioComunicacion);
@@ -202,6 +215,12 @@ public class MascotaEncontradaController {
     public ModelAndView infoMascotaEncontradaSinChapita(Request request, Response response) {
         MascotaEncontradaSinChapita mascotaEncontrada = new MascotaEncontradaSinChapita();
         mascotaEncontrada.setDescripcionEstadoEncotrado(request.queryParams("descEncontrada"));
+        if(request.queryParams("tipoMascota").equals("PERRO")){
+            mascotaEncontrada.setTipoMascota(TipoMascota.PERRO);
+        }else{
+            mascotaEncontrada.setTipoMascota(TipoMascota.GATO);
+        }
+        mascotaEncontrada.setSexo(request.queryParams("sexoMascota"));
         //TODO: agregar fecha en el form?
         //mascotaEncontrada.setFechaEnLaQueSeEncontro();
         Ubicacion ubicacion = guardarUbicacion(request);

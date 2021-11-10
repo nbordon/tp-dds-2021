@@ -18,10 +18,15 @@ public abstract class MascotaEncontrada extends EntidadPersistente {
     private List<String> fotos;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
+
+    @Getter @Setter
+    private TipoMascota tipoMascota;
+    @Getter @Setter
+    private String sexo;
     @OneToOne
     @JoinColumn(name = "rescatista_id")
     private Rescatista rescatista;
-    @Transient
+    @OneToOne
     private Ubicacion ubicacion;
     @Getter @Setter
     @ManyToOne

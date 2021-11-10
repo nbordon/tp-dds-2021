@@ -20,6 +20,7 @@ public class EntityManagerHelper {
         String db_pass = env.get("DB_PASSWORD");
         String db_port = env.get("DB_PORT");
         String db_name = env.get("DB_NAME");
+
         try {
 
             if (!db_url.isEmpty() && !db_user.isEmpty() && !db_pass.isEmpty() && !db_port.isEmpty() && !db_name.isEmpty()) {

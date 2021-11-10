@@ -4,17 +4,21 @@ package domain.controllers;
 import domain.entities.Mascotas.*;
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.Persona;
-import domain.entities.Usuario;
-import domain.entities.UsuarioVoluntario;
+import domain.controllers.LoginController;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
-
+import domain.entities.Usuario;
+import domain.entities.UsuarioVoluntario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.*;
+
 
 
 public class ControllersMascota {
@@ -27,7 +31,7 @@ public class ControllersMascota {
         this.repositorio = FactoryRepositorio.get(Mascota.class);
         this.repoPersonas= FactoryRepositorio.get(Persona.class);
         this.repoOrganizaciones = FactoryRepositorio.get(Organizacion.class);
-        this.repoUsuarios = FactoryRepositorio.get(Usuario.class);
+
     }
 
     public ModelAndView mostrarTodos(Request request, Response response){
@@ -41,6 +45,7 @@ public class ControllersMascota {
     }
 
     public ModelAndView mostrar(Request request, Response response){
+
         HashMap<String, Object> parametros = new HashMap<>();
         Mascota mascota = this.repositorio.buscar(new Integer(request.params("id")));
         LoginController.cargarUsuario(parametros,request);
@@ -59,9 +64,14 @@ public class ControllersMascota {
 
     public ModelAndView registrar(Request request,Response response){
         Map<String, Object> parametros = new HashMap<>();
-        Persona duenioMascota = this.obtenerPersona(request);
-        Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
+
+        //Integer idPersona = request.session().attribute("id");
+        //Persona persona = this.repoPersonas.buscar(idPersona);
+        //Organizacion organizacionAsociada = persona.getOrganizacion();
+        //parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
+        Organizacion organizacionAsociada = this.repoOrganizaciones.buscar(1);
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
+        //TODO:^^^^^^^^^^^^^^^^^^^^^^ sacar estas lineas cuando tenga al usuario logeado ^^^^^^^^^^^^^^^
         return new ModelAndView(parametros,"registrarMascota.hbs");
     }
 
@@ -94,6 +104,19 @@ public class ControllersMascota {
         mascota.setEstado(EstadoMascota.NO_PERDIDA);
         List<String> fotos = Collections.singletonList(request.queryParams("fotos"));
         fotos.forEach(foto->mascota.agregoFoto(foto));
+
+        //todo: asociar la pregunta del color y castrada con la respuesta y cargarla a mascota
+
+        /*TODO PROBAR CON EL USUARIO LOGEADO
+        Integer idPersona = request.session().attribute("id");
+        Persona duenioMascota = this.repoPersonas.buscar(idPersona);
+        mascota.setDuenio(duenioMascota);
+        Organizacion org = duenioMascota.getOrganizacion();
+        org.getCaracteristicasDeMascotasRequeridas().
+                forEach(caracteristica -> caracteristica.contestar(request.queryParams("caracteristica")));
+         */
+
+
         List<CaracterisiticaDeMascotaRequerida > caracteristicasRequerida = org.getCaracteristicasDeMascotasRequeridas();
         List<CaracteristicaDeMascota> listaCaracteristicasMascotaNueva = new ArrayList<>();
         mascota.setCaracteristicas(listaCaracteristicasMascotaNueva);
@@ -127,6 +150,7 @@ public class ControllersMascota {
         Mascota mascotaBuscada = this.repositorio.buscar(new Integer(request.params("id")));
         System.out.println(mascotaBuscada.getDescripcionFisica());
         parametros.put("mascota",mascotaBuscada);
+
         Persona duenioMascota = this.obtenerPersona(request);
         Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
