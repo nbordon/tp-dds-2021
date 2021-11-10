@@ -34,6 +34,7 @@ public class Router {
         PublicacionesController publicacionesController = new PublicacionesController();
         ControllersMascota controllersMascota = new ControllersMascota();
         UsuariosController usuariosController = new UsuariosController();
+        AdopcionController adopcionController=new AdopcionController();
 
         Spark.get("/health", ((request, response) -> "Status UP"));
 
@@ -58,6 +59,16 @@ public class Router {
         Spark.get("/registrar-mascota", controllersMascota::registrar, Router.engine);
         Spark.post("/registrar-mascota", controllersMascota::guardar);
         Spark.post("/registrar-mascota", controllersMascota::crear);
+
+        Spark.get("/prueba",adopcionController::mostrarPrueba,Router.engine);
+        Spark.post("/prueba",adopcionController::guardarPrueba);
+
+        Spark.get("/Adopcion",adopcionController::mostrarAdoptar,Router.engine);
+        Spark.post("/Adopcion",adopcionController::guardarAdopcion);
+
+        Spark.get("/AdopcionPorDuenio",adopcionController::mostrarAdoptar,Router.engine);
+        Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
+
 
         Spark.delete("/listado-mascotas/:id", controllersMascota::eliminar);
 

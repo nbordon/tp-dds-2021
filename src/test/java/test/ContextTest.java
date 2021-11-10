@@ -478,5 +478,24 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 
 
 	}
+	@Test @Ignore
+public  void infoPersonal() throws VerificadorException{
+		List<EstrategiaDeNotificacion> estrategias =new ArrayList<> ();
+		estrategias.add(new EstrategiaDeEmail());
+		Contacto contacto = new Contacto();
+		contacto.setNombre("Pedro");
+		contacto.setApellido("Perez");
+		contacto.setEmail("pedro@gmail.com");
+		contacto.setNumeroDeTelefono("11998822");
+		contacto.setEsPrincipal(true);
+		List<Contacto>contactos=new ArrayList<>();
+		contactos.add(contacto);
+	InformacionPersonal infoPersonal = new InformacionPersonal("ceci","rocca",null,1111100011,LocalDate.of(1994, 7, 12),"ceci@rocca",estrategias,contactos);
 
+		EntityManagerHelper.beginTransaction();
+		EntityManagerHelper.getEntityManager().persist(contacto);
+
+		EntityManagerHelper.getEntityManager().persist(infoPersonal);
+		EntityManagerHelper.commit();
+}
 }

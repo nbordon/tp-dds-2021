@@ -3,6 +3,7 @@ package domain.entities.publicaciones;
 import domain.entities.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import domain.entities.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
 import domain.entities.Contacto;
+import domain.entities.Mascotas.CaracteristicaDeMascota;
 import domain.entities.Organizacion.Respuesta;
 import domain.entities.Persona;
 
@@ -54,8 +55,11 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
         personaInteresada = unaPersonaInteresada;
     }
 
+    public void setLinkBaja(String linkBaja){
+        this.linkBaja=linkBaja;
+    }
     public void notificarLinkDeBaja() {
-        personaInteresada.getOrganizacion().agregarPublicacionIntencionDeAdopcion(this);
+       /* personaInteresada.getOrganizacion().agregarPublicacionIntencionDeAdopcion(this);*/
         EstrategiaDeNotificacion notidicadorEmail = new EstrategiaDeEmail();
         notidicadorEmail.notificar(
                 "Link de baja",
@@ -63,11 +67,13 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
                 getContactoInteresado());
     }
 
-    public PublicacionIntencionDeAdopcion(Persona personaInteresada, List<Respuesta> respuestasComodidades, String linkBaja) {
+    public PublicacionIntencionDeAdopcion(Persona personaInteresada, List<Respuesta> comodidades, List<CaracteristicaDeMascota>caracteristicas, String linkBaja) {
         respuestasComodidades = new ArrayList<>();
+        respuestasCaracteristicasDeMascota=new ArrayList<>();
         this.setPersonaInteresada(personaInteresada);
         this.linkBaja = linkBaja;
-        respuestasComodidades.forEach(comodidad -> this.cargarComodidad(comodidad));
+        comodidades.forEach(this::cargarComodidad);
+        caracteristicas.forEach(this::cargarCaracteristicaMascotaDeseada);
         this.cambiarEstadoAPendiente();
     }
 }
