@@ -57,9 +57,6 @@ public class PublicacionesController {
         return new ModelAndView(null, "mascotasEncontradas.hbs");
     }
 
-
-
-
     public ModelAndView mostrarMascotaEnAdopcion(Request request, Response response) {
         Integer idPublicacionMascotaEnAdopcion = new Integer(request.params("id"));
 
@@ -183,6 +180,7 @@ public class PublicacionesController {
                     PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscar(new Integer(request.params("id")));
                     Map<String, Object> parametros = new HashMap<>();
                     parametros.put("publicacionMascotaEncontrada", publicacionMascotaEncontradaSinChapita);
+                    parametros.put("mascotaEncontrada",publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita());
                     return new ModelAndView(parametros, "detalle-para-aprobar-encontrada.hbs");
 
                 case 3:
