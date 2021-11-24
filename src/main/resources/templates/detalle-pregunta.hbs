@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/estilos.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/js/generales.js"></script>
+    <title>Preguntas Adopción</title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        {{#if usuario}}
+            <div class="col-2 bg-dark">
+                {{>menu.hbs}}
+            </div>
+        {{/if}}
+        <div class="col-10 px-0">
+            {{>navbar.hbs}}
+            <div class="row px-0 my-3 mx-5">
+                <div class="card shadow-lg bg-secondary my-3">
+                    <h3 class="text-center">Pregunta de adopción</h3>
+
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex">
+                            <label for="descripcion" class="form-label">Descripcion</label>
+                            <input type="text" class="form-control" id="descripcion" name="descripcion"
+                                   {{#if pregunta}}value="{{pregunta.descripcion}}" {{/if}}
+                                {{#if mostrar}}disabled {{/if}}
+                                {{#if editar}}disabled {{/if}}>
+                        </div>
+                    </div>
+
+                    {{#if mostrar}}
+                    {{else}}
+                    <div class="row my-2">
+
+                        <div class="col-sm-6 flex-column d-flex">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input type="text" class="form-control" id="valor" name="valor">
+                        </div>
+
+                        <div class="col-sm-6 align-self-end">
+                            <button type="button" onclick="addRow(document.getElementById('valor').value)" class="btn btn-primary rounded-circle shadow"><strong class="text-secondary">+</strong></button>
+                        </div>
+
+                    </div>
+                    {{/if}}
+
+                    <div class="row my-2">
+                        <div class="col-sm-8 mx-auto">
+                            <table id="tablaDeValores" class="table table-bordered rounded-3">
+                                <thead class="bg-primary text-secondary">
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th>Valor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {{#if pregunta}}
+                                    {{#each pregunta.valor }}
+                                    <tr id="{{&append "fila-" @index}}">
+                                        <td>
+                                            {{#if editar}}
+                                            <button class="btn" onclick="borrarFila({{@index}})"><i class="bi bi-trash-fill px-2 text-danger"></i></button>
+                                            {{/if}}
+                                        </td>
+                                        <td>{{&increment @index}}</td>
+                                        <td>{{this}}</td>
+                                    </tr>
+                                    {{/each}}
+                                {{/if}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row d-md-flex justify-content-center">
+                        <div class="col-md-6 d-grid gap-2 d-md-flex justify-content-center my-3">
+                            {{#if mostrar}}
+                                <div class="form-group"> <button type="submit" onclick="goBack()" class="btn btn-primary rounded-pill my-1 text-secondary">Volver</button> </div>
+                            {{else}}
+                                {{#if editar}}
+                                    <div class="form-group"> <button type="submit" onclick="modificarPregunta({{pregunta.id}})" class="btn btn-primary rounded-pill my-1 text-secondary" id="btn_confirmar">Confirmar</button> </div>
+                                {{else}}
+                                    <div class="form-group"> <button type="submit" onclick="agregarPregunta()" class="btn btn-primary rounded-pill my-1 text-secondary" id="btn_confirmar">Confirmar</button> </div>
+                                {{/if}}
+                                <div class="form-group"> <button type="submit" onclick="goBack()" class="btn btn-outline-danger rounded-pill my-1">Cancelar</button> </div>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="libs/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<script>
+    function addRow(valor) {
+        let iconoBasura = 0;
+        let numeroItem = 1;
+        let valorItem = 2;
+        let table = document.getElementById('tablaDeValores');
+        let body = table.tBodies.item(0);
+        let row = body.insertRow(-1);
+        let cantidadDeColumnas = table.tHead.rows.item(0).cells.length;
+        let indiceUltimaFila = body.rows.length-1;
+        for (var indice=0; indice < cantidadDeColumnas; indice++) {
+            row.insertCell(indice);
+        }
+        row.id = "fila-"+indiceUltimaFila.toString();
+        row.cells[iconoBasura].addEventListener("click", function() {
+            document.getElementById("fila-"+indiceUltimaFila.toString()).remove();
+        });
+        row.cells[iconoBasura].innerHTML = '<button class="btn">' +
+                '<i class="bi bi-trash-fill px-2 text-danger"></i>' +
+                '</button>';
+        row.cells[numeroItem].innerHTML = (indiceUltimaFila+1).toString();
+        row.cells[valorItem].innerHTML = valor;
+        row.cells[valorItem].id = "valor-"+indiceUltimaFila.toString();
+
+        if(indiceUltimaFila >= 0) {
+            document.getElementById('descripcion').disabled = true;
+        }
+        document.getElementById('valor').value = "";
+        document.getElementById('valor').focus();
+
+    }
+
+    function goBack() {
+        window.history.back();
+    }
+
+    function borrarFila(indice) {
+        document.getElementById("fila-"+indice.toString()).remove();
+
+    }
+
+</script>
+
+</body>
+
+</html>

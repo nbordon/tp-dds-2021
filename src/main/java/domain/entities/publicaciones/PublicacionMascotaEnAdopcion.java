@@ -28,11 +28,11 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
         this.respuestasPreguntas = new ArrayList<>();
     }
 
+    public PublicacionMascotaEnAdopcion() {}
 
     public Persona getDuenio() {
         return mascotaEnAdopcion.getDuenio();
     }
-
 
     public Mascota getMascotaEnAdopcion() {
         return mascotaEnAdopcion;

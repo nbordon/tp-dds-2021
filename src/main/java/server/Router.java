@@ -10,6 +10,8 @@ import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import spark.utils.BooleanHelper;
 import spark.utils.HandlebarsTemplateEngineBuilder;
+import spark.utils.IndexHelper;
+import spark.utils.StringHelper;
 
 public class Router {
     private static HandlebarsTemplateEngine engine;
@@ -19,6 +21,8 @@ public class Router {
                 .create()
                 .withDefaultHelpers()
                 .withHelper("isTrue", BooleanHelper.isTrue)
+                .withHelper("increment", IndexHelper.increment)
+                .withHelper("append", StringHelper.append)
                 .build();
     }
 
@@ -35,6 +39,8 @@ public class Router {
         ControllersMascota controllersMascota = new ControllersMascota();
         UsuariosController usuariosController = new UsuariosController();
         AdopcionController adopcionController=new AdopcionController();
+        CaracterisiticaDeMascotaRequeridaController caracterisiticaDeMascotaRequeridaController = new CaracterisiticaDeMascotaRequeridaController();
+        PreguntasAdopcionController preguntasAdopcionController = new PreguntasAdopcionController();
 
         Spark.get("/health", ((request, response) -> "Status UP"));
 
@@ -70,6 +76,33 @@ public class Router {
         Spark.get("/AdopcionPorDuenio",adopcionController::mostrarAdoptar,Router.engine);
         //Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
 
+        /**
+         * Endpoints caracteristica de mascota requerida
+         * */
+        Spark.get("/caracteristicas", caracterisiticaDeMascotaRequeridaController::mostrarTodo, Router.engine);
+        Spark.get("/caracteristica/:id", caracterisiticaDeMascotaRequeridaController::mostrar, Router.engine);
+
+        Spark.get("/caracteristica", caracterisiticaDeMascotaRequeridaController::nueva, Router.engine);
+        Spark.post("/caracteristica", caracterisiticaDeMascotaRequeridaController::agregar);
+
+        Spark.get("/editar-caracteristica/:id", caracterisiticaDeMascotaRequeridaController::editar, Router.engine);
+        Spark.post("/editar-caracteristica/:id", caracterisiticaDeMascotaRequeridaController::modificar);
+
+        Spark.delete("/caracteristica/:id", caracterisiticaDeMascotaRequeridaController::eliminar);
+
+        /**
+         * Endpoints pregunta de adopcion
+         * */
+        Spark.get("/preguntas", preguntasAdopcionController::mostrarTodo, Router.engine);
+        Spark.get("/pregunta/:id", preguntasAdopcionController::mostrar, Router.engine);
+
+        Spark.get("/pregunta", preguntasAdopcionController::nueva, Router.engine);
+        Spark.post("/pregunta", preguntasAdopcionController::agregar);
+
+        Spark.get("/editar-pregunta/:id", preguntasAdopcionController::editar, Router.engine);
+        Spark.post("/editar-pregunta/:id", preguntasAdopcionController::modificar);
+
+        Spark.delete("/pregunta/:id", preguntasAdopcionController::eliminar);
 
         Spark.delete("/listado-mascotas/:id", controllersMascota::eliminar);
 

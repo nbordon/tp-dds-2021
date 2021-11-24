@@ -147,4 +147,8 @@ public class Organizacion extends EntidadPersistente {
     public void addPreguntasRequeridasDeAdopcion(PreguntasAdopcion... preguntas) {
         this.preguntasRequeridasAdopcion.addAll(Arrays.stream(preguntas).collect(Collectors.toList()));
     }
+
+    public void removePreguntasRequeridasDeAdopcion(PreguntasAdopcion... preguntas) {
+        this.preguntasRequeridasAdopcion.removeAll(Arrays.stream(preguntas).collect(Collectors.toList()));
+    }
 }
