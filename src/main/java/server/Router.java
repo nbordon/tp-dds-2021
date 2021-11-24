@@ -40,6 +40,7 @@ public class Router {
 
         Spark.get("/", loginController::mostrarHome,engine);
         Spark.get("/login", loginController::login,engine);
+        Spark.get("/loginError", loginController::loginError,engine);
         Spark.post("/login",loginController::iniciarSesion);
         Spark.get("/home",loginController::mostrarHome,engine);
 

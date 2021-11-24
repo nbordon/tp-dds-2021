@@ -113,8 +113,6 @@ public class MascotaEncontradaController {
 
         }
 
-
-
         Contacto contacto = new Contacto();
         contacto.setEsPrincipal(true);
         contacto.setEmail(infoPersonal.getEmail());
@@ -133,6 +131,7 @@ public class MascotaEncontradaController {
 
         repoContactos.agregar(contacto);
         repoInfoPers.agregar(infoPersonal);
+        rescatista.setInformacionPersonal(infoPersonal);
         repoRescatista.agregar(rescatista);
         mascota.setRescatista(rescatista);
         repoMascotaEncontrada.modificar(mascota);

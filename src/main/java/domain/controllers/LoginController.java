@@ -14,6 +14,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginController {
     private static final RepositorioUsuario usuarioRepositorio = FactoryRepositorioUsuario.get();
@@ -35,6 +36,11 @@ public class LoginController {
         }
     }
 
+    public ModelAndView loginError(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("error", true);
+        return new ModelAndView(parametros, "login.hbs");
+    }
     public Response iniciarSesion(Request request, Response response) {
         try {
             String usuarioNombre = request.queryParams("emailUser");
@@ -48,15 +54,15 @@ public class LoginController {
                     request.session().attribute("id", usuario.getId());
                     response.redirect("/home");
                 } else {
-                    response.redirect("/login");
+                    response.redirect("/loginError");
                 }
             } else {
-                response.redirect("/login");
+                response.redirect("/loginError");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.redirect("/login");
+            response.redirect("/loginError");
         } finally {
             return response;
         }
