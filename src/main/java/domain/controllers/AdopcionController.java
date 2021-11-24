@@ -1,6 +1,5 @@
 package domain.controllers;
 
-import domain.entities.Contacto;
 import domain.entities.InformacionPersonal;
 import domain.entities.Mascotas.CaracterisiticaDeMascotaRequerida;
 import domain.entities.Mascotas.CaracteristicaDeMascota;
@@ -27,6 +26,7 @@ public class AdopcionController {
     private Repositorio<Mascota> repositorio;
     private Repositorio<Organizacion> repoOrganizaciones;
     private Repositorio<PreguntasAdopcion> repositorioEnAdopcion;
+    private Repositorio<PublicacionMascotaEnAdopcion>repoPublicacionesAdopcion;
     private Repositorio<CaracterisiticaDeMascotaRequerida>repocaracteristicas;
     private Repositorio<InformacionPersonal> repoInfoPers;
     private Repositorio<CaracteristicaDeMascota>repocarac;
@@ -130,6 +130,7 @@ public class AdopcionController {
 
 
         Persona persona = repoPersonas.buscar(request.session().attribute("id"));
+        Mascota mascotaEnAdopcion=  persona.getMascotas().get(0);
         Organizacion organizacionAsociada = persona.getOrganizacion();
 
         List<PreguntasAdopcion>preguntas=organizacionAsociada.getPreguntasRequeridasAdopcion();
@@ -143,13 +144,25 @@ public class AdopcionController {
                 }).collect(Collectors.toList());
 
 
+        PublicacionMascotaEnAdopcion publicacionAdopcion=new PublicacionMascotaEnAdopcion(mascotaEnAdopcion,comodidades);
 
         comodidades.forEach(comodidad->{this.repoComodidades.agregar(comodidad);});
 
+        this.repoPublicacionesAdopcion.agregar(publicacionAdopcion);
+
+
         response.redirect("/listado-mascotas");
         return response;
+
+
+
+
+
+
+
+
     }
-    public Response guardarAdopcionPorDuenio(Request request, Response response){
+   /* public Response guardarAdopcionPorDuenio(Request request, Response response){
         HashMap<String, Object> parametros = new HashMap<>();
 
         try {
@@ -193,7 +206,7 @@ public class AdopcionController {
 
         response.redirect("/listado-mascotas");
         return response;
-    }
+    }*/
     public AdopcionController(){
         this.repositorio = FactoryRepositorio.get(Mascota.class);
         this.repositorioEnAdopcion = FactoryRepositorio.get(PreguntasAdopcion.class);
@@ -202,6 +215,7 @@ public class AdopcionController {
         this.repoOrganizaciones = FactoryRepositorio.get(Organizacion.class);
         this.repoInfoPers = FactoryRepositorio.get(InformacionPersonal.class);
         this.repointencion=FactoryRepositorio.get(PublicacionIntencionDeAdopcion.class);
+        this.repoPublicacionesAdopcion=FactoryRepositorio.get(PublicacionMascotaEnAdopcion.class);
         this.repoComodidades=FactoryRepositorio.get(Respuesta.class);
         this.repoUsuarios=FactoryRepositorio.get(Usuario.class);
         this.repoPersonas=FactoryRepositorio.get(Persona.class);

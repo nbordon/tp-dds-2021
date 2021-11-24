@@ -67,7 +67,7 @@ public class Router {
         Spark.post("/Adopcion",adopcionController::guardarAdopcion);
 
         Spark.get("/AdopcionPorDuenio",adopcionController::mostrarAdoptar,Router.engine);
-        Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
+        //Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
 
 
         Spark.delete("/listado-mascotas/:id", controllersMascota::eliminar);

@@ -1,9 +1,8 @@
 package domain.entities.publicaciones;
 
-import domain.entities.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import domain.entities.Contacto;
+import domain.entities.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import domain.entities.Mascotas.Mascota;
-import domain.entities.Mascotas.TipoMascota;
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.Organizacion.PreguntasAdopcion;
 import domain.entities.Organizacion.Respuesta;
@@ -17,14 +16,20 @@ import java.util.List;
 @Table(name = "publicacion_mascota_adopcion")
 public class PublicacionMascotaEnAdopcion extends Publicacion {
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "mascota_id", referencedColumnName = "id")
     private Mascota mascotaEnAdopcion;
     @OneToMany
     @JoinTable(name = "respuestas_x_publicacion")
-    private List<Respuesta> respuestasPreguntas = new ArrayList<>();
+    private List<Respuesta> respuestasPreguntas;
 
-       public Persona getDuenio() {
+    public PublicacionMascotaEnAdopcion(Mascota mascotaEnAdopcion, List<Respuesta> comodidades) {
+        this.mascotaEnAdopcion = new Mascota();
+        this.respuestasPreguntas = new ArrayList<>();
+    }
+
+
+    public Persona getDuenio() {
         return mascotaEnAdopcion.getDuenio();
     }
 
