@@ -13,6 +13,8 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -60,6 +62,10 @@ public class ControllersMascota {
     public ModelAndView registrar(Request request,Response response){
         Map<String, Object> parametros = new HashMap<>();
         Persona duenioMascota = this.obtenerPersona(request);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String fechaActual = dateFormat.format(date);
+        parametros.put("fechaActual",fechaActual);
         Organizacion organizacionAsociada = duenioMascota.getOrganizacion();
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
         return new ModelAndView(parametros,"registrarMascota.hbs");
@@ -125,7 +131,10 @@ public class ControllersMascota {
     public ModelAndView editar(Request request, Response response){
         Map<String, Object> parametros = new HashMap<>();
         Mascota mascotaBuscada = this.repositorio.buscar(new Integer(request.params("id")));
-        System.out.println(mascotaBuscada.getDescripcionFisica());
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
+        String fechaActual = dateFormat.format(date);
+        parametros.put("fechaActual",fechaActual);
         parametros.put("mascota",mascotaBuscada);
         Persona duenioMascota = this.obtenerPersona(request);
         Organizacion organizacionAsociada = duenioMascota.getOrganizacion();

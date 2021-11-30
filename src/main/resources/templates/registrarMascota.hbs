@@ -77,8 +77,9 @@
                 <div class="col-4 my-2">
                     <label class="input-datos" name="fechaDeNacimiento">Fecha de nacimiento</label>
                     <div class="col-4 my-2">
-                        <input type="date" name="fechaDeNacimiento" class="input-datos" name="fechaDeNacimiento" {{#if
-                                mascota}} value="{{mascota.fechaNacimiento}}"{{/if}}>
+                        <input type="date" name="fechaDeNacimiento" class="input-datos" name="fechaDeNacimiento"
+                               max="{{fechaActual}}"
+                            {{#if mascota}} value="{{mascota.fechaNacimiento}}"{{/if}}required>
                     </div>
                 </div>
                 <div class="col-4 my-2">
