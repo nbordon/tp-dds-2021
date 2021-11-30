@@ -62,6 +62,10 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
         return this.getOrganizacion();
     }
 
+    public void setRespuestasPreguntas(List<Respuesta> respuestasPreguntas) {
+        this.respuestasPreguntas = respuestasPreguntas;
+    }
+
     public void notificarAdoptanteEncontrado(Contacto interesado) {
         String mensaje;
         Contacto contactoDuenio = this.getDuenio().getInformacionPersonal().getContactoDuenio();
