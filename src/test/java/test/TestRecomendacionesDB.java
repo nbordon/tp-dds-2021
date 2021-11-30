@@ -18,6 +18,7 @@ import domain.entities.publicaciones.EstadoPublicacion;
 import domain.entities.publicaciones.PublicacionIntencionDeAdopcion;
 import domain.entities.publicaciones.PublicacionMascotaEnAdopcion;
 import exception.CaracteristicaRequeridaException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class TestRecomendacionesDB {
     List<Contacto> contactosInteresado;
     Contacto contactoInteresado;
 
-    @Test
+    @Test @Ignore
     public void persistir() throws CaracteristicaRequeridaException {
         //Publicaciones que se agregaran al contenedor
         publicacionIntencionDeAdopcion = new PublicacionIntencionDeAdopcion();
