@@ -44,8 +44,7 @@
                 </div>
                 <div class="col-4 my-2">
                     <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
-                    <select class="form-select" aria-label="tipoMascota" id="eleccionTipoMascota" name="tipoMascota"
-                            required>
+                    <select class="form-select" aria-label="tipoMascota" id="eleccionTipoMascota" name="tipoMascota" required>
                         {{#if mascota}}
                             <option selected>{{mascota.tipoMascota}}</option>
                             <option value="GATO">GATO</option>
@@ -65,14 +64,14 @@
                 <div class="col-4 my-2">
                     <div class="input-group">
                         <span class="input-group-text" name="descripcionFisica">Descripcion fisica</span>
-                        <textarea class="text-input" aria-label="With textarea" name="descripcionFisica"> {{#if
-                                mascota}} {{mascota.descripcionFisica}} {{/if}}</textarea>
+                        <textarea class="text" aria-label="With textarea" name="descripcionFisica" required> {{#if
+                                mascota}} {{mascota.descripcionFisica}} {{/if}} </textarea>
                     </div>
                 </div>
                 <div class="col-4 my-2">
                     <label for="formFileMultiple" class="form-label">Fotos</label>
                     <input class="form-control" type="file" id="formFileMultiple" name="fotos" {{#if mascota}}
-                           value="{{mascota.fotosUrl}}"{{/if}} multiple required>
+                           value="{{mascota.fotosUrl}}"{{/if}} accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/* " multiple required>
                 </div>
                 <div class="col-4 my-2">
                     <label class="input-datos" name="fechaDeNacimiento">Fecha de nacimiento</label>
@@ -87,11 +86,11 @@
                         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                             {{#if mascota}}
                                 <input type="radio" class="btn-check" name="radiosSexo" id="radioD" autocomplete="off"
-                                       value="">
+                                       value="" >
                                 <label class="btn btn-outline-primary" for="btnradioD" checked>{{mascota.sexo}}</label>
                             {{else}}
                                 <input type="radio" class="btn-check" name="radiosSexo" id="radioM" autocomplete="off"
-                                       value="Macho">
+                                       value="Macho" checked>
                                 <label class="btn btn-outline-primary" for="radioM">Macho</label>
                                 <input type="radio" class="btn-check" name="radiosSexo" id="radioH" autocomplete="off"
                                        value="Hembra">
@@ -102,16 +101,14 @@
                 </div>
                 {{#each caracteristicas }}
                     <div class="col-4 my-2">
-                        <label>
-                            {{descripcion}}
+                        <label>{{descripcion}}</label>
                             <select class="form-select" aria-label="Default select example"
-                                    name="{{id}}">
-                                <option selected>Seleccionar un valor</option>
+                                    name="{{id}}" required>
+                                <option selected>Seleccionar un valor...</option>
                                 {{#each valor}}
                                     <option value="{{this}}">{{this}}</option>
                                 {{/each}}
                             </select>
-                        </label>
                     </div>
                 {{/each}}
                 <div class="row justify-content-center d-flex">
