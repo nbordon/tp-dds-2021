@@ -244,8 +244,8 @@ public class MascotaEncontradaController {
     private Ubicacion guardarUbicacion(Request request) {
         Ubicacion ubicacion = new Ubicacion();
         ubicacion.setDireccion(request.queryParams("direccion"));
-        ubicacion.setLatitud(new Double(request.queryParams("latitud")));
-        ubicacion.setLongitud(new Double(request.queryParams("longitud")));
+        ubicacion.setLatitud(Double.valueOf(request.queryParams("latitud")));
+        ubicacion.setLongitud(Double.valueOf(request.queryParams("longitud")));
 
         return ubicacion;
     }

@@ -17,6 +17,7 @@
     <title>Mascota encntrada</title>
 </head>
 <body>
+{{navar.hbs}}
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -55,12 +56,11 @@
                                 <div id="myMap" style="height: 600px"></div>
                                 <label>Direccion</label>
                                 <input name="direccion"
-                                       placeholder="Ingresa la direccion donde encontro a la mascota"></input>
+                                       placeholder="Ingresa la direccion donde encontro a la mascota">
                                 <label>Latitud</label>
-                                <input name="latitud" type="number"></input>
+                                <input name="latitud" id="latitud" type="text">
                                 <label>Longitud</label>
-                                <input name="longitud" type="number"></input>
-
+                                <input name="longitud" id="longitud" type="text">
 
                                 <div class="col-4 my-2">
                                     <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
