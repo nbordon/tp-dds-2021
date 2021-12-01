@@ -86,7 +86,7 @@ public class LoginController {
 
     public Response logout(Request request, Response response) {
         request.session().invalidate();
-        response.redirect("/login");
+        response.redirect("/home");
         return response;
     }
 

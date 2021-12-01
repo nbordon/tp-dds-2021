@@ -41,6 +41,7 @@ public class Router {
         AdopcionController adopcionController=new AdopcionController();
         CaracterisiticaDeMascotaRequeridaController caracterisiticaDeMascotaRequeridaController = new CaracterisiticaDeMascotaRequeridaController();
         PreguntasAdopcionController preguntasAdopcionController = new PreguntasAdopcionController();
+        NotificadorRecomendacionController notificadorRecomendacionController = new NotificadorRecomendacionController();
 
         Spark.get("/health", ((request, response) -> "Status UP"));
 
@@ -127,11 +128,11 @@ public class Router {
         Spark.put("/detalle-para-aprobar/:id", publicacionesController::aprobarPublicacion);
         Spark.put("/detalle-para-aprobar/:id", publicacionesController::desaprobarPublicacion);
 
+        //NotificadorRecomendaciones
+        Spark.get("/notificador-manual",notificadorRecomendacionController::notificadorManual);
+
         Spark.post("/usuarios/registrar", usuariosController::registrarUsuario, Router.engine);
-        Spark.get("/usuarios/registrar", (request, response) -> {
-            response.redirect("/registrarUsuario.html");
-            return response;
-        });
+        Spark.get("/registrar-usuario", usuariosController::registrar,Router.engine);
         Spark.post("/agregar-contacto/:idPersona", usuariosController::agregarContacto, Router.engine);
 
         Spark.get("*", (request, response) -> {
@@ -140,5 +141,7 @@ public class Router {
             return response;
         });
     }
+
+
 
 }
