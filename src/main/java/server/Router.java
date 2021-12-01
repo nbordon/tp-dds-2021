@@ -132,17 +132,17 @@ public class Router {
         Spark.get("/notificador-manual",notificadorRecomendacionController::notificadorManual);
 
         Spark.post("/usuarios/registrar", usuariosController::registrarUsuario, Router.engine);
-        Spark.get("/usuarios/registrar", (request, response) -> {
-            response.redirect("/registrarUsuario.html");
-            return response;
-        });
+        Spark.get("/registrar-usuario", usuariosController::registrar,Router.engine);
         Spark.post("/agregar-contacto/:idPersona", usuariosController::agregarContacto, Router.engine);
 
-        Spark.get("*", (request, response) -> {
+       /* Spark.get("*", (request, response) -> {
             response.status(404);
             response.redirect("/page-not-found/index.html");
             return response;
         });
+        */
     }
+
+
 
 }
