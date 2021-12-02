@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,31 +14,38 @@
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
-
     <title>Mascota encntrada</title>
 </head>
+
 <body>
-{{navar.hbs}}
+{{>navbar.hbs}}
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
             <div class="card bg-secondary shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-5 text-center">
                     <div class="mb-md-5 mt-md-4 pb-5">
-                        <h2 class="fw-bold mb-2">{{#if mascota}}Encontraste a {{mascota.apodo}}
+                        <h2 class="fw-bold mb-2">{{#if mascota}}Encontraste a {{mascota.apodo}}</h2>
+
                             <h5>Si queres contactar a su dueñoo para que se vuelvan a encontrar completa los siguientes
                                 datos.</h5>
                         {{else}}Encontré una mascota
                             <h5>Para que pueda volver con su dueño, te solicitamos completar la informacion a
                                 continuacion para generar una publicacion de mascota encontrada.</h5>
-                        {{/if}}</h2>
+                        {{/if}}
 
                         <form action="/mascota-encontrada/{{mascota.id}}" method="POST">
                             <br>
                             <div class="row d-flex justify-content-left align-items-center h-100">
                                 <div class="col-4 my-2 ">
 
-                                    <input class="form-control-sm" type="file" id="formFileMultiple" name="formFileMultiple" multiple required>
+                                    <input class="form-control-sm" type="file" name="formFileMultiple"
+                                           id="formFileMultiple" multiple required
+                                           accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
+                                           onchange="imageUploaded()"
+                                    >
+                                    <div id="imgTest" name="imgTest"></div>
+
                                 </div>
                                 <div class="form-group">
                                     <br>
@@ -54,13 +62,11 @@
                                      src="https://d500.epimg.net/cincodias/imagenes/2017/05/05/lifestyle/1493972078_448475_1493972405_noticia_normal.jpg"
                                      data-holder-rendered="true">-->
                                 <div id="myMap" style="height: 600px"></div>
-                                <label>Direccion</label>
-                                <input name="direccion"
-                                       placeholder="Ingresa la direccion donde encontro a la mascota">
-                                <label>Latitud</label>
-                                <input name="latitud" id="latitud" type="text">
-                                <label>Longitud</label>
-                                <input name="longitud" id="longitud" type="text">
+
+                                <input class="d-none" name="latitud" id="latitud" type="text">
+
+                                <input class="d-none" name="longitud" id="longitud" type="text">
+
 
                                 <div class="col-4 my-2">
                                     <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
@@ -89,13 +95,13 @@
                                 {{#if mascota}}
                                     <br>
                                     <label style="text-decoration-line: blink; margin-top: 20px">Descripcion de la
-                                        mascota:</label>
+                                        mascota: </label>
                                     <textarea disabled>{{mascota.descripcionFisica}}</textarea>
                                 {{/if}}
                                 {{#unless mascota}}
                                     <h5>¿Desea buscar un hogar de transito para la mascota encontrada?</h5>
                                     <label>En caso de no contar con lugar para alojar a la mascota hasta encontrar a su
-                                        dueño, se puede solicitar un hogar de transito.</label>
+                                        dueño, se puede solicitar un hogar de transito. </label>
                                     <div class="form-group row my-1">
                                         <div class="col-7">
                                             <div class="form-check form-check-inline">
@@ -107,6 +113,7 @@
                                         </div>
                                     </div>
                                 {{/unless}}
+
                                 <button style="margin-top: 30px;" class="btn btn-primary rounded-pill btn-lg pull-right"
                                         type="submit">Enviar
                                 </button>
@@ -124,4 +131,8 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 <script src="../js/map.js"></script>
+<script src="../js/imageUpload.js"></script>
 </body>
+</html>
+
+
