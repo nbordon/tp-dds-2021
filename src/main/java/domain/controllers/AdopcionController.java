@@ -229,7 +229,8 @@ public class AdopcionController {
         Organizacion organizacionAsociada = persona.getOrganizacion();
         parametros.put("preguntas", organizacionAsociada.getPreguntasRequeridasAdopcion());
         parametros.put("idMascota", request.params("id"));
-        return new ModelAndView(parametros, "Adopcion.hbs");
+
+        return new ModelAndView(parametros, "adopcion.hbs");
     }
 
     public ModelAndView mostrarIntencion(Request request, Response response) {
