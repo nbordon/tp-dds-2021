@@ -208,7 +208,7 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
 		EntityManagerHelper.commit();
 	}
 
-	@Test
+	@Test @Ignore
 	public void listadoMascota() {
 		Organizacion organizacion = new Organizacion();
 
