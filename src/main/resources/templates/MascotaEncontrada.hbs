@@ -62,13 +62,10 @@
                                      src="https://d500.epimg.net/cincodias/imagenes/2017/05/05/lifestyle/1493972078_448475_1493972405_noticia_normal.jpg"
                                      data-holder-rendered="true">-->
                                 <div id="myMap" style="height: 600px"></div>
-                                <label>Direccion</label>
-                                <input name="direccion"
-                                       placeholder="Ingresa la direccion donde encontro a la mascota">
-                                <label>Latitud</label>
-                                <input name="latitud" id="latitud" type="text">
-                                <label>Longitud</label>
-                                <input name="longitud" id="longitud" type="text">
+
+                                <input class="d-none" name="latitud" id="latitud" type="text">
+
+                                <input class="d-none" name="longitud" id="longitud" type="text">
 
 
                                 <div class="col-4 my-2">
@@ -118,10 +115,6 @@
                                         </div>
                                     </div>
                                 {{/unless}}
-                                <button style="margin-top: 30px;" class="btn btn-primary rounded-pill btn-lg pull-right"
-                                        type="submit">Enviar
-                                </button>
-
                                 <button style="margin-top: 30px;"
                                         class="btn btn-primary rounded-pill btn-lg pull-right"
                                         type="submit">Enviar</button>
@@ -178,8 +171,7 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 <script src="../js/map.js"></script>
-</body>
-
+<script src="../js/imageUpload.js"></script>
 </body>
 <script>
     function imageUploaded() {
