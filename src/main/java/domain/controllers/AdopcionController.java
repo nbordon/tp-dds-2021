@@ -47,7 +47,7 @@ public class AdopcionController {
     }
 
 
-    public Response guardarPrueba(Request request, Response response) {
+    public Response guardarIntencion(Request request, Response response) {
         HashMap<String, Object> parametros = new HashMap<>();
         try {
             LoginController.cargarPerfiles(parametros, request);
@@ -92,6 +92,9 @@ public class AdopcionController {
 
         String linkBaja = "";
         PublicacionIntencionDeAdopcion publicacionIntencion = new PublicacionIntencionDeAdopcion(persona, comodidades, caracteristicaDeMascotaList, linkBaja);
+        publicacionIntencion.setOrganizacion(organizacionAsociada);
+        publicacionIntencion.setTitulo("Busco mascota");
+        publicacionIntencion.setPersonaInteresada((Persona)parametros.get("persona"));
         caracteristicaDeMascotaList.forEach(caracteristicaDeMascota -> {
             this.repocarac.agregar(caracteristicaDeMascota);
         });
@@ -104,6 +107,7 @@ public class AdopcionController {
         linkBaja = "/dar-de-baja/" + String.valueOf(publicacionIntencion.getId());
         publicacionIntencion.setLinkBaja(linkBaja);
         this.repointencion.modificar(publicacionIntencion);
+        publicacionIntencion.notificarLinkDeBaja();
 
         response.redirect("/listado-mascotas");
         return response;
@@ -228,7 +232,7 @@ public class AdopcionController {
         return new ModelAndView(parametros, "Adopcion.hbs");
     }
 
-    public ModelAndView mostrarPrueba(Request request, Response response) {
+    public ModelAndView mostrarIntencion(Request request, Response response) {
         HashMap<String, Object> parametros = new HashMap<>();
 
         try {
@@ -253,6 +257,6 @@ public class AdopcionController {
         Organizacion organizacionAsociada = persona.getOrganizacion();
         parametros.put("caracteristicas", organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
         parametros.put("preguntas", organizacionAsociada.getPreguntasRequeridasAdopcion());
-        return new ModelAndView(parametros, "prueba.hbs");
+        return new ModelAndView(parametros, "intencion-adopcion.hbs");
     }
 }

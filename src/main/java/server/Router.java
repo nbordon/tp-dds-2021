@@ -68,11 +68,11 @@ public class Router {
         Spark.post("/registrar-mascota", controllersMascota::guardar);
         Spark.post("/registrar-mascota", controllersMascota::crear);
 
-        Spark.get("/prueba",adopcionController::mostrarPrueba,Router.engine);
-        Spark.post("/prueba",adopcionController::guardarPrueba);
+        Spark.get("/intencion-adopcion",adopcionController::mostrarIntencion,Router.engine);
+        Spark.post("/intencion-adopcion",adopcionController::guardarIntencion);
 
-        Spark.get("/Adopcion/:id",adopcionController::mostrarAdoptar,Router.engine);
-        Spark.post("/Adopcion/:id",adopcionController::guardarAdopcion);
+        Spark.get("/adopcion/:id",adopcionController::mostrarAdoptar,Router.engine);
+        Spark.post("/adopcion/:id",adopcionController::guardarAdopcion);
 
         Spark.get("/AdopcionPorDuenio",adopcionController::mostrarAdoptar,Router.engine);
         //Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
