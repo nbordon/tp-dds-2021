@@ -28,7 +28,9 @@ public class PublicacionMascotaEnAdopcion extends Publicacion {
         this.respuestasPreguntas = new ArrayList<>();
     }
 
-    public PublicacionMascotaEnAdopcion() {}
+    public PublicacionMascotaEnAdopcion() {
+        this.respuestasPreguntas = new ArrayList<>();
+    }
 
     public Persona getDuenio() {
         return mascotaEnAdopcion.getDuenio();

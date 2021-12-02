@@ -44,6 +44,7 @@ public class MascotaEncontradaController {
     private Repositorio<MascotaEncontrada> repoMascotaEncontrada;
     private Repositorio<PublicacionMascotaEncontradaSinChapita> repoPublicacionSinChapita;
     private Repositorio<Hogar> repoHogares;
+    private Repositorio<Foto> repoFotos;
 
     public MascotaEncontradaController(){
         this.repoRescatista = FactoryRepositorio.get(Rescatista.class);
@@ -56,6 +57,7 @@ public class MascotaEncontradaController {
         this.repoMascotaEncontrada = FactoryRepositorio.get(MascotaEncontrada.class);
         this.repoPublicacionSinChapita = FactoryRepositorio.get(PublicacionMascotaEncontradaSinChapita.class);
         this.repoHogares = FactoryRepositorio.get(Hogar.class);
+        this.repoFotos = FactoryRepositorio.get(Foto.class);
     }
 
     public ModelAndView ubicacion(Request request, Response response) {
@@ -232,6 +234,14 @@ public class MascotaEncontradaController {
             mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
         }
 
+        Foto foto = new Foto();
+
+        foto.setNombre(request.queryParams("formFileMultiple"));
+
+        mascotaEncontrada.setFotosB64(new ArrayList<>());
+        mascotaEncontrada.addFoto(foto);
+
+        repoFotos.agregar(foto);
         repoUbicacion.agregar(ubicacion);
         repoMascotaSinChapita.agregar(mascotaEncontrada);
         Map<String, Object> parametros = new HashMap<>();
