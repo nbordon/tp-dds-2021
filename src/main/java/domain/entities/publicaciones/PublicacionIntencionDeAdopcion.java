@@ -58,6 +58,7 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
     public void setLinkBaja(String linkBaja){
         this.linkBaja=linkBaja;
     }
+
     public void notificarLinkDeBaja() {
        /* personaInteresada.getOrganizacion().agregarPublicacionIntencionDeAdopcion(this);*/
         EstrategiaDeNotificacion notidicadorEmail = new EstrategiaDeEmail();
