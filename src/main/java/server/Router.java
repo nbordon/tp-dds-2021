@@ -71,8 +71,8 @@ public class Router {
         Spark.get("/prueba",adopcionController::mostrarPrueba,Router.engine);
         Spark.post("/prueba",adopcionController::guardarPrueba);
 
-        Spark.get("/Adopcion",adopcionController::mostrarAdoptar,Router.engine);
-        Spark.post("/Adopcion",adopcionController::guardarAdopcion);
+        Spark.get("/Adopcion/:id",adopcionController::mostrarAdoptar,Router.engine);
+        Spark.post("/Adopcion/:id",adopcionController::guardarAdopcion);
 
         Spark.get("/AdopcionPorDuenio",adopcionController::mostrarAdoptar,Router.engine);
         //Spark.post("/AdopcionPorDuenio",adopcionController::guardarAdopcionPorDuenio);
