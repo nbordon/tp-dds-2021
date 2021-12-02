@@ -30,7 +30,7 @@
 
         <form class=""
 
-              action="/Adopcion" method="post"   >
+              action="/Adopcion/{{idMascota}}" method="post"   >
             <div class="row">
 
 
@@ -42,7 +42,7 @@
                         <label>
                             {{descripcion}}
                             <select class="form-select" aria-label="Default select example"
-                                    name="preguntaSOrganiazcion">
+                                    name="{{id}}">
                                 <option selected>Seleccionar un valor</option>
                                 {{#each valor}}
                                     <option  value="{{this}}">{{this}}</option>
