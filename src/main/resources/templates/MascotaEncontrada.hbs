@@ -14,7 +14,6 @@
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
-
     <title>Mascota encntrada</title>
 </head>
 
@@ -122,6 +121,10 @@
                                 <button style="margin-top: 30px;" class="btn btn-primary rounded-pill btn-lg pull-right"
                                         type="submit">Enviar
                                 </button>
+
+                                <button style="margin-top: 30px;"
+                                        class="btn btn-primary rounded-pill btn-lg pull-right"
+                                        type="submit">Enviar</button>
                             </div>
                         </form>
                     </div>
@@ -169,8 +172,49 @@
 </script>
 </html>
 
+
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 <script src="../js/map.js"></script>
+</body>
+
+</body>
+<script>
+    function imageUploaded() {
+        var files = document.getElementById("formFileMultiple").files;
+        for (i = 0; i < files.length; i++){
+            if(files[i].size > 60000000)
+            {
+                alert("File too big!");
+                //upl.value = "";
+            } else{
+                loadImageFileAsURL(files[i]);
+            }
+        }
+    }
+
+    function loadImageFileAsURL(fileToLoad){
+        var fileReader = new FileReader();
+
+        fileReader.onload = function(fileLoadedEvent) {
+            var srcData = fileLoadedEvent.target.result; // <--- data: base64
+            var divTest = document.getElementById("imgTest");
+            var newImage = document.createElement('img');
+            newImage.style="width:100px;height:100px;"
+            newImage.src = srcData;
+
+            // document.getElementById("imgdata").innerHTML += '\t// ' + fileToLoad.name + '\r\n"' + srcData + '",\r\n';
+
+            divTest.innerHTML += newImage.outerHTML;
+            console.log(srcData)
+
+        }
+
+        fileReader.readAsDataURL(fileToLoad);
+
+    }
+</script>
+</html>
+
