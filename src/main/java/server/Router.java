@@ -135,11 +135,11 @@ public class Router {
         Spark.get("/registrar-usuario", usuariosController::registrar,Router.engine);
         Spark.post("/agregar-contacto/:idPersona", usuariosController::agregarContacto, Router.engine);
 
-        /*Spark.get("*", (request, response) -> {
+        Spark.get("*", (request, response) -> {
             response.status(404);
             response.redirect("/page-not-found/index.html");
             return response;
-        });*/
+        });
     }
 
 

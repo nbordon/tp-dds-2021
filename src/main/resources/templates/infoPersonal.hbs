@@ -22,17 +22,11 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
 
-    <script>
-    $(function(){
-      $("#includedContent").load("../navBar.html");
-    });
-    </script>
-
   <title>Patitas, Home</title>
 </head>
 
 <body>
-  <div id="includedContent" class="container-fluid p-0"></div>
+{{>navbar.hbs}}
   <div class="container mt-4 justify-content-center table-bordered rounded bg-secondary shadow-lg border-radius">
 
     <h1 class="text-center pt-4">Informacion personal</h1>
