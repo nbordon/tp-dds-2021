@@ -54,7 +54,7 @@ public class Router {
         Spark.get("/logout", loginController::logout);
 
         Spark.get("/mascota-encontrada/:idMascota", mascotaEncontradaController::mascotaEncontrada, engine);
-        Spark.post("/mascota-encontrada/:idMascota", mascotaEncontradaController::infoMascotaEncontradaConChapita, engine);
+        Spark.post("/mascota-encontrada/:idMascota","multipart/form-data", mascotaEncontradaController::infoMascotaEncontradaConChapita, engine);
 
         Spark.post("/mascota-encontrada/rescatista/:idMascotaEncontrada", mascotaEncontradaController::infoRescatista, engine);
 

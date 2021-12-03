@@ -197,6 +197,9 @@ public class MascotaEncontradaController {
     }
 
     public ModelAndView infoMascotaEncontradaConChapita(Request request, Response response) {
+        request.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                new MultipartConfigElement("/tmp", 100000000, 100000000, 1024));
+
         MascotaEncontradaConChapita mascotaEncontrada = new MascotaEncontradaConChapita();
         Mascota mascota = repoMascota.buscar(new Integer(request.params("idMascota")));
         mascotaEncontrada.setMascota(mascota);
@@ -214,6 +217,9 @@ public class MascotaEncontradaController {
         }
         repoUbicacion.agregar(ubicacion);
         repoMascotEncontConChapita.agregar(mascotaEncontrada);
+        List<String> fotos = guardarImagenes(request, mascotaEncontrada.getId(), "mascotasEncontradasConChapita");
+        mascotaEncontrada.setFotos(fotos);
+        repoMascotEncontConChapita.modificar(mascotaEncontrada);
 
         Map<String, Object> parametros = new HashMap<>();
         parametros.put("mascotaEncontrada", mascotaEncontrada);
