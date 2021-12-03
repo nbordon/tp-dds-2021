@@ -65,11 +65,14 @@ public class PublicacionesController {
         if (idPublicacionMascotaEnAdopcion != null) {
             PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = repoPublicacionMascotaEnAdopcion.buscar(new Integer(request.params("id")));
             Integer idMascotaEnAdopcion = publicacionMascotaEnAdopcion.getMascotaEnAdopcion().getId();
+            List<String> fotosMascota;
             if (idMascotaEnAdopcion != null) {
                 Mascota mascotaEnAdopcion = repoMascotas.buscar(idMascotaEnAdopcion);
-                Map<String, Object> parametros = new HashMap<>();
+                HashMap<String, Object> parametros = new HashMap<>();
+                fotosMascota = mascotaEnAdopcion.getFotosUrl();
                 parametros.put("publicacionMascotaEnAdopcion", publicacionMascotaEnAdopcion);
                 parametros.put("mascota", mascotaEnAdopcion);
+                parametros.put("fotosMascota",fotosMascota);
                 parametros.put("caracteristicas", mascotaEnAdopcion.getCaracteristicas());
                 parametros.put("comodidades",publicacionMascotaEnAdopcion.getRespuestasPreguntas());
 

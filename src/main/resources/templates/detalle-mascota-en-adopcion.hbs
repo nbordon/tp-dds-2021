@@ -37,16 +37,11 @@
                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/opening.jpg" alt="First slide">
-
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://s1.eestatic.com/2020/06/30/curiosidades/mascotas/mascotas_501711745_154816138_1706x960.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="https://placeimg.com/1080/500/nature" alt="Third slide">
-                        </div>
+                        {{#each fotosMascota}}
+                            <div class="carousel-item" id="foto_{{@index}}">
+                                <img class="d-block w-100" src="../fotos/{{this}}" alt="foto de mascota">
+                            </div>
+                        {{/each}}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -130,7 +125,7 @@
 </div>
 
 <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
-
+<script src="../js/carrouselUtil.js"></script>
 </body>
 
 </html>
