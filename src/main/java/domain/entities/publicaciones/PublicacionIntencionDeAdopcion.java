@@ -4,8 +4,11 @@ import domain.entities.EstrategiasNotificacion.EstrategiaDeNotificacion;
 import domain.entities.EstrategiasNotificacion.EstrategiaEmail.EstrategiaDeEmail;
 import domain.entities.Contacto;
 import domain.entities.Mascotas.CaracteristicaDeMascota;
+import domain.entities.Mascotas.TipoMascota;
 import domain.entities.Organizacion.Respuesta;
 import domain.entities.Persona;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +26,10 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
     @OneToMany
     @JoinTable(name = "rta_com_intenc_adop")
     private List<Respuesta> respuestasComodidades;
+    @Getter @Setter
+    private TipoMascota tipoMascota;
+    @Getter @Setter
+    private String sexoMascota;
 
     public Persona getPersonaInteresada() {
         return personaInteresada;

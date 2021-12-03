@@ -19,18 +19,12 @@
             crossorigin="anonymous"></script>
     <script src="/js/generales.js"></script>
 
-    <script>
-    $(function(){
-      $("#includedContent").load("navBar.html");
-    });
-    </script>
-
 
     <title>Detalle Intencion</title>
 </head>
 
 <body class="bg-light">
-<div id="includedContent" class="container-fluid p-0"></div>
+{{>navbar.hbs}}
 
 <div class="container d-flex flex-column justify-content-center shadow-lg">
     <div class="row bg-dark p-3">
@@ -82,14 +76,17 @@
     </div>
     <div class="row my-4">
         <div class="col-2">
-            <span class="badge  bg-primary fs-6 rounded-pill">Hembra</span>
+            <span class="badge  bg-primary fs-6 rounded-pill">{{publicacionIntencion.tipoMascota}}</span>
         </div>
         <div class="col-2">
-            {{#each caracteristicas}}
+            <span class="badge  bg-primary fs-6 rounded-pill">{{publicacionIntencion.sexoMascota}}</span>
+        </div>
+        {{#each caracteristicas}}
+        <div class="col-2">
                 <span class="badge  bg-primary fs-6 rounded-pill">{{preguntaALaQuePertenece.descripcion}}
                     : {{valor}}</span>
-            {{/each}}
         </div>
+        {{/each}}
     </div>
         <div class="row">
         <div class="col">
