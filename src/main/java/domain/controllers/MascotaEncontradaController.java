@@ -144,7 +144,6 @@ public class MascotaEncontradaController {
         mascota.setRescatista(rescatista);
         repoMascotaEncontrada.modificar(mascota);
 
-        //
         if(rescatista.getMascotaEncontrada().getMascota() == null){
             //Mascota sin chapita. Generar publicacion
             System.out.println("GENERAR PUBLICACION DE MASCOTA");
@@ -154,7 +153,6 @@ public class MascotaEncontradaController {
             publicacion.setMascotaEncontradaSinChapita(mascotaEncontradaSinChapita);
             publicacion.setTitulo(mascotaEncontradaSinChapita.getTipoMascota()+ " " + "Encontrado");
             repoPublicacionSinChapita.agregar(publicacion);
-            //publicacion.setOrganizacion();
 
             LocalizadorDeOrganizacion localizadorDeOrganizacion = new LocalizadorDeOrganizacion();
             Organizacion org = localizadorDeOrganizacion.obtenerOrganizacionMasCercana(mascotaEncontradaSinChapita.getUbicacion());
@@ -204,14 +202,10 @@ public class MascotaEncontradaController {
         Mascota mascota = repoMascota.buscar(new Integer(request.params("idMascota")));
         mascotaEncontrada.setMascota(mascota);
         mascotaEncontrada.setDescripcionEstadoEncotrado(request.queryParams("descEncontrada"));
-        //TODO: agregar fecha en el form?
-        //mascotaEncontrada.setFechaEnLaQueSeEncontro();
         Ubicacion ubicacion = guardarUbicacion(request);
         mascotaEncontrada.setUbicacion(ubicacion);
         if(request.queryParams("solicitaTransito") != null){
             System.out.println("Esta solicitando transito");
-            //Buscar hogar de transito segun ubicacion.
-            //TODO: buscar hogar de transito por proximidad
             List<Hogar> listaHogares = repoHogares.buscarTodos();
             mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
         }
@@ -238,18 +232,13 @@ public class MascotaEncontradaController {
             mascotaEncontrada.setTipoMascota(TipoMascota.GATO);
         }
         mascotaEncontrada.setSexo(request.queryParams("sexoMascota"));
-        //TODO: agregar fecha en el form?
-       // mascotaEncontrada.setFechaEnLaQueSeEncontro();
         Ubicacion ubicacion = guardarUbicacion(request);
         mascotaEncontrada.setUbicacion(ubicacion);
-        //TODO: donde o como guardamos si tiene hogar de transito
         if(request.queryParams("solicitaTransito") != null){
             System.out.println("Esta solicitando transito");
-            //Buscar hogar de transito segun ubicacion.
             List<Hogar> listaHogares = repoHogares.buscarTodos();
             mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
         }
-
 
         repoUbicacion.agregar(ubicacion);
         repoMascotaSinChapita.agregar(mascotaEncontrada);

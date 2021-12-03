@@ -94,7 +94,6 @@ public class PublicacionesController {
         return new ModelAndView(parametros, "publicacionesAdopcion.hbs");
     }
 
-
     public ModelAndView mostrarTodosIntencionAdopcion(Request request, Response response) {
         HashMap<String, Object> parametros = new HashMap<>();
         List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion;
@@ -265,8 +264,4 @@ public class PublicacionesController {
         }
         return response;
     }
-
-
-
-
 }

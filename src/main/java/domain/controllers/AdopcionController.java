@@ -281,7 +281,6 @@ public class AdopcionController {
     }
 
     public Object guardarAdopcionPorDuenio(Request request, Response response) {
-        //Persona persona = repoPersonas.buscar(request.session().attribute("id"));
         Mascota mascotaEnAdopcion = repoMascotas.buscar(new Integer(request.params("id")));
         Organizacion organizacionAsociada = repoOrganizaciones.buscar(mascotaEnAdopcion.getDuenio().getOrganizacion().getId());
 
@@ -295,7 +294,6 @@ public class AdopcionController {
                     return respuestaComodidad;
                 }).collect(Collectors.toList());
 
-
         PublicacionMascotaEnAdopcion publicacionAdopcion = new PublicacionMascotaEnAdopcion(mascotaEnAdopcion, comodidades);
         publicacionAdopcion.setMascotaEnAdopcion(mascotaEnAdopcion);
         publicacionAdopcion.setRespuestasPreguntas(comodidades);
@@ -307,9 +305,6 @@ public class AdopcionController {
         });
 
         this.repoPublicacionesAdopcion.agregar(publicacionAdopcion);
-
-
-
 
         response.redirect("/listado-mascotas");
         return response;

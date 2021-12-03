@@ -1,7 +1,7 @@
 package domain.controllers;
 
 
-        import Api.services.entities.Ubicacion;
+import Api.services.entities.Ubicacion;
         import domain.entities.*;
         import domain.entities.EstrategiasNotificacion.EstrategiaDeNotificacion;
         import domain.entities.EstrategiasNotificacion.EstrategiaEmail.EstrategiaEmail;
