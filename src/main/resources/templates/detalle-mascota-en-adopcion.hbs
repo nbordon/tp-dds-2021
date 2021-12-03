@@ -13,20 +13,12 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
 
-    <script>
-    $(function(){
-      $("#includedContent").load("navBar.html");
-    });
-
-    </script>
-
 
     <title>Detalle Mascota En Adopcion</title>
 </head>
 
 <body class="bg-light">
-<div id="includedContent" class="container-fluid p-0"></div>
-
+{{>navbar.hbs}}
 <div class="container d-flex flex-column justify-content-center shadow-lg">
     <div class="row bg-dark p-3">
         <div class="col-4"></div>
@@ -64,18 +56,21 @@
     </div>
     <div class="container">
         <div class="row my-4">
-
-            <div class="col-1">
+            {{#if mascota.sexo}}
+            <div class="col-2">
                 <span class="badge  bg-primary fs-6 rounded-pill">{{mascota.sexo}} </span>
             </div>
-
-            <div class="col-1">
-                {{#each caracteristicas}}
-                    <span class="badge  bg-primary fs-6 rounded-pill">{{preguntaALaQuePertenece.descripcion}}
-                        : {{valor}}</span>
-                {{/each}}
+                {{/if}}
+            {{#if mascota.tipoMascota}}
+            <div class="col-2">
+                <span class="badge  bg-primary fs-6 rounded-pill">{{mascota.tipoMascota}} </span>
             </div>
-
+                {{/if}}
+            {{#each caracteristicas}}
+            <div class="col-2">
+                    <span class="badge  bg-primary fs-6 rounded-pill">{{preguntaALaQuePertenece.descripcion}}:{{valor}}</span>
+            </div>
+            {{/each}}
         </div>
     </div>
     <div class="row">
