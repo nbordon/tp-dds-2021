@@ -64,12 +64,13 @@
                                         {{#each publicacionesMascotaEnAdopcion}}
                                             <div class="col">
                                                 <div class="card box-shadow">
-                                                    <img class="card-img-top" alt="Thumbnail [100%x160]"
-                                                        style="height: 160px; width: 100%; display: block;"
-
-                                                        src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/opening.jpg"
-
-                                                        data-holder-rendered="true">
+                                                    {{#each mascotaEnAdopcion.fotosUrl}}
+                                                        {{#if @first}}
+                                                            <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                                                 style="height: 160px; width: 100%; display: block;"
+                                                                 src="../fotos/{{this}}"
+                                                                 data-holder-rendered="true">
+                                                        {{/if}} {{/each}}
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{titulo}}</h5>
                                                         <p class="card-text">{{mascotaEnAdopcion.descripcionFisica}}</p>
@@ -87,7 +88,7 @@
 
 
                                         </div>
-                                        <div class="row">
+                                        <!--<div class="row">
                                             <div class="col">
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-center m-4">
@@ -102,7 +103,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

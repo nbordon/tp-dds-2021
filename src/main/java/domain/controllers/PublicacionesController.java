@@ -144,18 +144,23 @@ public class PublicacionesController {
         List<Publicacion> publicacionesParaAprobar = new ArrayList<>();
 
         for (int i = 0; i < publicacionesMascotaEnAdopcion.size(); i++) {
+
             if (publicacionesMascotaEnAdopcion.get(i).esPendiente()) {
+
+                publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
                 publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
             }
         }
         for (int i = 0; i < publicacionesMascotaEncontradaSinChapita.size(); i++) {
             if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente()) {
+                publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
                 publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
             }
         }
         for (int i = 0; i < publicacionesIntencionDeAdopcion.size(); i++) {
             if (publicacionesIntencionDeAdopcion.get(i).esPendiente()) {
                 publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
+
             }
         }
         parametros.put("publicacionesParaAprobar", publicacionesParaAprobar);
@@ -171,9 +176,12 @@ public class PublicacionesController {
                 case 1:
                     PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = repoPublicacionMascotaEnAdopcion.buscar(new Integer(request.params("id")));
                     Integer idMascotaEnAdopcion = publicacionMascotaEnAdopcion.getMascotaEnAdopcion().getId();
+                    List<String> fotosMascota;
                     if (idMascotaEnAdopcion != null) {
                         Mascota mascotaEnAdopcion = repoMascotas.buscar(idMascotaEnAdopcion);
                         Map<String, Object> parametros = new HashMap<>();
+                        fotosMascota = mascotaEnAdopcion.getFotosUrl();
+                        parametros.put("fotosMascota",fotosMascota);
                         parametros.put("publicacionMascotaEnAdopcion", publicacionMascotaEnAdopcion);
                         parametros.put("mascota", mascotaEnAdopcion);
                         parametros.put("caracteristicas", mascotaEnAdopcion.getCaracteristicas());
@@ -184,6 +192,8 @@ public class PublicacionesController {
                 case 2:
                     PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscar(new Integer(request.params("id")));
                     Map<String, Object> parametros = new HashMap<>();
+                    List<String> fotosMascotaEncontrada = publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita().getFotos();
+                    parametros.put("fotosMascota", fotosMascotaEncontrada);
                     parametros.put("publicacionMascotaEncontrada", publicacionMascotaEncontradaSinChapita);
                     parametros.put("mascotaEncontrada",publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita());
                     return new ModelAndView(parametros, "detalle-para-aprobar-encontrada.hbs");
