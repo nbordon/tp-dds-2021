@@ -9,6 +9,7 @@
     <title>Login</title>
 </head>
 <body>
+{{>navbar.hbs}}
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -39,9 +40,15 @@
 
                             <input type="submit" value="Iniciar Sesion" class="btn btn-lg btn-primary rounded-pill text-secondary px-5 mb-5"/>
                         </form>
+                    {{#if error}}
+                        <div id="message">
+                            <h3><p class="alert-danger">Usuario o contraseña invalidos</p></h3>
+
+                        </div>
+                    {{/if}}
 
                         <p class="small mb-1 pb-lg-2"><a href="#" class="text-primary-50">Olvidó su contraseña?</a></p>
-                        <p class="small mb-5 pb-lg-2"><a href="registrarUsuario.html" class="text-primary-50">Registrarse</a></p>
+                        <p class="small mb-5 pb-lg-2"><a href="/registrar-usuario" class="text-primary-50">Registrarse</a></p>
                     </div>
                 </div>
             </div>

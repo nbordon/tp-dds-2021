@@ -35,20 +35,20 @@
             <div class="row">
                 <div class="col-4 my-2">
                     <label for="inputNombreUsuario" class="form-label">Nombre de Usuario*</label>
-                    <input type="text" class="form-control" id="inputNombreUsuario" name="inputNombreUsuario" required>
+                    <input type="text" class="form-control" id="inputNombreUsuario" name="inputNombreUsuario" maxlength="10" required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputNombre" class="form-label">Nombre*</label>
-                    <input type="text" class="form-control" id="inputNombre" name="inputNombre" required>
+                    <input type="text" class="form-control" id="inputNombre" name="inputNombre" maxlength="20" required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputApellido" class="form-label">Apellido*</label>
-                    <input type="text" class="form-control" id="inputApellido" name="inputApellido" required>
+                    <input type="text" class="form-control" id="inputApellido" name="inputApellido" maxlength="20" required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputNroTelefono" class="form-label">NroTelefono*</label>
-                    <input type="number" class="form-control" id="inputNroTelefono" maxlength="10"
-                           name="inputNroTelefono" required>
+                    <input type="number" class="form-control" id="inputNroTelefono" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            name="inputNroTelefono"  required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="text" class="col-5 col-form-label">Tipo de documento</label>
@@ -65,10 +65,7 @@
                     <label for="text" class="col-5 col-form-label">Nro de documento</label>
                     <div class="col-7">
                         <div class="input-group">
-                            <div class="input-group-text">
-                                <i class="fa fa-angle-right"></i>
-                            </div>
-                            <input id="inputNroDocumento" type="text" required="required" class="form-control"
+                            <input id="inputNroDocumento" type="number" required="required" class="form-control"
                                    name="inputNroDocumento">
                         </div>
                     </div>
@@ -118,6 +115,22 @@
                     </div>
                 </div>
 
+                <br>
+                <h5>Ubicación</h5>
+                <br>
+                <div class="col-4 my-2">
+                    <label for="inputDireccion" class="form-label">Direccion*</label>
+                    <input type="text" class="form-control" id="inputDireccion" name="inputDireccion" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputLatitud" class="form-label">Latitud*</label>
+                    <input type="text" class="form-control" id="inputLatitud" name="inputLatitud" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputLongitud" class="form-label">Longitud*</label>
+                    <input type="text" class="form-control" id="inputLongitud" name="inputLongitud" required>
+                </div>
+
                 <div class="row justify-content-center d-flex">
                     <div class="col-2 my-2">
                         <button id="submitBtn" type="submit" name="registrarse" class="btn btn-primary rounded-pill text-secondary" disabled>
@@ -148,6 +161,7 @@
   var length = document.getElementById("length");
   var repeatMatch = document.getElementById("repeatMatch");
   var subBtn = document.getElementById("submitBtn");
+  var errMsg = document.getElementById("message")
   // When the user clicks on the password field, show the message box
   myInput.onfocus = function() {
     document.getElementById("message").style.display = "block";
@@ -174,11 +188,13 @@
       repeatMatch.classList.add("valid")
       repeatMatch.style.display = "none";
       subBtn.disabled = false;
+      errMsg.style.display = "none";
     } else {
       repeatMatch.classList.remove("valid");
       repeatMatch.classList.add("invalid")
       repeatMatch.style.display = "block";
       subBtn.disabled = true;
+      errMsg.style.display = "block";
     }
   }
 

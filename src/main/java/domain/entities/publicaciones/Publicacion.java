@@ -1,9 +1,7 @@
 package domain.entities.publicaciones;
 
 import domain.entities.EntidadPersistente;
-import domain.entities.Mascotas.Mascota;
 import domain.entities.Organizacion.Organizacion;
-import domain.entities.Persona;
 
 import javax.persistence.*;
 import java.util.ArrayList;

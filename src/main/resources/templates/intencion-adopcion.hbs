@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+        <title>Mascota a adoptar</title>
+
+</head>
+<body>
+{{>navbar.hbs}}
+<div class="container bg-secondary my-5 shadow-lg">
+    <div class="row">
+
+            <h1 class="h1 text-center">Intencion de Adopcion</h1>
+
+        <form class=""
+
+              action="/intencion-adopcion" method="post"   >
+            <div class="row">
+
+                <h2 class="h2 text-center">Caracteristicas mascota</h2>
+                <div class="col-4 my-2">
+                    <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
+                    <select class="form-select" aria-label="tipoMascota" id="eleccionTipoMascota" name="tipoMascota"
+                           >
+
+                            <option>Seleccionar Tipo</option>
+                            <option value="GATO">GATO</option>
+                            <option value="PERRO">PERRO</option>
+
+                    </select>
+                </div>
+
+
+
+                <div class="col-4 my-2">
+                    <label>Sexo
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                                <input type="radio" class="btn-check" name="radiosSexo" id="radioM" autocomplete="off"
+                                       value="Macho">
+                                <label class="btn btn-outline-primary" for="radioM">Macho</label>
+                                <input type="radio" class="btn-check" name="radiosSexo" id="radioH" autocomplete="off"
+                                       value="Hembra">
+                                <label class="btn btn-outline-primary" for="radioH">Hembra</label>
+
+                        </div>
+                    </label>
+                </div>
+                {{#each caracteristicas }}
+                    <div class="col-4 my-2">
+                        <label>
+                            {{descripcion}}
+                            <select class="form-select" aria-label="Default select example"
+                                    name="{{id}}">
+                                <option selected>Seleccionar un valor</option>
+                                {{#each valor}}
+                                    <option value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+                    </div>
+                {{/each}}
+
+                <h2 class="h2 text-center">Comodidades personales</h2>
+
+                {{#each preguntas }}
+                    <div class="col-4 my-2">
+                        <label>
+                            {{descripcion}}
+                            <select class="form-select" aria-label="Default select example"
+                                    name="{{id}}">
+                                <option selected>Seleccionar un valor</option>
+                                {{#each valor}}
+                                    <option  value="{{this}}">{{this}}</option>
+                                {{/each}}
+                            </select>
+                        </label>
+                    </div>
+                {{/each}}
+
+                <div class="row justify-content-center d-flex">
+
+
+                        <div class="col-2 my-2">
+                            <input type="submit" name="" class="btn btn-primary rounded-pill text-secondary"
+                                   style="float:right;" value="Generar publicacion">
+                        </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

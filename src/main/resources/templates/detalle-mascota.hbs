@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <title>Detalle Mascota</title>
+</head>
+<body>
+{{>navbar.hbs}}
+<div class="container bg-secondary my-5 shadow-lg">
+    <div class="row">
+        <h1 class="h1 text-center">Detalle Mascota</h1>
+    </div>
+    <form class="">
+        <div class="row">
+            <div class="col-4 my-2">
+                <label for="inputNombreMascota" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="inputNombreMascota" name="nombreMascota" {{#if mascota}}
+                       value="{{mascota.nombre}}" {{/if}} disabled>
+            </div>
+            <div class="col-4 my-2">
+                <label for="eleccionTipoMascota" class="form-label">Tipo Mascota</label>
+                <select class="form-select" aria-label="tipoMascota" id="eleccionTipoMascota" name="tipoMascota" disabled>
+                    <option selected>{{mascota.tipoMascota}}</option>
+                </select>
+            </div>
+            <div class="col-4 my-2">
+                <label for="inputNombreMascota" class="form-label">Apodo</label>
+                <input type="text" class="form-control" id="inputApodo" name="apodoMascota"
+                       value="{{mascota.apodo}}" disabled>
+            </div>
+            <div class="col-4 my-2">
+                <div class="input-group">
+                    <label class="input-group-text" for="descripcionFisica">Descripcion fisica</label>
+                    <textarea class="text-input" aria-label="With textarea" name="descripcionFisica" disabled> {{#if
+                            mascota}} {{mascota.descripcionFisica}} {{/if}}</textarea>
+                </div>
+            </div>
+            <div class="col-4 my-2">
+                <label for="formFileMultiple" class="form-label">Fotos</label>
+                <input class="form-control" type="file" id="formFileMultiple" name="fotos" {{#if mascota}}
+                       value="{{mascota.fotosUrl}}"{{/if}} disabled>
+            </div>
+            <div class="col-4 my-2">
+                <label class="form-label" for="fechaDeNacimiento">Fecha de nacimiento</label>
+                <input type="date" name="fechaDeNacimiento" class="form-control" name="fechaDeNacimiento" {{#if
+                        mascota}} value="{{mascota.fechaNacimiento}}"{{/if}} disabled>
+            </div>
+            <div class="col-4 my-2">
+                <label>Sexo
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="radiosSexo" id="radioD" autocomplete="off"
+                           value="" disabled>
+                        <label class="btn btn-outline-primary" for="radiosSexo" checked>{{mascota.sexo}}</label>
+                    </div>
+                </label>
+            </div>
+            {{#each mascota.caracteristicas}}
+            <div class="col-4 my-2">
+                <label>
+                    {{preguntaALaQuePertenece.descripcion}}
+                    <select class="form-select" aria-label="Default select example" name="{{id}}" disabled>
+                        <option value="{{valor}}" selected>{{valor}}</option>
+                    </select>
+                </label>
+            </div>
+            {{/each}}
+            <div class="row justify-content-center d-flex">
+                    <div class="col-2 my-2">
+                        <a class="btn btn-primary" href="/listado-mascotas" role="button">volver</a>
+                    </div>
+                <div class="col-2 my-2">
+                    <a class="btn btn-primary" href="/adopcion/{{mascota.id}}" role="button">Dar en adopcion</a>
+                </div>
+                </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -14,6 +14,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class LoginController {
     private static final RepositorioUsuario usuarioRepositorio = FactoryRepositorioUsuario.get();
@@ -35,6 +36,11 @@ public class LoginController {
         }
     }
 
+    public ModelAndView loginError(Request request, Response response) {
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("error", true);
+        return new ModelAndView(parametros, "login.hbs");
+    }
     public Response iniciarSesion(Request request, Response response) {
         try {
             String usuarioNombre = request.queryParams("emailUser");
@@ -43,20 +49,20 @@ public class LoginController {
             if (usuarioRepositorio.existe(usuarioNombre)) {
                 Usuario usuario = usuarioRepositorio.buscarUsuario(usuarioNombre);
                 BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-                if (bcrypt.matches(usuarioPassword,usuario.getContrasenia())) {
+                if (bcrypt.matches(usuarioPassword, usuario.getContrasenia())) {
                     request.session(true);
                     request.session().attribute("id", usuario.getId());
                     response.redirect("/home");
-                }else {
-                    response.redirect("/login");
+                } else {
+                    response.redirect("/loginError");
                 }
             } else {
-                response.redirect("/login");
+                response.redirect("/loginError");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.redirect("/login");
+            response.redirect("/loginError");
         } finally {
             return response;
         }
@@ -80,7 +86,7 @@ public class LoginController {
 
     public Response logout(Request request, Response response) {
         request.session().invalidate();
-        response.redirect("/login");
+        response.redirect("/home");
         return response;
     }
 
@@ -93,7 +99,8 @@ public class LoginController {
         }
     }
 
-    public void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
+
+    public static void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
         try {
             Administrador administrador = repositorioAdministradores.buscar(request.session().attribute("id"));
             Persona persona = repositorioPersonas.buscar(request.session().attribute("id"));
@@ -118,6 +125,18 @@ public class LoginController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void cargarUsuario(HashMap<String, Object> perfiles, Request request) {
+        try {
+            Usuario usuario = usuarioRepositorio.buscar(request.session().attribute("id"));
+            if (usuario != null) {
+                perfiles.put("usuario", usuario);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
     }
 }

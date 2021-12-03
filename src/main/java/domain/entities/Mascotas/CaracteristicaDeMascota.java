@@ -3,7 +3,6 @@ package domain.entities.Mascotas;
 
 import domain.entities.Organizacion.Pregunta;
 import domain.entities.Organizacion.Respuesta;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 

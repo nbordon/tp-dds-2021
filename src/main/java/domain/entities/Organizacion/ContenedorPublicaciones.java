@@ -53,6 +53,11 @@ public class ContenedorPublicaciones {
         return publicacionesEnEsperaDeAprobacion;
     }
 
+    public List<PublicacionMascotaEnAdopcion> getPublicacionesAprobacion() {
+        return publicacionesMascotaEnAdopcion;
+    }
+
+
     public void agregarPublicacionEnEsperaDeAprobacion(Publicacion publicacion) {
         this.publicacionesEnEsperaDeAprobacion.add(publicacion);
     }

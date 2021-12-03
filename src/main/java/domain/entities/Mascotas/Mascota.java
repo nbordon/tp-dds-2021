@@ -17,7 +17,7 @@ public class Mascota extends EntidadPersistente {
     private LocalDate fechaNacimiento;
     private String sexo;
     private String descripcionFisica;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinTable(name = "caract_d_mascot")
     private List<CaracteristicaDeMascota> caracteristicas;
     @ElementCollection
@@ -125,9 +125,11 @@ public class Mascota extends EntidadPersistente {
         this.fotosUrl = fotosUrl;
     }
 
-    public void agregoFoto(String fotoUrl){
+    /*public void agregoFoto(String fotoUrl){
         fotosUrl.add(fotoUrl);
     }
+
+     */
 
     public void setTipoMascota(TipoMascota tipoMascota) {
         this.tipoMascota = tipoMascota;
@@ -136,4 +138,5 @@ public class Mascota extends EntidadPersistente {
     public void setDuenio(Persona duenio) {
         this.duenio = duenio;
     }
+
 }

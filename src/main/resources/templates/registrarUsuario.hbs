@@ -6,25 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/registrarUsuarios.css">
 
-    <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
-
-    <script>
-        $(function(){
-            $("#includedContent").load("navBar.html");
-        });
-    </script>
     <title>Registrar Usuario</title>
 </head>
 
 <body>
-<div id="includedContent" class="container-fluid p-0"></div>
-
+{{>navbar.hbs}}
 <div class="container bg-secondary my-5 shadow-lg">
-
     <div class="row">
         <h1 class="h1 text-center">
             Registrar Usuario
@@ -32,39 +21,64 @@
 
         <form class="" action="/usuarios/registrar" method="post">
             <div class="row">
-
                 <div class="col-4 my-2">
                     <label for="inputNombreUsuario" class="form-label">Nombre de Usuario*</label>
-                    <input type="text" class="form-control" id="inputNombreUsuario" required>
+                    <input type="text" class="form-control" id="inputNombreUsuario" name="inputNombreUsuario" maxlength="10" required pattern="[A-Za-z0-9]+">
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputNombre" class="form-label">Nombre*</label>
-                    <input type="text" class="form-control" id="inputNombre" required>
+                    <input type="text" class="form-control" id="inputNombre" name="inputNombre" pattern="[A-Za-z]+" maxlength="20" required pattern="[A-Za-z]+">
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputApellido" class="form-label">Apellido*</label>
-                    <input type="text" class="form-control" id="inputApellido" required>
+                    <input type="text" class="form-control" id="inputApellido" name="inputApellido" pattern="[A-Za-z]+" maxlength="20" required pattern="[A-Za-z]+">
                 </div>
                 <div class="col-4 my-2">
-                    <label for="inputNumero" class="form-label">Numero*</label>
-                    <input type="tel" class="form-control" id="inputNumero" required>
+                    <label for="inputNroTelefono" class="form-label">NroTelefono*</label>
+                    <input type="number" class="form-control" id="inputNroTelefono" maxlength="10" oninput="javascript:this.value.replace('.',''); if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                           name="inputNroTelefono"  required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="text" class="col-5 col-form-label">Tipo de documento</label>
+                    <div class="col-7">
+                        <select class="form-select" aria-label="Default select example" name="tipoDoc" required placeholder="tipo documento">
+
+                            <option value="1">DNI</option>
+                            <option value="2">PASAPORTE</option>
+                            <option value="3">LC</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="text" class="col-5 col-form-label">Nro de documento</label>
+                    <div class="col-7">
+                        <div class="input-group">
+                            <input id="inputNroDocumento" type="number" required="required" class="form-control"
+                                   name="inputNroDocumento">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-4 my-2">
                     <label for="inputEmail" class="form-label">email*</label>
-                    <input type="email" class="form-control" id="inputEmail" required>
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" required>
                 </div>
                 <div class="col-4 my-2">
-                    <label for="inputContrasenia" class="form-label">Contrasenia*</label>
-                    <input type="text" class="form-control" id="inputContrasenia" required>
+                    <label for="psw" class="form-label">Contrasenia*</label>
+                    <input type="password" class="form-control" id="psw" name="inputContrasenia" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                           title="Debe contener al menos 8 caracteres, incluyendo numeros, mayusculas y minusculas."
+                           required>
+
                 </div>
                 <div class="col-4 my-2">
-                    <label for="inputRepetirContrasenia" class="form-label">Repetir Contrasenia*</label>
-                    <input type="text" class="form-control" id="inputRepetirContrasenia" required>
+                    <label for="psw2" class="form-label">Repetir Contrasenia*</label>
+                    <input type="password" class="form-control" id="psw2" name="inputRepetirContrasenia"
+                           required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="inputFechaDeNacimiento" class="form-label">Fecha de nacimiento</label>
-                    <input type="date" class="form-control" id="inputFechaDeNacimiento" required>
+                    <input type="date" class="form-control" id="inputFechaDeNacimiento" max="{{fechaActual}}" name="inputFechaDeNacimiento"
+                           required>
                 </div>
                 <div class="col-4 my-2">
                     <label for="checkbox_0" class="col-form-label">Formas de comunicación:</label>
@@ -72,33 +86,179 @@
                     <div class="form-group row my-1">
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input name="checkbox" id="checkbox_0" type="checkbox" class="form-check-input" value="Email" checked>
+                                <input name="checkEmail" id="checkbox_0" type="checkbox" class="form-check-input"
+                                       value="Email" checked>
                                 <label for="checkbox_0" class="form-check-label">Email</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input name="checkbox" id="checkbox_1" type="checkbox" class="form-check-input" value="WhatsApp">
+                                <input name="checkWsp" id="checkbox_1" type="checkbox" class="form-check-input"
+                                       value="WhatsApp">
                                 <label for="checkbox_1" class="form-check-label">WhatsApp</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input name="checkbox" id="checkbox_2" type="checkbox" class="form-check-input" value="Sms">
+                                <input name="checkSms" id="checkbox_2" type="checkbox" class="form-check-input"
+                                       value="Sms">
                                 <label for="checkbox_2" class="form-check-label">Sms</label>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <br>
+                <h5>Ubicación</h5>
+                <br>
+                <div class="col-4 my-2">
+                    <label for="inputDireccion" class="form-label">Direccion*</label>
+                    <input type="text" class="form-control" id="inputDireccion" name="inputDireccion" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputLatitud" class="form-label">Latitud*</label>
+                    <input type="text" class="form-control" id="inputLatitud" name="inputLatitud" required>
+                </div>
+                <div class="col-4 my-2">
+                    <label for="inputLongitud" class="form-label">Longitud*</label>
+                    <input type="text" class="form-control" id="inputLongitud" name="inputLongitud" required>
+                </div>
+
                 <div class="row justify-content-center d-flex">
                     <div class="col-2 my-2">
-                        <button type="submit" name="registrarse" class="btn btn-primary rounded-pill text-secondary">Registrarse</button>
+                        <button id="submitBtn" type="submit" name="registrarse" class="btn btn-primary rounded-pill text-secondary" disabled>
+                            Registrarse
+                        </button>
                     </div>
                 </div>
 
             </div>
-
         </form>
-
+        <div id="message">
+            <h3>La contraseña debe contener lo siguiente:</h3>
+            <p id="letter" class="invalid">Una letra <b>minuscula</b></p>
+            <p id="capital" class="invalid">Una letra <b>mayuscula</b></p>
+            <p id="number" class="invalid">Un <b>numero</b></p>
+            <p id="length" class="invalid">Minimo: <b>8 caracteres</b></p>
+            <p id="repeatMatch" class="invalid">Las contraseñas deben coincidir</p>
+        </div>
     </div>
 </div>
+
+<script>
+    var myInput = document.getElementById("psw");
+    var myInput2 = document.getElementById("psw2")
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+    var repeatMatch = document.getElementById("repeatMatch");
+    var subBtn = document.getElementById("submitBtn");
+    var errMsg = document.getElementById("message")
+    // When the user clicks on the password field, show the message box
+    myInput.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput.onblur = function() {
+        document.getElementById("message").style.display = "none";
+    }
+
+    myInput2.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput2.onblur = function() {
+        document.getElementById("message").style.display = "none";
+    }
+
+    myInput2.onkeyup = function() {
+        //Validate password match
+        if(myInput.value === myInput2.value) {
+            repeatMatch.classList.remove("invalid");
+            repeatMatch.classList.add("valid")
+            repeatMatch.style.display = "none";
+            subBtn.disabled = false;
+            errMsg.style.display = "none";
+        } else {
+            repeatMatch.classList.remove("valid");
+            repeatMatch.classList.add("invalid")
+            repeatMatch.style.display = "block";
+            subBtn.disabled = true;
+            errMsg.style.display = "block";
+        }
+    }
+
+    // When the user starts to type something inside the password field
+    myInput.onkeyup = function() {
+
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+            letter.style.display = "none"
+            subBtn.disabled = false;
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+            letter.style.display = "block"
+            subBtn.disabled = true;
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+            capital.style.display = "none"
+            subBtn.disabled = false;
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+            capital.style.display = "block"
+            subBtn.disabled = true;
+
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+            number.style.display = "none"
+            subBtn.disabled = false;
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+            number.style.display = "block"
+            subBtn.disabled = true;
+
+        }
+
+        // Validate length
+        if(myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+            length.style.display = "none"
+            subBtn.disabled = false;
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+            length.style.display = "block"
+            subBtn.disabled = true;
+        }
+        if(myInput.value === myInput2.value) {
+            repeatMatch.classList.remove("invalid");
+            repeatMatch.classList.add("valid")
+            repeatMatch.style.display = "none";
+            subBtn.disabled = false;
+        } else {
+            repeatMatch.classList.remove("valid");
+            repeatMatch.classList.add("invalid")
+            repeatMatch.style.display = "block";
+            subBtn.disabled = true;
+        }
+    }
+</script>
 </body>
 
 </html>

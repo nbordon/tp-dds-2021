@@ -8,12 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
-    <!--
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/estilos.css">
 
@@ -22,21 +16,18 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
 
-    <script>
-        $(function(){
-            $("#includedContent").load("../navBar.html");
-        });
-    </script>
 
     <title>Patitas, Home</title>
 </head>
 
 <body>
-<div id="includedContent" class="container-fluid p-0"></div>
+{{>navbar.hbs}}
 <div class="container mt-4 justify-content-center table-bordered rounded bg-secondary shadow-lg border-radius">
     <div class="row">
         <div class="col d-flex justify-content-center">
             <h1 class="pt-4">Contacto</h1>
+            <h3 class="pt-4">Completa la informacion de cada contacto de emergencia.</h3>
+            <h3 class="pt-4">Este se va a utilizar si alguien encuentra tu mascota y lo quiere reportar.</h3>
         </div>
     </div>
     <div class="row">
@@ -50,7 +41,9 @@
                 </div>
                 <div class="col">
                     <div class="input-group">
-                        <input id="text" name="inputNombre" type="text" required="required" class="form-control rounded">
+
+                        <input id="text" name="inputNombre" type="text" required="required" class="form-control rounded" pattern="[A-Za-z]+">
+
                     </div>
                 </div>
             </div>
@@ -61,7 +54,7 @@
                 </div>
                 <div class="col">
                     <div class="input-group">
-                        <input id="text" name="inputApellido" type="text" required="required" class="form-control rounded">
+                        <input id="text" name="inputApellido" type="text" required="required" class="form-control rounded" pattern="[A-Za-z]+">
                     </div>
                 </div>
             </div>
@@ -90,8 +83,8 @@
 
             <div class="form-group row">
                 <div class="col d-flex justify-content-around">
-                    <button name="submit" type="submit" class="btn btn-primary px-5 my-4 rounded-pill">Guardar</button>
-                    <a href=../><button name="returnHome" type="button" class="btn btn-primary px-5 my-4 rounded-pill">Finalizar</button></a>
+                    <button name="submit" type="submit" class="btn btn-primary px-5 my-4 rounded-pill">Guardar este contacto.</button>
+                    <a href=../><button name="returnHome" type="button" class="btn btn-primary px-5 my-4 rounded-pill">Volver al Home</button></a>
 
                 </div>
             </div>

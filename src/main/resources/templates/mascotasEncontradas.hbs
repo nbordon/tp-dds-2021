@@ -13,17 +13,12 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"></script>
 
-    <script>
-    $(function(){
-      $("#includedContent").load("navBar.html");
-    });
-    </script>
 
     <title>Mascotas Encontradas</title>
 </head>
 
 <body>
-<div id="includedContent" class="container-fluid p-0"></div>
+{{>navbar.hbs}}
     <section>
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -74,7 +69,7 @@
                                                         src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/opening.jpg"
                                                         data-holder-rendered="true">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Mascota Encontrada</h5>
+                                                        <h5 class="card-title">{{mascotaEncontradaSinChapita.tipoMascota}} Encontrado</h5>
                                                         <p class="card-text">{{mascotaEncontradaSinChapita.descripcionEstadoEncotrado}}</p>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div class="btn-group">

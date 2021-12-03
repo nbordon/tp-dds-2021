@@ -55,5 +55,11 @@ input[type=submit] {
 .invalid:before {
     position: relative;
     left: -35px;
-    content: "&#10006;";
+    content: "X";
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

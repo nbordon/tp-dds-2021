@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <title>Dar en Adopcion</title>
+</head>
+<body>
+<html lang="es">
+
+
+
+<script>
+    function confirmarAccesoURL()
+    {
+        return confirm("¿Está seguro que desea enviar el formulario?");
+    }
+</script>
+{{>navbar.hbs}}
+<div class="container py-5 h-100">
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card bg-secondary shadow-2-strong" style="border-radius: 1rem;">
+                <form class="card-body p-5 text-center">
+                    <div class="mb-md-5 mt-md-4 pb-5">
+
+
+
+
+                        <h2 class="fw-bold mb-2">Cuestionario para dar en adopción una mascota</h2><br>
+                        <form action="/DarEnAdopcion2" method="post">
+                            <br>
+                            <h2>Requisitos</h2> <br>
+
+                            <div class="col-4 my-2">
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="eleccionEdadMascota" class="form-label">Se prefiere que la mascote viva en </label>
+                                <select class="form-select" aria-label="edadMascota" id="eleccionEdadMascota"required>
+                                    <option selected>Seleccionar tipo de vivienda</option>
+                                    <option value="1">Casa</option>
+                                    <option value="2">Departamento</option>
+                                </select>
+                            </div><br>
+
+
+
+                            <div class="col-10 my-2">
+
+                                <label>Se requiere de patio para la mascota?
+
+                                    <div class="form-check col-4 my-2">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Si
+                                        </label>
+                                    </div>
+                                    <div class="form-check col-4 my-2">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            No
+                                        </label>
+                                    </div><br>
+
+                                </label>
+
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="mascotaodio" class="form-label">Mascota con la cual no puede convivir</label>
+                                <select class="form-select" aria-label="edadMascota" id="mascotaodio"required>
+                                    <option selected>Seleccionar mascota</option>
+                                    <option value="1">Perro</option>
+                                    <option value="2">Gato</option>
+                                    <option value="3">Pajaro</option>
+                                    <option value="4">Cualquiera</option>
+                                    <option value="5">Ninguna</option>
+                                </select>
+                                <br>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label for="frecuencia" class="form-label">La mascota puede estar sola entre</label>
+                                <select class="form-select" aria-label="frecMascota" id="frecuencia"required>
+                                    <option selected>Seleccionar frecuencia</option>
+                                    <option value="1">Aprox 8hs por dia</option>
+                                    <option value="2">Aprox 4hs por dia</option>
+                                    <option value="3">Entre 4 y 8hs por día</option>
+                                </select>
+                                <br>
+                            </div>
+                            <div class="row setup-content" id="step-2">
+                                <div class="col-xs-6 col-md-offset-3">
+
+
+                                    <div class="form-outline mb-4">
+                                        <label for="mascotaedad" class="form-label">La mascota puede convivir con</label>
+                                        <select class="form-select" aria-label="edadMascota" id="mascotaedad"required>
+                                            <option selected>Seleccionar dueños</option>
+                                            <option value="1">Solo adultos</option>
+                                            <option value="2">Adultos y niños</option>
+
+                                        </select>
+                                        <br>
+                                    </div>
+
+
+
+
+                                </div>
+                                <a href="/detalle-mascota" onclick="return confirmarAccesoURL()"><button class="btn btn-primary rounded-pill btn-lg pull-right" type="submit">Enviar</button> </a>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

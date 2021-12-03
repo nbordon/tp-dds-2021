@@ -8,7 +8,6 @@ import static db.EntityManagerHelper.entityManager;
 
 public class Server {
     public static void main(String[] args) {
-        ProcessBuilder processBuilder = new ProcessBuilder();
         Spark.port(getHerokuAssignedPort());
         Router.init();
         System.out.println(System.getenv("JAVA_ENV"));
