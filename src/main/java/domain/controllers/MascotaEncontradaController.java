@@ -264,7 +264,7 @@ public class MascotaEncontradaController {
     }
 
 
-    private List<String> guardarImagenes(Request request, Integer id, String folder){
+    public static List<String> guardarImagenes(Request request, Integer id, String folder){
 
         List<String> listaFotos = new ArrayList<>();
         AtomicReference<Integer> counter = new AtomicReference<>(0);

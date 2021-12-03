@@ -13,20 +13,26 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.Part;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class ControllersMascota {
-    private Repositorio<Mascota> repositorio;
+    private Repositorio<Mascota> repositorioMascotas;
     private Repositorio<Persona> repoPersonas;
     private Repositorio<Usuario> repoUsuarios;
     private Repositorio<Organizacion> repoOrganizaciones;
 
     public ControllersMascota(){
-        this.repositorio = FactoryRepositorio.get(Mascota.class);
+        this.repositorioMascotas = FactoryRepositorio.get(Mascota.class);
         this.repoPersonas= FactoryRepositorio.get(Persona.class);
         this.repoOrganizaciones = FactoryRepositorio.get(Organizacion.class);
         this.repoUsuarios = FactoryRepositorio.get(Usuario.class);
@@ -44,7 +50,7 @@ public class ControllersMascota {
 
     public ModelAndView mostrar(Request request, Response response){
         HashMap<String, Object> parametros = new HashMap<>();
-        Mascota mascota = this.repositorio.buscar(new Integer(request.params("id")));
+        Mascota mascota = this.repositorioMascotas.buscar(new Integer(request.params("id")));
         LoginController.cargarUsuario(parametros,request);
         if(parametros.get("usuario")==null){
             response.redirect("/login");
@@ -60,6 +66,7 @@ public class ControllersMascota {
     }
 
     public ModelAndView registrar(Request request,Response response){
+
         Map<String, Object> parametros = new HashMap<>();
         Persona duenioMascota = this.obtenerPersona(request);
         Date date = Calendar.getInstance().getTime();
@@ -98,8 +105,6 @@ public class ControllersMascota {
         LocalDate fechaNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
         mascota.setFechaNacimiento(fechaNacimiento);
         mascota.setEstado(EstadoMascota.NO_PERDIDA);
-        List<String> fotos = Collections.singletonList(request.queryParams("fotos"));
-        fotos.forEach(foto->mascota.agregoFoto(foto));
         List<CaracterisiticaDeMascotaRequerida > caracteristicasRequerida = org.getCaracteristicasDeMascotasRequeridas();
         List<CaracteristicaDeMascota> listaCaracteristicasMascotaNueva = new ArrayList<>();
         mascota.setCaracteristicas(listaCaracteristicasMascotaNueva);
@@ -114,23 +119,21 @@ public class ControllersMascota {
     }
 
     public Response guardar(Request request, Response response){
+        request.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                new MultipartConfigElement("/tmp", 100000000, 100000000, 1024));
         Mascota mascota = new Mascota();
         asignarParametrosAMascota(mascota, request);
-        this.repositorio.agregar(mascota);
+        this.repositorioMascotas.agregar(mascota);
+        List<String> fotos = MascotaEncontradaController.guardarImagenes(request, mascota.getId(), "mascotas");
+        mascota.setFotosUrl(fotos);
+        repositorioMascotas.modificar(mascota);
         response.redirect("/listado-mascotas");
         return response;
     }
 
-    public ModelAndView crear(Request request, Response response) {
-        Map<String, Object> parametros = new HashMap<>();
-        Repositorio<Mascota> mascotaRepositorio = FactoryRepositorio.get(Mascota.class);
-        parametros.put("mascotas",mascotaRepositorio.buscarTodos());
-        return new ModelAndView(parametros,"listado-mascotas.hbs");
-    }
-
     public ModelAndView editar(Request request, Response response){
         Map<String, Object> parametros = new HashMap<>();
-        Mascota mascotaBuscada = this.repositorio.buscar(new Integer(request.params("id")));
+        Mascota mascotaBuscada = this.repositorioMascotas.buscar(new Integer(request.params("id")));
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String fechaActual = dateFormat.format(date);
@@ -143,16 +146,16 @@ public class ControllersMascota {
     }
 
     public Response editarMascota(Request request, Response response){
-        Mascota mascotaBuscada = this.repositorio.buscar(new Integer(request.params("id")));
+        Mascota mascotaBuscada = this.repositorioMascotas.buscar(new Integer(request.params("id")));
         asignarParametrosAMascota(mascotaBuscada,request);
-        this.repositorio.modificar(mascotaBuscada);
+        this.repositorioMascotas.modificar(mascotaBuscada);
         response.redirect("/listado-mascotas");
         return  response;
     }
 
     public Response eliminar(Request request, Response response){
-        Mascota mascota = this.repositorio.buscar(new Integer(request.params("id")));
-        this.repositorio.eliminar(mascota);
+        Mascota mascota = this.repositorioMascotas.buscar(new Integer(request.params("id")));
+        this.repositorioMascotas.eliminar(mascota);
         return response;
     }
 }

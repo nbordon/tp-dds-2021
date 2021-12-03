@@ -66,7 +66,7 @@ public class Router {
 
         Spark.get("/registrar-mascota", controllersMascota::registrar, Router.engine);
         Spark.post("/registrar-mascota", controllersMascota::guardar);
-        Spark.post("/registrar-mascota", controllersMascota::crear);
+        Spark.post("/registrar-mascota","multipart/form-data", controllersMascota::guardar);
 
         Spark.get("/intencion-adopcion",adopcionController::mostrarIntencion,Router.engine);
         Spark.post("/intencion-adopcion",adopcionController::guardarIntencion);

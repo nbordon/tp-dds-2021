@@ -20,6 +20,7 @@
 </head>
 <body>
 {{>navbar.hbs}}
+<div id="includedContent" class="container-fluid p-0"></div>
 <div class="container bg-secondary my-5 shadow-lg">
     <div class="row">
         {{#if mascota}}
@@ -27,7 +28,9 @@
         {{else}}
             <h1 class="h1 text-center">Registrar Mascota</h1>
         {{/if}}
-        <form class="" {{#if mascota}}
+        <form class=""
+              enctype="multipart/form-data"
+            {{#if mascota}}
               action="/editar-mascota/{{mascota.id}}" method="post" {{else}}
               action="/registrar-mascota" method="post" {{/if}}  >
             <div class="row">
@@ -64,8 +67,9 @@
                     </div>
                 </div>
                 <div class="col-4 my-2">
+
                     <label for="formFileMultiple" class="form-label">Fotos</label>
-                    <input class="form-control" type="file" id="formFileMultiple" name="fotos" {{#if mascota}}
+                    <input class="form-control" type="file" id="formFileMultiple" name="formFileMultiple" {{#if mascota}}
                            value="{{mascota.fotosUrl}}"{{/if}} accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/* " multiple required>
                 </div>
                 <div class="col-4 my-2">
