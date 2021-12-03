@@ -59,7 +59,7 @@ public class Router {
         Spark.post("/mascota-encontrada/rescatista/:idMascotaEncontrada", mascotaEncontradaController::infoRescatista, engine);
 
         Spark.get("/mascota-encontrada", mascotaEncontradaController::mascotaEncontrada, engine);
-        Spark.post("/mascota-encontrada/", mascotaEncontradaController::infoMascotaEncontradaSinChapita, engine);
+        Spark.post("/mascota-encontrada/","multipart/form-data", mascotaEncontradaController::infoMascotaEncontradaSinChapita, engine);
 
         Spark.get("/listado-mascotas", controllersMascota::mostrarTodos, Router.engine);
         Spark.get("/detalle-mascota/:id", controllersMascota::mostrar, Router.engine);

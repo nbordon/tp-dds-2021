@@ -34,7 +34,7 @@
                                 continuacion para generar una publicacion de mascota encontrada.</h5>
                         {{/if}}
 
-                        <form action="/mascota-encontrada/{{mascota.id}}" method="POST">
+                        <form action="/mascota-encontrada/{{mascota.id}}" enctype="multipart/form-data" method="POST">
                             <br>
                             <div class="row d-flex justify-content-left align-items-center h-100">
                                 <div class="col-4 my-2 ">
@@ -44,7 +44,7 @@
                                            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
                                            onchange="imageUploaded()"
                                     >
-                                    <div id="imgTest" name="imgTest"></div>
+                                    <div id="imgTest" name="imgTest" class="form-group "></div>
 
                                 </div>
                                 <div class="form-group">
