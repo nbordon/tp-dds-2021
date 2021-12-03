@@ -19,19 +19,25 @@ import domain.entities.publicaciones.EstadoPublicacion;
 import domain.entities.publicaciones.PublicacionMascotaEncontradaSinChapita;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
-import javassist.expr.Cast;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import utils.localizador.LocalizadorDeOrganizacion;
 
 
-
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MascotaEncontradaController {
     private Repositorio<Rescatista> repoRescatista;
@@ -172,6 +178,7 @@ public class MascotaEncontradaController {
     }
 
     public ModelAndView mascotaEncontrada(Request request, Response response) {
+
         if(request.params("idMascota") != null){
             Integer idMascota = new Integer(request.params("idMascota"));
             //mascota con chapita
@@ -213,7 +220,10 @@ public class MascotaEncontradaController {
         return new ModelAndView(parametros, "infoPersonal.hbs");
     }
 
-    public ModelAndView infoMascotaEncontradaSinChapita(Request request, Response response) {
+    public ModelAndView infoMascotaEncontradaSinChapita(Request request, Response response) throws ServletException, IOException {
+        request.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                new MultipartConfigElement("/tmp", 100000000, 100000000, 1024));
+
         MascotaEncontradaSinChapita mascotaEncontrada = new MascotaEncontradaSinChapita();
         mascotaEncontrada.setDescripcionEstadoEncotrado(request.queryParams("descEncontrada"));
         if(request.queryParams("tipoMascota").equals("PERRO")){
@@ -223,7 +233,7 @@ public class MascotaEncontradaController {
         }
         mascotaEncontrada.setSexo(request.queryParams("sexoMascota"));
         //TODO: agregar fecha en el form?
-        //mascotaEncontrada.setFechaEnLaQueSeEncontro();
+       // mascotaEncontrada.setFechaEnLaQueSeEncontro();
         Ubicacion ubicacion = guardarUbicacion(request);
         mascotaEncontrada.setUbicacion(ubicacion);
         //TODO: donde o como guardamos si tiene hogar de transito
@@ -234,21 +244,46 @@ public class MascotaEncontradaController {
             mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
         }
 
-        Foto foto = new Foto();
 
-        foto.setNombre(request.queryParams("formFileMultiple"));
-
-        mascotaEncontrada.setFotosB64(new ArrayList<>());
-        mascotaEncontrada.addFoto(foto);
-
-        repoFotos.agregar(foto);
         repoUbicacion.agregar(ubicacion);
         repoMascotaSinChapita.agregar(mascotaEncontrada);
+        List<String> fotos = guardarImagenes(request, mascotaEncontrada.getId(), "mascotasEncontradasSinChapita");
+        mascotaEncontrada.setFotos(fotos);
+        repoMascotaSinChapita.modificar(mascotaEncontrada);
         Map<String, Object> parametros = new HashMap<>();
 
         parametros.put("mascotaEncontrada", mascotaEncontrada);
 
         return new ModelAndView(parametros, "infoPersonal.hbs");
+    }
+
+
+    private List<String> guardarImagenes(Request request, Integer id, String folder){
+
+        List<String> listaFotos = new ArrayList<>();
+        AtomicReference<Integer> counter = new AtomicReference<>(0);
+        try {
+            request.raw().getParts().forEach(part -> {
+                if(part.getName().equals("formFileMultiple")){
+                    String filename = part.getSubmittedFileName();
+                    Part uploadedFile = part;
+                    try (final InputStream in = uploadedFile.getInputStream()) {
+                        String fileName =folder+"/"+ id.toString()+"_"+ counter.toString();
+                        Files.copy(in, Paths.get(System.getProperty("user.dir")+"/src/main/resources/public/fotos/"+fileName));
+                        uploadedFile.delete();
+                        counter.getAndSet(counter.get() + 1);
+                        listaFotos.add(fileName);
+                    } catch(Exception e){
+                        throw new RuntimeException(e);
+                    }
+
+                }
+            });
+
+        } catch (Exception e) {
+
+        }
+        return listaFotos;
     }
 
     private Ubicacion guardarUbicacion(Request request) {

@@ -63,3 +63,4 @@ out/
 /src/main/resources/public/scss
 !/src/main/resources/public/libs/bootstrap/dist/js
 
+src/main/resources/public/fotos/**/*
