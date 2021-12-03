@@ -49,7 +49,9 @@ public class PublicacionesController {
         Integer idPublicacionMascotaEncontrada = new Integer(request.params("id"));
         if (idPublicacionMascotaEncontrada != null) {
             PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscar(new Integer(request.params("id")));
-            Map<String, Object> parametros = new HashMap<>();
+            List<String> fotosMascotaEncontrada = publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita().getFotos();
+            HashMap<String, Object> parametros = new HashMap<>();
+            parametros.put("fotosMascota", fotosMascotaEncontrada);
             parametros.put("publicacionMascotaEncontrada", publicacionMascotaEncontradaSinChapita);
             parametros.put("mascotaEncontrada", publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita());
             return new ModelAndView(parametros, "detalle-mascota-encontrada.hbs");
