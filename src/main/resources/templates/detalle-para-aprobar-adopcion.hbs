@@ -19,18 +19,12 @@
             crossorigin="anonymous"></script>
     <script src="/js/generales.js"></script>
 
-    <script>
-    $(function(){
-      $("#includedContent").load("navBar.html");
-    });
-    </script>
-
 
     <title>Detalle Mascota</title>
 </head>
 
 <body class="bg-light">
-<div id="includedContent" class="container-fluid p-0"></div>
+{{>navbar.hbs}}
 
     <div class="container d-flex flex-column justify-content-center shadow-lg">
         <div class="row bg-dark p-3">
@@ -120,6 +114,11 @@
 
             <div class="col">
                 <button class="btn btn-lg btn-outline-danger px-5 mb-4 rounded-pill" onclick="desaprobarPublicacion('{{publicacionMascotaEnAdopcion.id}}')">Desaprobar</button>
+            </div>
+
+            <div class="col-1">
+                <a class="btn btn-lg btn-primary text-secondary px-5 mb-4 rounded-pill" href="/mascotas-en-adopcion"
+                   role="button">volver</a>
             </div>
 
         </div>

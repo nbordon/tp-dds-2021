@@ -4,6 +4,7 @@ import domain.entities.InformacionPersonal;
 import domain.entities.Mascotas.CaracterisiticaDeMascotaRequerida;
 import domain.entities.Mascotas.CaracteristicaDeMascota;
 import domain.entities.Mascotas.Mascota;
+import domain.entities.Mascotas.TipoMascota;
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.Organizacion.PreguntasAdopcion;
 import domain.entities.Organizacion.Respuesta;
@@ -95,6 +96,15 @@ public class AdopcionController {
         publicacionIntencion.setOrganizacion(organizacionAsociada);
         publicacionIntencion.setTitulo("Busco mascota");
         publicacionIntencion.setPersonaInteresada((Persona)parametros.get("persona"));
+        String tipoMascota = request.queryParams("tipoMascota");
+        if(tipoMascota.equals("PERRO")){
+            publicacionIntencion.setTipoMascota(TipoMascota.PERRO);
+        }else {
+            publicacionIntencion.setTipoMascota(TipoMascota.GATO);
+        }
+
+        publicacionIntencion.setSexoMascota(request.queryParams("radiosSexo"));
+
         caracteristicaDeMascotaList.forEach(caracteristicaDeMascota -> {
             this.repocarac.agregar(caracteristicaDeMascota);
         });
@@ -149,15 +159,20 @@ public class AdopcionController {
 
 
         PublicacionMascotaEnAdopcion publicacionAdopcion = new PublicacionMascotaEnAdopcion(mascotaEnAdopcion, comodidades);
+        publicacionAdopcion.setMascotaEnAdopcion(mascotaEnAdopcion);
+        publicacionAdopcion.setRespuestasPreguntas(comodidades);
         publicacionAdopcion.setOrganizacion(organizacionAsociada);
         publicacionAdopcion.setEstado(EstadoPublicacion.PENDIENTE);
         publicacionAdopcion.setTitulo(mascotaEnAdopcion.getApodo() + " esta buscando un hogar");
+
 
         comodidades.forEach(comodidad -> {
             this.repoComodidades.agregar(comodidad);
         });
 
         this.repoPublicacionesAdopcion.agregar(publicacionAdopcion);
+
+
 
 
         response.redirect("/listado-mascotas");
