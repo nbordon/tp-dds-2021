@@ -83,11 +83,42 @@ public class PublicacionesController {
         HashMap<String, Object> parametros = new HashMap<>();
         List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcion;
 
+        String sexoMascota;
+        if(request.queryParams("sexoMascota") != null) {
+            sexoMascota = request.queryParams("sexoMascota");
+            parametros.put("filtroSexo",sexoMascota);
+        } else {
+            sexoMascota = "";
+        }
+
+        String tipoMascota;
+        if(request.queryParams("tipoMascota") != null) {
+            tipoMascota = request.queryParams("tipoMascota");
+            parametros.put("filtroTipo",tipoMascota);
+        } else {
+            tipoMascota = "";
+        }
+
+        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+
         publicacionesMascotaEnAdopcion = repoPublicacionMascotaEnAdopcion.buscarTodos();
         List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcionAprobadas = new ArrayList<>();
         for (int i = 0; i < publicacionesMascotaEnAdopcion.size(); i++) {
-            if (publicacionesMascotaEnAdopcion.get(i).esAprobada()) {
-                publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+            Mascota mascotaEnAdopcion = publicacionesMascotaEnAdopcion.get(i).getMascotaEnAdopcion();
+            String mascotaEnAdopcionTipo = mascotaEnAdopcion.getTipoMascota().toString();
+            String mascotaEnAdopcionSexo = mascotaEnAdopcion.getSexo();
+
+            if(noHayFiltro) {
+                if (publicacionesMascotaEnAdopcion.get(i).esAprobada()) {
+                    publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                }
+            } else {
+                if (publicacionesMascotaEnAdopcion.get(i).esAprobada() &&
+                        sexoMascota.equals(mascotaEnAdopcionSexo) || sexoMascota.isEmpty() &&
+                        tipoMascota.equals(mascotaEnAdopcionTipo) || tipoMascota.isEmpty()
+                ) {
+                    publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                }
             }
         }
         parametros.put("publicacionesMascotaEnAdopcion", publicacionesMascotaEnAdopcionAprobadas);

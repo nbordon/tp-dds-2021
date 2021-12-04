@@ -23,6 +23,7 @@ public class Router {
                 .withHelper("isTrue", BooleanHelper.isTrue)
                 .withHelper("increment", IndexHelper.increment)
                 .withHelper("append", StringHelper.append)
+                .withHelper("selected", StringHelper.selected)
                 .build();
     }
 
