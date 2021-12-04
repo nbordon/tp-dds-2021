@@ -29,36 +29,33 @@
                             <div class="container" style="border-radius: 1rem;">
                                 <div class="m-5">
 
-                                    <div class="row container">
+                                    <form class="row" action="/mascotas-encontradas" method="get">
 
                                         <div class="col-3">
-
-                                            <select class="form-select form-select-sm mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                <option selected>Edad</option>
-                                                <option value="1">Cachorro</option>
-                                                <option value="2">Adulto</option>
-                                            </select>
-
-                                        </div>
-                                        <div class="col-3">
-                                            <select class="form-select form-select-sm mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                <option selected>Sexo</option>
-                                                <option value="1">Hembra</option>
-                                                <option value="2">Macho</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-3">
-                                            <select class="form-select form-select-sm mb-3"
-                                                    aria-label=".form-select-lg example">
-                                                <option selected>Tipo</option>
-                                                <option value="1">Perro</option>
-                                                <option value="2">Gato</option>
+                                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="filtroTipoMascota" name="tipoMascota">
+                                                <option value="" {{#if filtroTipo}}{{else}} selected {{/if}}>Tipo</option>
+                                                <option value="GATO" {{&selected "GATO" filtroTipo}}>Gato</option>
+                                                <option value="PERRO" {{&selected "PERRO" filtroTipo}}>Perro</option>
                                             </select>
                                         </div>
 
-                                    </div>
+                                        <div class="col-3">
+                                            <select class="form-select form-select-sm mb-3" aria-label=".form-select-lg example" id="filtroSexoMascota" name="sexoMascota">
+                                                <option value="" {{#if filtroSexo}}{{else}} selected {{/if}}>Sexo</option>
+                                                <option value="Hembra" {{&selected "Hembra" filtroSexo}}>Hembra</option>
+                                                <option value="Macho" {{&selected "Macho" filtroSexo}}>Macho</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-3"></div>
+
+                                        <div class="col-3">
+                                            <input type="submit" name="" class="btn btn-primary rounded-pill text-secondary" style="float:right;" value="Aplicar filtros">
+                                            <a href="/mascotas-encontradas" class="btn btn-danger rounded-pill" >Limpiar filtros</a>
+                                        </div>
+
+                                    </form>
+
                                     <div class="container">
                                         <div class="row row-cols-1 row-cols-md-3 g-2">
                                         {{#each publicacionesMascotaEncontradaSC}}
@@ -88,22 +85,6 @@
 
                                         </div>
 
-                                        <!--<div class="row">
-                                            <div class="col">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination justify-content-center m-4">
-                                                        <li class="page-item"><a class="page-link" href="#">Anterior</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item"><a class="page-link"
-                                                                href="#">Siguiente</a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-                                        </div>-->
                                     </div>
                                 </div>
                             </div>
@@ -113,17 +94,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Bootstrap core JavaScript
-                                      ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="../../js/vendor/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/holderjs@2.9.4/holder.js"></script> -->
-
 
     <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>

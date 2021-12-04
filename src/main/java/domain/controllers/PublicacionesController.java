@@ -1,6 +1,7 @@
 package domain.controllers;
 
 import domain.entities.Mascotas.Mascota;
+import domain.entities.Mascotas.MascotaEncontradaSinChapita;
 import domain.entities.Organizacion.Organizacion;
 import domain.entities.publicaciones.*;
 import domain.repositories.Repositorio;
@@ -35,12 +36,45 @@ public class PublicacionesController {
         HashMap<String, Object> parametros = new HashMap<>();
         List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
         publicacionesMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscarTodos();
+
+        String sexoMascota;
+        if(request.queryParams("sexoMascota") != null) {
+            sexoMascota = request.queryParams("sexoMascota");
+            parametros.put("filtroSexo",sexoMascota);
+        } else {
+            sexoMascota = "";
+        }
+
+        String tipoMascota;
+        if(request.queryParams("tipoMascota") != null) {
+            tipoMascota = request.queryParams("tipoMascota");
+            parametros.put("filtroTipo",tipoMascota);
+        } else {
+            tipoMascota = "";
+        }
+
+        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+
         List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapitaAprobadas = new ArrayList<>();
         for (int i = 0; i < publicacionesMascotaEncontradaSinChapita.size(); i++) {
-            if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada()) {
-                publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+            MascotaEncontradaSinChapita mascotaEncontradaSinChapita = publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita();
+            String mascotaEncontradaSinChapitaTipo = mascotaEncontradaSinChapita.getTipoMascota().toString();
+            String mascotaEncontradaSinChapitaSexo = mascotaEncontradaSinChapita.getSexo();
+
+            if(noHayFiltro) {
+                if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada()) {
+                    publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                }
+            } else {
+                if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada() &&
+                        sexoMascota.equals(mascotaEncontradaSinChapitaSexo) || sexoMascota.isEmpty() &&
+                        tipoMascota.equals(mascotaEncontradaSinChapitaTipo) || tipoMascota.isEmpty()
+                ) {
+                    publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                }
             }
         }
+
         parametros.put("publicacionesMascotaEncontradaSC", publicacionesMascotaEncontradaSinChapitaAprobadas);
         return new ModelAndView(parametros, "mascotasEncontradas.hbs");
     }
@@ -129,15 +163,46 @@ public class PublicacionesController {
     public ModelAndView mostrarTodosIntencionAdopcion(Request request, Response response) {
         HashMap<String, Object> parametros = new HashMap<>();
         List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcion;
+
+        String sexoMascota;
+        if(request.queryParams("sexoMascota") != null) {
+            sexoMascota = request.queryParams("sexoMascota");
+            parametros.put("filtroSexo",sexoMascota);
+        } else {
+            sexoMascota = "";
+        }
+
+        String tipoMascota;
+        if(request.queryParams("tipoMascota") != null) {
+            tipoMascota = request.queryParams("tipoMascota");
+            parametros.put("filtroTipo",tipoMascota);
+        } else {
+            tipoMascota = "";
+        }
+
+        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+
         publicacionesIntencionDeAdopcion = repoPublicacionesIntencionDeAdopcion.buscarTodos();
         List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcionAprobadas = new ArrayList<>();
         for (int i = 0; i < publicacionesIntencionDeAdopcion.size(); i++) {
-            if (publicacionesIntencionDeAdopcion.get(i).esAprobada()) {
-                publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+            String mascotaEnAdopcionTipo = publicacionesIntencionDeAdopcion.get(i).getTipoMascota().toString();
+            String mascotaEnAdopcionSexo = publicacionesIntencionDeAdopcion.get(i).getSexoMascota();
+
+            if(noHayFiltro) {
+                if (publicacionesIntencionDeAdopcion.get(i).esAprobada()) {
+                    publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                }
+            } else {
+                if (publicacionesIntencionDeAdopcion.get(i).esAprobada() &&
+                        sexoMascota.equals(mascotaEnAdopcionSexo) || sexoMascota.isEmpty() &&
+                        tipoMascota.equals(mascotaEnAdopcionTipo) || tipoMascota.isEmpty()
+                ) {
+                    publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                }
             }
         }
-        parametros.put("publicacionesIntencionAdopcion", publicacionesIntencionDeAdopcionAprobadas);
 
+        parametros.put("publicacionesIntencionAdopcion", publicacionesIntencionDeAdopcionAprobadas);
         return new ModelAndView(parametros, "publicacionesIntencion.hbs");
 
     }
