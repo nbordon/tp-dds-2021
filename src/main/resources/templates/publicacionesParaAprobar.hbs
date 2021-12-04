@@ -16,7 +16,7 @@
     <section>
         <div class="container-fluid">
 
-            <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="row flex-nowrap h-100">
                 {{#if usuario}}
                     <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                         {{>menu.hbs}}
@@ -76,10 +76,19 @@
                                         {{#each publicacionesParaAprobar}}
                                             <div class="col-md col-sm-12">
                                                 <div class="card box-shadow">
-                                                    <img class="card-img-top" alt="Thumbnail [100%x160]"
-                                                        style="height: 160px; width: 100%; display: block;"
-                                                        src="https://www.ecestaticos.com/image/clipping/79776773aab795837282c7d4947abaf7/opening.jpg"
-                                                        data-holder-rendered="true">
+                                                    {{#each fotosURL}}
+                                                        {{#if @first}}
+                                                            <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                                                 style="height: 160px; width: 100%; display: block;"
+                                                                 src="fotos/{{this}}"
+                                                                 data-holder-rendered="true">
+                                                        {{/if}}
+                                                        {{else}}
+                                                        <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                                             style="height: 160px; width: 100%; display: block;"
+                                                             src="images/foto-intencion.jpg"
+                                                             data-holder-rendered="true">
+                                                    {{/each}}
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{titulo}}</h5>
                                                         <p>{{descripcion}}</p>
@@ -97,7 +106,7 @@
 
 
                                         </div>
-                                        <div class="row">
+                                        <!--<div class="row">
                                             <div class="col">
                                                 <nav aria-label="Page navigation example">
                                                     <ul class="pagination justify-content-center m-4">
@@ -112,7 +121,7 @@
                                                     </ul>
                                                 </nav>
                                             </div>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>

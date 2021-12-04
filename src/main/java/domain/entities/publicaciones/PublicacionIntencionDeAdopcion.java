@@ -31,6 +31,7 @@ public class PublicacionIntencionDeAdopcion extends Publicacion {
     @Getter @Setter
     private String sexoMascota;
 
+
     public Persona getPersonaInteresada() {
         return personaInteresada;
     }

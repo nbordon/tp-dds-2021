@@ -7,6 +7,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <!--
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/estilos.css">
 
@@ -23,9 +30,6 @@
 <div class="container mt-4 justify-content-center table-bordered rounded bg-secondary shadow-lg border-radius">
 
     <h1 class="text-center pt-4">Informacion personal</h1>
-    <p class="text-center mx-5 pt-4">Agregue su información personal para dejar registrado sus datos y si alguien
-        reconoce a la mascota como suya o quiere adoptarla, puede ponerse en contacto contigo</p>
-
     <div class="row">
 
         <form class="col-8 m-4" action="/mascota-encontrada/rescatista/{{mascotaEncontrada.id}}" method="post">
@@ -122,8 +126,7 @@
                         <label for="checkbox_0" class="form-check-label">Email</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input name="checkWsp" id="checkbox_1" type="checkbox" class="form-check-input"
-                               value="WhatsApp">
+                        <input name="checkWsp" id="checkbox_1" type="checkbox" class="form-check-input" value="WhatsApp">
                         <label for="checkbox_1" class="form-check-label">WhatsApp</label>
                     </div>
                     <div class="form-check form-check-inline">
@@ -132,28 +135,19 @@
                     </div>
                 </div>
             </div>
-        </form>
     </div>
 
     <div class="form-group row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <button name="submit" type="submit" class="btn btn-primary mt-1 mb-4 mx-4 rounded-pill">Finalizar</button>
-            <button type="submit" onclick="goHome()" class="btn btn-danger rounded-pill mt-1 mb-4 mx-4">Cancelar</button>
+        <div class="offset-5 col-7">
+            <button name="submit" type="submit" class="btn btn-primary mb-4 rounded-pill">Continuar</button>
+            <a class="btn btn-danger mb-4 rounded-pill" href="/">Cancelar</a>
         </div>
-        <div class="col-4"></div>
+
     </div>
     </form>
 </div>
 </div>
 
-
-<script>
-    function goHome() {
-        window.location.replace('/home');
-        return false;
-    }
-</script>
 <script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </body>

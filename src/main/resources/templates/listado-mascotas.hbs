@@ -69,7 +69,13 @@
                                         <button type="button" class="btn" onclick="confirmarEliminacion('{{id}}')"><i class="bi bi-trash-fill px-2 text-danger"></i></button>
                                     </th>
                                     <th>
-                                    <td>{{fotosUrl}}</td>
+                                    <td>{{#each this.fotosUrl}}
+                                    {{#if @first}}
+                                    <img class="card-img-top" alt="Thumbnail [100%x160]"
+                                         style="height: 40px; width: 40px; display: block; border-radius:50%"
+                                         src="fotos/{{this}}"
+                                         data-holder-rendered="true">
+                                {{/if}} {{/each}}</td>
                                     </th>
                                     <td>{{nombre}}</td>
                                     <td>{{tipoMascota}}</td>
