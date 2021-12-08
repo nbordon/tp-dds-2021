@@ -1,5 +1,6 @@
 package test;
 
+import Api.services.entities.Hogar;
 import Api.services.entities.Ubicacion;
 import db.EntityManagerHelper;
 import domain.entities.*;
@@ -162,6 +163,18 @@ public class TestInitInfo extends AbstractPersistenceTest implements WithGlobalE
         administrador.setContrasenia(passwordAdmin.getPassword());
         administrador.setOrganizacionPerteneciente(organizacion1);
 
+        Hogar hogar = new Hogar();
+        hogar.setNombre("Hogar test 1");
+        hogar.setCapacidad(50);
+        hogar.setPatio(true);
+        hogar.setLugares_disponibles(40);
+        hogar.setTelefono("111555444");
+        Ubicacion ubicacionHogar = new Ubicacion();
+        ubicacionHogar.setLongitud(-34.6078557);
+        ubicacionHogar.setLatitud(-58.3962143);
+        ubicacionHogar.setDireccion("Calle falsa 123, Caba");
+        hogar.setUbicacion(ubicacionHogar);
+
         /*
         * Persistencia
         * */
@@ -178,6 +191,8 @@ public class TestInitInfo extends AbstractPersistenceTest implements WithGlobalE
         EntityManagerHelper.getEntityManager().persist(persona);
         EntityManagerHelper.getEntityManager().persist(voluntario);
         EntityManagerHelper.getEntityManager().persist(administrador);
+        EntityManagerHelper.getEntityManager().persist(ubicacionHogar);
+        EntityManagerHelper.getEntityManager().persist(hogar);
         EntityManagerHelper.commit();
     }
 
