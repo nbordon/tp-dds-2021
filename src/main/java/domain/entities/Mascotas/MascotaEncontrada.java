@@ -18,7 +18,6 @@ public abstract class MascotaEncontrada extends EntidadPersistente {
     private List<String> fotos;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
-
     @Getter @Setter
     private TipoMascota tipoMascota;
     @Getter @Setter
