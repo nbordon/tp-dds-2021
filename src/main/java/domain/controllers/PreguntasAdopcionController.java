@@ -149,8 +149,6 @@ public class PreguntasAdopcionController {
         PreguntasAdopcion pregunta = this.preguntasAdopcionRepositorio.buscar(Integer.parseInt(request.params("id")));
 
         if(!admin.getOrganizacionPerteneciente().getPreguntasRequeridasAdopcion().contains(pregunta)) {
-            // Si la caracteristica no pertenece a la organización del administrador, deberiamos mostrar un mensaje de error, un 404 o algo
-            // por ahora lo mando al login de nuevo
             response.redirect("/login");
             return new ModelAndView(null, "login.hbs");
         }
@@ -219,8 +217,6 @@ public class PreguntasAdopcionController {
         PreguntasAdopcion pregunta = this.preguntasAdopcionRepositorio.buscar(Integer.parseInt(request.params("id")));
 
         if(!admin.getOrganizacionPerteneciente().getPreguntasRequeridasAdopcion().contains(pregunta)) {
-            // Si la caracteristica no pertenece a la organización del administrador, deberiamos mostrar un mensaje de error, un 404 o algo
-            // por ahora lo mando al login de nuevo
             response.redirect("/login");
             return response;
         }

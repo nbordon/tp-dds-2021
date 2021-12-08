@@ -120,7 +120,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         persona.setNombreUsuario("gaboxxz");
         persona.setContrasenia("12345678");
         InformacionPersonal infoPersonal = new InformacionPersonal();
-        //infoPersonal.setTipoDoc(TipoDeDocumento.DNI);
         infoPersonal.setNroDocumento(ThreadLocalRandom.current().nextInt());
         infoPersonal.setEmail("gabot@gmail.com");
         infoPersonal.setApellido("Test");
@@ -351,7 +350,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         otraPersona.setContrasenia("12345678");
         otraPersona.setOrganizacion(organizacion);
         InformacionPersonal otraInfoPersonal = new InformacionPersonal();
-        //otraInfoPersonal.setTipoDoc(TipoDeDocumento.DNI);
         otraInfoPersonal.setNroDocumento(ThreadLocalRandom.current().nextInt());
         otraInfoPersonal.setEmail("pepito@gmail.com");
         otraInfoPersonal.setApellido("lopez");
@@ -400,7 +398,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         caracteristicasC1.add(c1);
         m.setCaracteristicas(caracteristicasC1);
 
-
         PublicacionMascotaEnAdopcion publicacionMascotaEnAdopcion = new PublicacionMascotaEnAdopcion();
         publicacionMascotaEnAdopcion.setMascotaEnAdopcion(m);
         publicacionMascotaEnAdopcion.setOrganizacion(organizacion);
@@ -431,7 +428,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         infoPersonalPersonaInteresada.setFechaNacimiento(LocalDate.of(1994, 7, 12));
         personaInteresada.setInformacionPersonal(infoPersonalPersonaInteresada);
 
-
         PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion = new PublicacionIntencionDeAdopcion();
         publicacionIntencionDeAdopcion.setOrganizacion(organizacion);
         publicacionIntencionDeAdopcion.setTitulo("Busco gatito");
@@ -439,7 +435,6 @@ public class ContextTest extends AbstractPersistenceTest implements WithGlobalEn
         publicacionIntencionDeAdopcion.cargarCaracteristicaMascotaDeseada(c1);
         publicacionIntencionDeAdopcion.cargarComodidad(respuestaComodidad2);
         publicacionIntencionDeAdopcion.setEstado(EstadoPublicacion.PENDIENTE);
-
 
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(organizacion);

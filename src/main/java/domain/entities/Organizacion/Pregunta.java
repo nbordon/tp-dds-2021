@@ -16,7 +16,6 @@ public class Pregunta extends EntidadPersistente {
             joinColumns = @JoinColumn(name="pregunta_id",referencedColumnName = "id"))
     private List<String> valor;
 
-    //TODO: ver como manejamos esta relacion.
     public void setId(Integer id) {  }
 
     public Respuesta contestar(String unValor){

@@ -53,7 +53,6 @@ public class NotificadorRecomendacionController {
             Integer segundos = 20;
 
             temporizador.scheduleAtFixedRate(notificador, new Date(), 1000 * segundos);
-            //Thread.sleep(1000*60);
         }
         response.redirect("/home");
         return response;
