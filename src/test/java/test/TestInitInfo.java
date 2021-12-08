@@ -25,19 +25,19 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestInitInfo extends AbstractPersistenceTest implements WithGlobalEntityManager{
     @Test
-
+    @Ignore
     public void contextUp() {
         assertNotNull(entityManager());
     }
 
     @Test
-
+    @Ignore
     public void contextUpWithTransaction() throws Exception {
         withTransaction(() -> {
         });
     }
     @Test
-
+    @Ignore
     public void initDataOrganizacionPatitasFelices() throws VerificadorException {
         /*
         * Caracteristicas de mascota
@@ -197,7 +197,7 @@ public class TestInitInfo extends AbstractPersistenceTest implements WithGlobalE
     }
 
     @Test
-
+    @Ignore
     public void initDataOrganizacionMascotasSOS() throws VerificadorException {
         /*
          * Caracteristicas de mascota
