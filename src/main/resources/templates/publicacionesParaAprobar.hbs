@@ -76,19 +76,21 @@
                                         {{#each publicacionesParaAprobar}}
                                             <div class="col-md col-sm-12">
                                                 <div class="card box-shadow">
+                                                    {{#if fotosURL}}
                                                     {{#each fotosURL}}
                                                         {{#if @first}}
                                                             <img class="card-img-top" alt="Thumbnail [100%x160]"
                                                                  style="height: 160px; width: 100%; display: block;"
                                                                  src="fotos/{{this}}"
                                                                  data-holder-rendered="true">
-                                                        {{else}}
+                                                        {{/if}}
+                                                    {{/each}}
+                                                    {{else}}
                                                         <img class="card-img-top" alt="Thumbnail [100%x160]"
                                                              style="height: 160px; width: 100%; display: block;"
                                                              src="https://t1.ea.ltmcdn.com/es/images/8/1/2/adoptar_mascotas_por_internet_1218_600.jpg"
                                                              data-holder-rendered="true">
-                                                        {{/if}}
-                                                    {{/each}}
+                                                    {{/if}}
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{titulo}}</h5>
                                                         <p>{{descripcion}}</p>
