@@ -61,7 +61,6 @@ public class TestMascotaEncontradaSinChapita {
         organizacion3.setContenedorPublicaciones(new ContenedorPublicaciones());
     }
 
-    //TODO: Fix. El metodo notificar de mascota usa la db y falla en los tests.
     @Test @Ignore
     public void unaMascotaEncontradaEnCABACentro(){
         Contacto contacto = new Contacto();
@@ -96,10 +95,6 @@ public class TestMascotaEncontradaSinChapita {
         ubicacion4.longitud = -58.489597;
         mascota.setRescatista(rescatista);
         mascota.setUbicacion(ubicacion4);
-
-       /* mascota.addOrganizacionALocalizador(organizacion1);
-        mascota.addOrganizacionALocalizador(organizacion2);
-        mascota.addOrganizacionALocalizador(organizacion3);*/
 
         mascota.notificar();
 

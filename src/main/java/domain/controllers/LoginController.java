@@ -99,7 +99,6 @@ public class LoginController {
         }
     }
 
-
     public static void cargarPerfiles(HashMap<String, Object> perfiles, Request request) {
         try {
             Administrador administrador = repositorioAdministradores.buscar(request.session().attribute("id"));

@@ -26,7 +26,6 @@ public class Organizacion extends EntidadPersistente {
     private Ubicacion ubicacion;
     @OneToMany
     private List<PreguntasAdopcion> preguntasRequeridasAdopcion;
-    //TODO: como se carga la lista o el contenedor cuando se trae la organizacion de la db
     @Transient
     private List<Publicacion> publicacionesEnEsperaDeAprobacion;
     @Transient
@@ -98,17 +97,12 @@ public class Organizacion extends EntidadPersistente {
         this.ubicacion = ubicacion;
     }
 
-    // TODO: ver cual de estas 3 usamos y cual borramos, no tiene mucho sentido tener las 3 pero las deje por el test
     public void addCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida caracteristica) {
         this.caracteristicasDeMascotasRequeridas.add(caracteristica);
     }
 
     public void addCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida... caracteristicas) {
         this.caracteristicasDeMascotasRequeridas.addAll(Arrays.stream(caracteristicas).collect(Collectors.toList()));
-    }
-
-    public void addCaracteristicaDeMascotasRequerida(List<CaracterisiticaDeMascotaRequerida> caracteristicas) {
-        this.caracteristicasDeMascotasRequeridas.addAll(caracteristicas);
     }
 
     public void removeCaracteristicaDeMascotasRequerida(CaracterisiticaDeMascotaRequerida caracteristicaDeMascota) {

@@ -120,7 +120,6 @@ public class TestRecomendacionesDB {
         colorPrincipal = new CaracterisiticaDeMascotaRequerida();
         colorPrincipal.setValor(opciones1);
         colorPrincipal.setDescripcion("color principal");
-        //colorPrincipal.setId(1);
 
         opciones2.add("marron");
         opciones2.add("negro");
@@ -128,14 +127,12 @@ public class TestRecomendacionesDB {
         colorSecundario = new CaracterisiticaDeMascotaRequerida();
         colorSecundario.setValor(opciones2);
         colorSecundario.setDescripcion("color secundario");
-        //colorSecundario.setId(2);
 
         opciones3.add("si");
         opciones3.add("no");
         estaCastrada = new CaracterisiticaDeMascotaRequerida();
         estaCastrada.setValor(opciones3);
         estaCastrada.setDescripcion("esta castrada");
-        //estaCastrada.setId(3);
 
         administrador = new Administrador("admin@admin.com");
         organizacion = new Organizacion();
@@ -182,12 +179,10 @@ public class TestRecomendacionesDB {
         patio = new Pregunta();
         patio.setValor(opcionesComodidades);
         patio.setDescripcion("con patio");
-        //patio.setId(4);
 
         juguetes = new Pregunta();
         juguetes.setValor(opcionesComodidades);
         juguetes.setDescripcion("con juguetes");
-        //juguetes.setId(5);
 
 
         //Completamos caracteristicas e intencion de mascota de la intencion de adopcion
