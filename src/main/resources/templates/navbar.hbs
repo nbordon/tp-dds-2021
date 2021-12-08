@@ -2,6 +2,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="rounded-circle bg-secondary mx-2">
             <img class="navbar-brand mx-auto"
+                 {{#if tercerNivel}}
+                 src="../../images/logo.svg"
+                 {{/if}}
                  {{#if segundoNivel}}
                  src="../images/logo.svg"
                  {{else}}

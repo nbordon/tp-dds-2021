@@ -169,7 +169,7 @@ public class MascotaEncontradaController {
 
         parametros.put("hogar", mascota.getHogarDeTransito());
         parametros.put("mascotaEncontrada", mascota.getMascota());
-
+        parametros.put("tercerNivel",true);
 
 
         return new ModelAndView(parametros, "mascotaEncontradaExito.hbs");
