@@ -241,10 +241,10 @@ public class MascotaEncontradaController {
         }
 
         repoUbicacion.agregar(ubicacion);
-        repoMascotaSinChapita.agregar(mascotaEncontrada);
+
         List<String> fotos = guardarImagenes(request, mascotaEncontrada.getId(), "mascotasEncontradasSinChapita");
         mascotaEncontrada.setFotos(fotos);
-        repoMascotaSinChapita.modificar(mascotaEncontrada);
+        repoMascotaSinChapita.agregar(mascotaEncontrada);
         Map<String, Object> parametros = new HashMap<>();
 
         parametros.put("mascotaEncontrada", mascotaEncontrada);
