@@ -248,6 +248,7 @@ public class MascotaEncontradaController {
         Map<String, Object> parametros = new HashMap<>();
 
         parametros.put("mascotaEncontrada", mascotaEncontrada);
+        parametros.put("segundoNivel",true);
 
         return new ModelAndView(parametros, "infoPersonal.hbs");
     }
