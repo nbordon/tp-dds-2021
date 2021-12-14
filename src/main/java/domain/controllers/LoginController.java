@@ -104,7 +104,10 @@ public class LoginController {
             Administrador administrador = repositorioAdministradores.buscar(request.session().attribute("id"));
             Persona persona = repositorioPersonas.buscar(request.session().attribute("id"));
             UsuarioVoluntario usuarioVoluntario = repositorioVolunatarios.buscar(request.session().attribute("id"));
-
+            Usuario usuario = usuarioRepositorio.buscar(request.session().attribute("id"));
+            if (usuario != null) {
+                perfiles.put("usuario",usuario);
+            }
             if (administrador != null) {
                 perfiles.put(USUARIO_ADMINISTRADOR, administrador);
             }

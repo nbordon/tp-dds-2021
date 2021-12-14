@@ -102,7 +102,7 @@ public class Router {
         Spark.post("/pregunta", preguntasAdopcionController::agregar);
 
         Spark.get("/editar-pregunta/:id", preguntasAdopcionController::editar, Router.engine);
-        Spark.post("/editar-pregunta/:id", preguntasAdopcionController::modificar);
+        Spark.post("/editar-pregunta/:id", "multipart/form-data", preguntasAdopcionController::modificar);
 
         Spark.delete("/pregunta/:id", preguntasAdopcionController::eliminar);
 

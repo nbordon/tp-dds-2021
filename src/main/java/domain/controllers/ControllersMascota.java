@@ -60,7 +60,10 @@ public class ControllersMascota {
         parametros.put("caracteristicas",organizacionAsociada.getCaracteristicasDeMascotasRequeridas());
         if(mascota != null){
             parametros.put("mascota",mascota);
+            parametros.put("esMacho",mascota.getSexo().equals("Macho"));
+            parametros.put("esHembra",mascota.getSexo().equals("Hembra"));
         }
+        parametros.put("segundoNivel",true);
         return new ModelAndView(parametros, "detalle-mascota.hbs");
 
     }
@@ -100,8 +103,13 @@ public class ControllersMascota {
         mascota.setApodo(request.queryParams("apodoMascota"));
         mascota.setDescripcionFisica(request.queryParams("descripcionFisica"));
         mascota.setSexo(request.queryParams("radiosSexo"));
-        TipoMascota tipo = TipoMascota.valueOf(request.queryParams("tipoMascota"));
-        mascota.setTipoMascota(tipo);
+        if(request.queryParams("tipoMascota") != null){
+            if(request.queryParams("tipoMascota").equals("PERRO")){
+                mascota.setTipoMascota(TipoMascota.PERRO);
+            }else{
+                mascota.setTipoMascota(TipoMascota.GATO);
+            }
+        }
         LocalDate fechaNacimiento = LocalDate.parse(request.queryParams("fechaDeNacimiento"));
         mascota.setFechaNacimiento(fechaNacimiento);
         mascota.setEstado(EstadoMascota.NO_PERDIDA);
@@ -132,11 +140,24 @@ public class ControllersMascota {
     }
 
     public ModelAndView editar(Request request, Response response){
-        Map<String, Object> parametros = new HashMap<>();
+        HashMap<String, Object> parametros = new HashMap<>();
+        try {
+            LoginController.cargarPerfiles(parametros, request);
+        } catch (Exception e) {
+            System.out.println("no hay perfiles");
+        }
         Mascota mascotaBuscada = this.repositorioMascotas.buscar(new Integer(request.params("id")));
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd");
         String fechaActual = dateFormat.format(date);
+        if(mascotaBuscada.getSexo().equals("Macho")){
+            parametros.put("esMacho",true);
+            parametros.put("esHembra",false);
+        }else {
+            parametros.put("esMacho",false);
+            parametros.put("esHembra",true);
+        }
+        parametros.put("segundoNivel",true);
         parametros.put("fechaActual",fechaActual);
         parametros.put("mascota",mascotaBuscada);
         Persona duenioMascota = this.obtenerPersona(request);
@@ -146,6 +167,8 @@ public class ControllersMascota {
     }
 
     public Response editarMascota(Request request, Response response){
+        request.raw().setAttribute("org.eclipse.jetty.multipartConfig",
+                new MultipartConfigElement("/tmp", 100000000, 100000000, 1024));
         Mascota mascotaBuscada = this.repositorioMascotas.buscar(new Integer(request.params("id")));
         asignarParametrosAMascota(mascotaBuscada,request);
         this.repositorioMascotas.modificar(mascotaBuscada);

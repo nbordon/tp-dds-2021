@@ -16,12 +16,8 @@ public abstract class MascotaEncontrada extends EntidadPersistente {
     @ElementCollection
     @CollectionTable(name="masco_encontrda_fotos")
     private List<String> fotos;
-    @OneToMany
-    @JoinTable(name = "fotos_mascota_encontrada")
-    private List<Foto> fotosB64;
     private Date fechaEnLaQueSeEncontro;
     private String descripcionEstadoEncotrado;
-
     @Getter @Setter
     private TipoMascota tipoMascota;
     @Getter @Setter
@@ -79,17 +75,5 @@ public abstract class MascotaEncontrada extends EntidadPersistente {
 
     public Object getMascota(){
         return null;
-    }
-
-    public List<Foto> getFotosB64() {
-        return fotosB64;
-    }
-
-    public void setFotosB64(List<Foto> fotosB64) {
-        this.fotosB64 = fotosB64;
-    }
-
-    public void addFoto(Foto foto){
-        this.fotosB64.add(foto);
     }
 }

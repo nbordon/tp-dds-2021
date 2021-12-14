@@ -76,6 +76,7 @@
                                         {{#each publicacionesParaAprobar}}
                                             <div class="col-md col-sm-12">
                                                 <div class="card box-shadow">
+                                                    {{#if fotosURL}}
                                                     {{#each fotosURL}}
                                                         {{#if @first}}
                                                             <img class="card-img-top" alt="Thumbnail [100%x160]"
@@ -83,12 +84,13 @@
                                                                  src="fotos/{{this}}"
                                                                  data-holder-rendered="true">
                                                         {{/if}}
-                                                        {{else}}
+                                                    {{/each}}
+                                                    {{else}}
                                                         <img class="card-img-top" alt="Thumbnail [100%x160]"
                                                              style="height: 160px; width: 100%; display: block;"
-                                                             src="images/foto-intencion.jpg"
+                                                             src="https://t1.ea.ltmcdn.com/es/images/8/1/2/adoptar_mascotas_por_internet_1218_600.jpg"
                                                              data-holder-rendered="true">
-                                                    {{/each}}
+                                                    {{/if}}
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{titulo}}</h5>
                                                         <p>{{descripcion}}</p>
@@ -102,26 +104,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{/each}}
-
-
+                                        {{/each}}
                                         </div>
-                                        <!--<div class="row">
-                                            <div class="col">
-                                                <nav aria-label="Page navigation example">
-                                                    <ul class="pagination justify-content-center m-4">
-                                                        <li class="page-item"><a class="page-link" href="#">Anterior</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item"><a class="page-link"
-                                                                href="#">Siguiente</a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
-                                        </div>-->
                                     </div>
                                 </div>
                             </div>

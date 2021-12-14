@@ -3,6 +3,7 @@ package domain.controllers;
 import domain.entities.Mascotas.Mascota;
 import domain.entities.Mascotas.MascotaEncontradaSinChapita;
 import domain.entities.Organizacion.Organizacion;
+import domain.entities.Usuario;
 import domain.entities.publicaciones.*;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
@@ -34,6 +35,11 @@ public class PublicacionesController {
 
     public ModelAndView mostrarTodosEncontradasSC(Request request, Response response) {
         HashMap<String, Object> parametros = new HashMap<>();
+        try {
+            LoginController.cargarPerfiles(parametros, request);
+        } catch (Exception e) {
+            System.out.println("no hay perfiles");
+        }
         List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapita;
         publicacionesMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscarTodos();
 
@@ -85,6 +91,12 @@ public class PublicacionesController {
             PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscar(new Integer(request.params("id")));
             List<String> fotosMascotaEncontrada = publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita().getFotos();
             HashMap<String, Object> parametros = new HashMap<>();
+            try {
+                LoginController.cargarPerfiles(parametros, request);
+            } catch (Exception e) {
+                System.out.println("no hay perfiles");
+            }
+            parametros.put("segundoNivel",true);
             parametros.put("fotosMascota", fotosMascotaEncontrada);
             parametros.put("publicacionMascotaEncontrada", publicacionMascotaEncontradaSinChapita);
             parametros.put("mascotaEncontrada", publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita());
@@ -101,7 +113,14 @@ public class PublicacionesController {
             Integer idMascotaEnAdopcion = publicacionMascotaEnAdopcion.getMascotaEnAdopcion().getId();
             if (idMascotaEnAdopcion != null) {
                 Mascota mascotaEnAdopcion = repoMascotas.buscar(idMascotaEnAdopcion);
-                Map<String, Object> parametros = new HashMap<>();
+                HashMap<String, Object> parametros = new HashMap<>();
+                try {
+                    LoginController.cargarPerfiles(parametros, request);
+                } catch (Exception e) {
+                    System.out.println("no hay perfiles");
+                }
+                parametros.put("segundoNivel",true);
+                parametros.put("fotosMascota",mascotaEnAdopcion.getFotosUrl());
                 parametros.put("publicacionMascotaEnAdopcion", publicacionMascotaEnAdopcion);
                 parametros.put("mascota", mascotaEnAdopcion);
                 parametros.put("caracteristicas", mascotaEnAdopcion.getCaracteristicas());
@@ -271,8 +290,14 @@ public class PublicacionesController {
                     List<String> fotosMascota;
                     if (idMascotaEnAdopcion != null) {
                         Mascota mascotaEnAdopcion = repoMascotas.buscar(idMascotaEnAdopcion);
-                        Map<String, Object> parametros = new HashMap<>();
+                        HashMap<String, Object> parametros = new HashMap<>();
+                        try {
+                            LoginController.cargarPerfiles(parametros, request);
+                        } catch (Exception e) {
+                            System.out.println("no hay perfiles");
+                        }
                         fotosMascota = mascotaEnAdopcion.getFotosUrl();
+                        parametros.put("segundoNivel",true);
                         parametros.put("fotosMascota",fotosMascota);
                         parametros.put("publicacionMascotaEnAdopcion", publicacionMascotaEnAdopcion);
                         parametros.put("mascota", mascotaEnAdopcion);
@@ -283,16 +308,28 @@ public class PublicacionesController {
 
                 case 2:
                     PublicacionMascotaEncontradaSinChapita publicacionMascotaEncontradaSinChapita = repoPublicacionMascotaEncontradaSC.buscar(new Integer(request.params("id")));
-                    Map<String, Object> parametros = new HashMap<>();
+                    HashMap<String, Object> parametros = new HashMap<>();
+                    try {
+                        LoginController.cargarPerfiles(parametros, request);
+                    } catch (Exception e) {
+                        System.out.println("no hay perfiles");
+                    }
                     List<String> fotosMascotaEncontrada = publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita().getFotos();
                     parametros.put("fotosMascota", fotosMascotaEncontrada);
+                    parametros.put("segundoNivel",true);
                     parametros.put("publicacionMascotaEncontrada", publicacionMascotaEncontradaSinChapita);
                     parametros.put("mascotaEncontrada",publicacionMascotaEncontradaSinChapita.getMascotaEncontradaSinChapita());
                     return new ModelAndView(parametros, "detalle-para-aprobar-encontrada.hbs");
 
                 case 3:
                     PublicacionIntencionDeAdopcion publicacionIntencionDeAdopcion = repoPublicacionesIntencionDeAdopcion.buscar(new Integer(request.params("id")));
-                    Map<String, Object> parametros2 = new HashMap<>();
+                    HashMap<String, Object> parametros2 = new HashMap<>();
+                    try {
+                        LoginController.cargarPerfiles(parametros2, request);
+                    } catch (Exception e) {
+                        System.out.println("no hay perfiles");
+                    }
+                    parametros2.put("segundoNivel",true);
                     parametros2.put("publicacionIntencion", publicacionIntencionDeAdopcion);
                     parametros2.put("personaInteresada",publicacionIntencionDeAdopcion.getPersonaInteresada());
                     parametros2.put("caracteristicas",publicacionIntencionDeAdopcion.getRespuestasCaracteristicasDeMascota());

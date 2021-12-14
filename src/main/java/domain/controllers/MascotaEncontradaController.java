@@ -169,7 +169,7 @@ public class MascotaEncontradaController {
 
         parametros.put("hogar", mascota.getHogarDeTransito());
         parametros.put("mascotaEncontrada", mascota.getMascota());
-
+        parametros.put("tercerNivel",true);
 
 
         return new ModelAndView(parametros, "mascotaEncontradaExito.hbs");
@@ -241,13 +241,14 @@ public class MascotaEncontradaController {
         }
 
         repoUbicacion.agregar(ubicacion);
-        repoMascotaSinChapita.agregar(mascotaEncontrada);
+
         List<String> fotos = guardarImagenes(request, mascotaEncontrada.getId(), "mascotasEncontradasSinChapita");
         mascotaEncontrada.setFotos(fotos);
-        repoMascotaSinChapita.modificar(mascotaEncontrada);
+        repoMascotaSinChapita.agregar(mascotaEncontrada);
         Map<String, Object> parametros = new HashMap<>();
 
         parametros.put("mascotaEncontrada", mascotaEncontrada);
+        parametros.put("segundoNivel",true);
 
         return new ModelAndView(parametros, "infoPersonal.hbs");
     }
