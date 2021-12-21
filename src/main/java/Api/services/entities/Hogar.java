@@ -18,6 +18,7 @@ public class Hogar extends EntidadPersistente {
     public Ubicacion ubicacion;
     @Getter @Setter
     public String telefono;
+    @Getter @Setter
     @Transient
     public Admisiones admisiones;
     @Getter @Setter
@@ -26,6 +27,7 @@ public class Hogar extends EntidadPersistente {
     public int lugares_disponibles;
     @Getter @Setter
     public Boolean patio;
+    @Getter @Setter
     @Transient
     public List<String> caracteristicas;
 }

@@ -6,5 +6,5 @@ public class ListadoHogares {
 
     public int total;
     public String offset;
-    public List<Hogar> hogares;
+    public List<HogarResponse> hogares;
 }

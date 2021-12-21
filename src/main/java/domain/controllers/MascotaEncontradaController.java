@@ -1,6 +1,9 @@
 package domain.controllers;
 
+import Api.services.ServiceRefugio;
 import Api.services.entities.Hogar;
+import Api.services.entities.HogarResponse;
+import Api.services.entities.ListadoHogares;
 import Api.services.entities.Ubicacion;
 
 import domain.entities.Contacto;
@@ -38,6 +41,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 public class MascotaEncontradaController {
     private Repositorio<Rescatista> repoRescatista;
@@ -51,6 +55,7 @@ public class MascotaEncontradaController {
     private Repositorio<PublicacionMascotaEncontradaSinChapita> repoPublicacionSinChapita;
     private Repositorio<Hogar> repoHogares;
     private Repositorio<Foto> repoFotos;
+    private LocalizadorDeOrganizacion localizador;
 
     public MascotaEncontradaController(){
         this.repoRescatista = FactoryRepositorio.get(Rescatista.class);
@@ -194,7 +199,7 @@ public class MascotaEncontradaController {
         return new ModelAndView(null, "MascotaEncontrada.hbs");
     }
 
-    public ModelAndView infoMascotaEncontradaConChapita(Request request, Response response) {
+    public ModelAndView infoMascotaEncontradaConChapita(Request request, Response response) throws ServletException, IOException {
         request.raw().setAttribute("org.eclipse.jetty.multipartConfig",
                 new MultipartConfigElement("/tmp", 100000000, 100000000, 1024));
 
@@ -205,9 +210,12 @@ public class MascotaEncontradaController {
         Ubicacion ubicacion = guardarUbicacion(request);
         mascotaEncontrada.setUbicacion(ubicacion);
         if(request.queryParams("solicitaTransito") != null){
+            if(noHayHogaresCargados()) {
+                cargarHogares();
+            }
             System.out.println("Esta solicitando transito");
-            List<Hogar> listaHogares = repoHogares.buscarTodos();
-            mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
+            localizador = new LocalizadorDeOrganizacion();
+            mascotaEncontrada.setHogarDeTransito(localizador.obtenerHogarMasCercano(mascotaEncontrada.getUbicacion()));
         }
         repoUbicacion.agregar(ubicacion);
         repoMascotEncontConChapita.agregar(mascotaEncontrada);
@@ -235,9 +243,12 @@ public class MascotaEncontradaController {
         Ubicacion ubicacion = guardarUbicacion(request);
         mascotaEncontrada.setUbicacion(ubicacion);
         if(request.queryParams("solicitaTransito") != null){
+            if(noHayHogaresCargados()) {
+                cargarHogares();
+            }
             System.out.println("Esta solicitando transito");
-            List<Hogar> listaHogares = repoHogares.buscarTodos();
-            mascotaEncontrada.setHogarDeTransito(listaHogares.get(0));
+            localizador = new LocalizadorDeOrganizacion();
+            mascotaEncontrada.setHogarDeTransito(localizador.obtenerHogarMasCercano(mascotaEncontrada.getUbicacion()));
         }
 
         repoUbicacion.agregar(ubicacion);
@@ -253,6 +264,28 @@ public class MascotaEncontradaController {
         return new ModelAndView(parametros, "infoPersonal.hbs");
     }
 
+    private Boolean noHayHogaresCargados() {
+        return repoHogares.buscarTodos().isEmpty();
+    }
+
+    private void cargarHogares() throws IOException {
+        ServiceRefugio serviceRefugio = ServiceRefugio.getInstance();
+        ListadoHogares listadoHogares = serviceRefugio.listadoHogares("1");
+        int iteraciones = (listadoHogares.total % 10);
+        int resto = listadoHogares.total - iteraciones * 10;
+        if(resto == 0) iteraciones++;
+        List<Hogar> hogares = listadoHogares.hogares.stream().map(HogarResponse::toHogarPersistente).collect(Collectors.toList());
+        for (int i = 1; i < iteraciones; i++) {
+            String offset = String.valueOf(i+1);
+            ListadoHogares nuevoListadoHogares = serviceRefugio.listadoHogares(offset);
+            hogares.addAll(nuevoListadoHogares.hogares.stream().map(HogarResponse::toHogarPersistente).collect(Collectors.toList()));
+        }
+
+        hogares.forEach(hogar -> {
+            repoUbicacion.agregar(hogar.getUbicacion());
+            repoHogares.agregar(hogar);
+        });
+    }
 
     public static List<String> guardarImagenes(Request request, Integer id, String folder){
 

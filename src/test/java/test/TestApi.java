@@ -1,7 +1,7 @@
 package test;
 
 import Api.services.ServiceRefugio;
-import Api.services.entities.Hogar;
+import Api.services.entities.HogarResponse;
 import Api.services.entities.ListadoHogares;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -20,7 +20,7 @@ public class TestApi {
 
         ListadoHogares listadoHogares = serviceRefugio.listadoHogares(numOffset);
 
-        for (Hogar unHogar : listadoHogares.hogares) {
+        for (HogarResponse unHogar : listadoHogares.hogares) {
             System.out.println(unHogar.nombre);
         }
     }
