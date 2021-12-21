@@ -3,7 +3,6 @@ package domain.controllers;
 import domain.entities.Mascotas.Mascota;
 import domain.entities.Mascotas.MascotaEncontradaSinChapita;
 import domain.entities.Organizacion.Organizacion;
-import domain.entities.Usuario;
 import domain.entities.publicaciones.*;
 import domain.repositories.Repositorio;
 import domain.repositories.factories.FactoryRepositorio;
@@ -59,7 +58,8 @@ public class PublicacionesController {
             tipoMascota = "";
         }
 
-        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+        Boolean filtroPorTipo = !tipoMascota.isEmpty();
+        Boolean filtroPorSexo = !sexoMascota.isEmpty();
 
         List<PublicacionMascotaEncontradaSinChapita> publicacionesMascotaEncontradaSinChapitaAprobadas = new ArrayList<>();
         for (int i = 0; i < publicacionesMascotaEncontradaSinChapita.size(); i++) {
@@ -67,16 +67,31 @@ public class PublicacionesController {
             String mascotaEncontradaSinChapitaTipo = mascotaEncontradaSinChapita.getTipoMascota().toString();
             String mascotaEncontradaSinChapitaSexo = mascotaEncontradaSinChapita.getSexo();
 
-            if(noHayFiltro) {
+            if(!filtroPorTipo && !filtroPorSexo) {
                 if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada()) {
                     publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
                 }
             } else {
-                if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada() &&
-                        sexoMascota.equals(mascotaEncontradaSinChapitaSexo) || sexoMascota.isEmpty() &&
-                        tipoMascota.equals(mascotaEncontradaSinChapitaTipo) || tipoMascota.isEmpty()
-                ) {
-                    publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEncontradaSinChapitaSexo) &&
+                            tipoMascota.equals(mascotaEncontradaSinChapitaTipo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada() &&
+                            tipoMascota.equals(mascotaEncontradaSinChapitaTipo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
+                } else{
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEncontradaSinChapitaSexo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapitaAprobadas.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
                 }
             }
         }
@@ -152,7 +167,8 @@ public class PublicacionesController {
             tipoMascota = "";
         }
 
-        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+        Boolean filtroPorTipo = !tipoMascota.isEmpty();
+        Boolean filtroPorSexo = !sexoMascota.isEmpty();
 
         publicacionesMascotaEnAdopcion = repoPublicacionMascotaEnAdopcion.buscarTodos();
         List<PublicacionMascotaEnAdopcion> publicacionesMascotaEnAdopcionAprobadas = new ArrayList<>();
@@ -161,19 +177,35 @@ public class PublicacionesController {
             String mascotaEnAdopcionTipo = mascotaEnAdopcion.getTipoMascota().toString();
             String mascotaEnAdopcionSexo = mascotaEnAdopcion.getSexo();
 
-            if(noHayFiltro) {
+            if(!filtroPorTipo && !filtroPorSexo) {
                 if (publicacionesMascotaEnAdopcion.get(i).esAprobada()) {
                     publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
                 }
             } else {
-                if (publicacionesMascotaEnAdopcion.get(i).esAprobada() &&
-                        sexoMascota.equals(mascotaEnAdopcionSexo) || sexoMascota.isEmpty() &&
-                        tipoMascota.equals(mascotaEnAdopcionTipo) || tipoMascota.isEmpty()
-                ) {
-                    publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesMascotaEnAdopcion.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo) &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesMascotaEnAdopcion.get(i).esAprobada() &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
+                } else{
+                    if (publicacionesMascotaEnAdopcion.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo)
+                    ) {
+                        publicacionesMascotaEnAdopcionAprobadas.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
                 }
             }
         }
+
         parametros.put("publicacionesMascotaEnAdopcion", publicacionesMascotaEnAdopcionAprobadas);
         return new ModelAndView(parametros, "publicacionesAdopcion.hbs");
     }
@@ -198,7 +230,8 @@ public class PublicacionesController {
             tipoMascota = "";
         }
 
-        Boolean noHayFiltro = tipoMascota.isEmpty() && sexoMascota.isEmpty();
+        Boolean filtroPorTipo = !tipoMascota.isEmpty();
+        Boolean filtroPorSexo = !sexoMascota.isEmpty();
 
         publicacionesIntencionDeAdopcion = repoPublicacionesIntencionDeAdopcion.buscarTodos();
         List<PublicacionIntencionDeAdopcion> publicacionesIntencionDeAdopcionAprobadas = new ArrayList<>();
@@ -206,16 +239,31 @@ public class PublicacionesController {
             String mascotaEnAdopcionTipo = publicacionesIntencionDeAdopcion.get(i).getTipoMascota().toString();
             String mascotaEnAdopcionSexo = publicacionesIntencionDeAdopcion.get(i).getSexoMascota();
 
-            if(noHayFiltro) {
+            if(!filtroPorTipo && !filtroPorSexo) {
                 if (publicacionesIntencionDeAdopcion.get(i).esAprobada()) {
                     publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
                 }
             } else {
-                if (publicacionesIntencionDeAdopcion.get(i).esAprobada() &&
-                        sexoMascota.equals(mascotaEnAdopcionSexo) || sexoMascota.isEmpty() &&
-                        tipoMascota.equals(mascotaEnAdopcionTipo) || tipoMascota.isEmpty()
-                ) {
-                    publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesIntencionDeAdopcion.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo) &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesIntencionDeAdopcion.get(i).esAprobada() &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
+                } else{
+                    if (publicacionesIntencionDeAdopcion.get(i).esAprobada() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo)
+                    ) {
+                        publicacionesIntencionDeAdopcionAprobadas.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
                 }
             }
         }
@@ -254,26 +302,131 @@ public class PublicacionesController {
         publicacionesIntencionDeAdopcion = repoPublicacionesIntencionDeAdopcion.buscarTodos();
         List<Publicacion> publicacionesParaAprobar = new ArrayList<>();
 
+        String sexoMascota;
+        if(request.queryParams("sexoMascota") != null) {
+            sexoMascota = request.queryParams("sexoMascota");
+            parametros.put("filtroSexo",sexoMascota);
+        } else {
+            sexoMascota = "";
+        }
+
+        String tipoMascota;
+        if(request.queryParams("tipoMascota") != null) {
+            tipoMascota = request.queryParams("tipoMascota");
+            parametros.put("filtroTipo",tipoMascota);
+        } else {
+            tipoMascota = "";
+        }
+
+        Boolean filtroPorTipo = !tipoMascota.isEmpty();
+        Boolean filtroPorSexo = !sexoMascota.isEmpty();
+
         for (int i = 0; i < publicacionesMascotaEnAdopcion.size(); i++) {
+            Mascota mascotaEnAdopcion = publicacionesMascotaEnAdopcion.get(i).getMascotaEnAdopcion();
+            String mascotaEnAdopcionTipo = mascotaEnAdopcion.getTipoMascota().toString();
+            String mascotaEnAdopcionSexo = mascotaEnAdopcion.getSexo();
 
-            if (publicacionesMascotaEnAdopcion.get(i).esPendiente()) {
-
-                publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
-                publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
+            if(!filtroPorTipo && !filtroPorSexo) {
+                if (publicacionesMascotaEnAdopcion.get(i).esPendiente()) {
+                    publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
+                    publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
+                }
+            } else {
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesMascotaEnAdopcion.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo) &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
+                        publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesMascotaEnAdopcion.get(i).esPendiente() &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
+                        publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
+                } else{
+                    if (publicacionesMascotaEnAdopcion.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo)
+                    ) {
+                        publicacionesMascotaEnAdopcion.get(i).setFotosURL(publicacionesMascotaEnAdopcion.get(i).getMascota().getFotosUrl());
+                        publicacionesParaAprobar.add(publicacionesMascotaEnAdopcion.get(i));
+                    }
+                }
             }
         }
         for (int i = 0; i < publicacionesMascotaEncontradaSinChapita.size(); i++) {
-            if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente()) {
-                publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
-                publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
+            MascotaEncontradaSinChapita mascotaEncontradaSinChapita = publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita();
+            String mascotaEncontradaSinChapitaTipo = mascotaEncontradaSinChapita.getTipoMascota().toString();
+            String mascotaEncontradaSinChapitaSexo = mascotaEncontradaSinChapita.getSexo();
+
+            if(!filtroPorTipo && !filtroPorSexo) {
+                if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente()) {
+                    publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
+                    publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                }
+            } else {
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEncontradaSinChapitaSexo) &&
+                            tipoMascota.equals(mascotaEncontradaSinChapitaTipo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
+                        publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente() &&
+                            tipoMascota.equals(mascotaEncontradaSinChapitaTipo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
+                        publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
+                } else{
+                    if (publicacionesMascotaEncontradaSinChapita.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEncontradaSinChapitaSexo)
+                    ) {
+                        publicacionesMascotaEncontradaSinChapita.get(i).setFotosURL(publicacionesMascotaEncontradaSinChapita.get(i).getMascotaEncontradaSinChapita().getFotos());
+                        publicacionesParaAprobar.add(publicacionesMascotaEncontradaSinChapita.get(i));
+                    }
+                }
             }
         }
         for (int i = 0; i < publicacionesIntencionDeAdopcion.size(); i++) {
-            if (publicacionesIntencionDeAdopcion.get(i).esPendiente()) {
-                publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
-
+            String mascotaEnAdopcionTipo = publicacionesIntencionDeAdopcion.get(i).getTipoMascota().toString();
+            String mascotaEnAdopcionSexo = publicacionesIntencionDeAdopcion.get(i).getSexoMascota();
+            if(!filtroPorTipo && !filtroPorSexo) {
+                if (publicacionesIntencionDeAdopcion.get(i).esPendiente()) {
+                    publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
+                }
+            } else {
+                if(filtroPorTipo && filtroPorSexo) {
+                    if (publicacionesIntencionDeAdopcion.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo) &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
+                }
+                else if(filtroPorTipo) {
+                    if (publicacionesIntencionDeAdopcion.get(i).esPendiente() &&
+                            tipoMascota.equals(mascotaEnAdopcionTipo)
+                    ) {
+                        publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
+                } else{
+                    if (publicacionesIntencionDeAdopcion.get(i).esPendiente() &&
+                            sexoMascota.equals(mascotaEnAdopcionSexo)
+                    ) {
+                        publicacionesParaAprobar.add(publicacionesIntencionDeAdopcion.get(i));
+                    }
+                }
             }
         }
+
         parametros.put("publicacionesParaAprobar", publicacionesParaAprobar);
         return new ModelAndView(parametros, "publicacionesParaAprobar.hbs");
     }
